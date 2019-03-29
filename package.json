@@ -19,6 +19,8 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "clean-css": "^4.2.1",
+    "elemental": "^0.6.1",
     "express": "^4.16.3",
     "if-env": "^1.0.4"
   }
