@@ -15,7 +15,7 @@ const ItemSchema = new Schema({
         description: "category the product falls under, ex. Tents"
     },
     status: {
-        $in: ["Available", "Rented", "Maintenance"],
+        $in: ["Available", "Out for Rent", "In Maintenance"],
         default: "Available",
         required: true,
         description: "One of three potential statuses."
