@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TextInput, Icon, CardPanel, Row, Col } from 'react-materialize';
 import './style.css';
 
 class SignUp extends Component {
@@ -29,30 +30,44 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className="auth-container">
-                <div className="contain">
-                    <i className="fas fa-lock"></i>
-                    <h1>Sign-Up</h1>
-                </div>
-                <form className="SignUpForm">
-                    <label htmlFor="username">Username: </label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
-                    <label htmlFor="password">Password: </label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                    />
+            <form>
+                <Row>
+                    <Col m={6} s={12}>
+                    <CardPanel className="white">
+                        <Icon large>
+                            lock
+                        </Icon>
+                        <span className="black-text">Sign-Up</span>
+                        <TextInput
+                            onChange={this.handleChange}
+                            placeholder="Username"
+                            type="text"
+                            name="username"
+                            value={this.state.username}
+                        />
 
-                    <button className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
-                </form>
-            </div>
+                        <TextInput
+                            onChange={this.handleChange}
+                            // password={true}
+                            // placeholder="Password"
+                            // type="password"
+                            // name="password"
+                            // value={this.state.password}
+                        />
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
+                    </CardPanel>
+                    </Col>
+                </Row>
+            </form>
+            // <div className="auth-container">
+            //     <div className="contain">
+
+            // </div>
+            // <form className="SignUpForm">
+            // <button className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
+            //     </form>
+            // </div>
+
         );
     }
 }
