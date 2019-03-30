@@ -4,11 +4,13 @@ const { Schema } = mongoose;
 const ItemSchema = new Schema({
     name: {
         type: String,
+        trim: true,
         required: true,
         description: "name of the product, ex. REI Passage 2"
     },
     category: {
         type: String,
+        trim: true,
         required: true,
         description: "category the product falls under, ex. Tents"
     },
@@ -20,6 +22,8 @@ const ItemSchema = new Schema({
     },
     serial_number: {
         type: String,
+        trim: true,
+        unique: true,
         required: true,
         description: "unique id for each item that is also physically on each item"
     },
