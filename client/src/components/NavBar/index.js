@@ -32,9 +32,15 @@ class NavTabs extends Component {
 
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
-                <a className="navbar-brand" href="/">
-                    <i className="fas fa-mountain"></i> Outdoor Gear Bank
-                </a>
+                {loggedIn ? (
+                    <Link to="/main" className="navbar-brand">
+                        <i className="fas fa-mountain"></i> Outdoor Gear Bank
+                    </Link>
+                ) : (
+                    <Link to="/" className="navbar-brand">
+                        <i className="fas fa-mountain"></i> Outdoor Gear Bank
+                    </Link>
+                )}
                 <ul className="navbar-nav ml-auto">
                     {loggedIn ? (
                         <section className="navbar-section">

@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 //components
 import Wrapper from './components/Wrapper';
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
-import Home from './components/pages/home';
-
+import Home from './components/pages/Home';
+import Main from './components/pages/Main';
+import PrivateRoute from './components/PrivateRoute';
+import Maintenance from "./components/pages/Maintenance";
+import Rent from "./components/pages/Rent";
+import Return from "./components/pages/Return";
+import Inventory from "./components/pages/Inventory";
 
 class App extends Component {
   constructor() {
@@ -63,6 +68,31 @@ class App extends Component {
             <Route
               exact path="/"
               component={Home} 
+            />
+            <PrivateRoute 
+              auth={this.state.loggedIn}
+              path='/main'
+              component={Main}
+            />
+            <PrivateRoute 
+              auth={this.state.loggedIn}
+              path='/rent'
+              component={Rent}
+            />
+            <PrivateRoute 
+              auth={this.state.loggedIn}
+              path='/return'
+              component={Return}
+            />
+            <PrivateRoute 
+              auth={this.state.loggedIn}
+              path='/maintenance'
+              component={Maintenance}
+            />
+            <PrivateRoute 
+              auth={this.state.loggedIn}
+              path='/inventory'
+              component={Inventory}
             />
             <Route
               path="/login"
