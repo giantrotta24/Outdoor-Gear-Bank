@@ -82,31 +82,27 @@ class App extends Component {
                 <SignUp />}
             />
             <Switch>
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/main'
-                component={Main}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/rent'
-                component={Rent}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/return'
-                component={Return}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/maintenance'
-                component={Maintenance}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/inventory'
-                component={Inventory}
-              />
+            <Route
+              exact path="/main"
+              component={Main}
+            />
+            <Route
+              exact path="/rent"
+              component={Rent}
+            />
+            <Route
+              exact path="/return"
+              component={Return}
+            />
+            <Route
+              exact path="/maintenance"
+              component={Maintenance}
+            />
+            <Route
+              exact path="/inventory"
+              component={Inventory}
+            />
+
             </Switch>
           </Wrapper>
         </Router>

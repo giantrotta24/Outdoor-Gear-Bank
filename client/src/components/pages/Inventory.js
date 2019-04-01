@@ -27,7 +27,7 @@ class Inventory extends Component {
                 disabled={!(this.state.topic)}
                 onClick={this.handleFormSubmit}
               >
-                Search</FormBtn> */} */}
+                Search</FormBtn> */} 
             </form>
       <div className="col-1-md"></div>
     </div>
