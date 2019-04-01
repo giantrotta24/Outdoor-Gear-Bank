@@ -25,22 +25,22 @@ class SignUp extends Component {
         event.preventDefault();
         console.log('sign-up-form, username: ');
         console.log(this.state.username);
-        //request to server here
-        axios.post('/user', {
+        //request to server here (add new username/password)
+        axios.post('/user/', {
             username: this.state.username,
             password: this.state.password,
         }).then(response => {
             console.log(response);
-            if (response.data) {
+            if (!response.data.errmsg) {
                 console.log('successful signup');
                 this.setState({
                     redirectTo: '/login'
                 });
             } else {
-                console.log('signup error');
+                console.log('username already taken');
             }
         }).catch(error => {
-            console.log('sign up server error: ');
+            console.log('sign up error: ');
             console.log(error);
         });
     }
@@ -74,8 +74,9 @@ class SignUp extends Component {
                     />
 
                     <button 
-                    className="btn btn-lg btn-primary btn-block mt-3"
-                    onClick={this.handleSubmit}
+                        className="btn btn-lg btn-primary btn-block mt-3"
+                        onClick={this.handleSubmit}
+                        type="submit"
                     >Sign up</button>
 
                     <p className="mt-5 mb-3 text-muted">© 2019</p>
