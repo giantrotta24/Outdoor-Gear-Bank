@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //components
 import Wrapper from './components/Wrapper';
 import SignUp from './components/SignUp';
@@ -67,32 +67,7 @@ class App extends Component {
             }
             <Route
               exact path="/"
-              component={Home} 
-            />
-            <PrivateRoute 
-              auth={this.state.loggedIn}
-              path='/main'
-              component={Main}
-            />
-            <PrivateRoute 
-              auth={this.state.loggedIn}
-              path='/rent'
-              component={Rent}
-            />
-            <PrivateRoute 
-              auth={this.state.loggedIn}
-              path='/return'
-              component={Return}
-            />
-            <PrivateRoute 
-              auth={this.state.loggedIn}
-              path='/maintenance'
-              component={Maintenance}
-            />
-            <PrivateRoute 
-              auth={this.state.loggedIn}
-              path='/inventory'
-              component={Inventory}
+              component={Home}
             />
             <Route
               path="/login"
@@ -106,6 +81,33 @@ class App extends Component {
               render={() =>
                 <SignUp />}
             />
+            <Switch>
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/main'
+                component={Main}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/rent'
+                component={Rent}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/return'
+                component={Return}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/maintenance'
+                component={Maintenance}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/inventory'
+                component={Inventory}
+              />
+            </Switch>
           </Wrapper>
         </Router>
       </div>
