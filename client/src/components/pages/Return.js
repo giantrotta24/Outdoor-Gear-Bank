@@ -1,6 +1,6 @@
 import React from "react";
 
-function Return() {
+const Return = () => {
   return (
     <div className="container bg-light border">
       <div className="col-1-md"></div>
