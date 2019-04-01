@@ -40,6 +40,7 @@ router.post('/login', function(req, res, next) {
     let userInfo = {
         username: req.user.username
     };
+    res.send(userInfo);
 });
 
 router.get('/', (req, res, next) => {
