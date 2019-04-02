@@ -15,10 +15,10 @@ const ItemSchema = new Schema({
         description: "category the product falls under, ex. Tents"
     },
     status: {
-        $in: ["Available", "Out for Rent", "In Maintenance"],
+        type: String,
         default: "Available",
         required: true,
-        description: "One of three potential statuses."
+        description: "One of three potential statuses. 'Available', 'Out for Rent', or 'In Maintenance'"
     },
     serial_number: {
         type: String,
@@ -33,10 +33,10 @@ const ItemSchema = new Schema({
         description: "URL for image"
     },
     condition: {
-        $in: ["New", "Good", "Fair", "Poor"],
+        type: String,
         default: "New",
         required: true,
-        description: "General descriptor of the items condition"
+        description: "General descriptor of the items condition. Options: 'New', 'Good', 'Fair', 'Poor'"
     },
     comments: [
         {

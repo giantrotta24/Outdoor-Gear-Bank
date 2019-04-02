@@ -1,9 +1,16 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const MaintenanceCommentSchema = new Schema({
-  body: String
+  body: {
+    type: String,
+    required: true
+  },
+  item: {
+    type: Schema.Types.ObjectId,
+    ref: 'Item'
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method

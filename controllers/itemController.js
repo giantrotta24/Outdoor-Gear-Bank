@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("./database");
 
 // Defining methods for the itemController
 module.exports = {
