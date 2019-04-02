@@ -1,32 +1,45 @@
-const db = require("../database");
+var Item = require('../models/item');
 
-// Defining methods for the itemController
-module.exports = {
-  findAll: (req, res) => {
-    db.Item.find(req.query)
-      .then(dbItem => res.json(dbItem))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: (req, res) => {
-    db.Item.findById(req.params.id)
-      .then(dbItem => res.json(dbItem))
-      .catch(err => res.status(422).json(err));
-  },
-  create: (req, res) => {
-    db.Item.save(req.body)
-      .then(dbItem => res.json(dbItem))
-      .catch(err => res.status(422).json(err));
-      res.send('item added successfully');
-  },
-  update: (req, res) => {
-    db.Item.findOneAndUpdate({ id: req.params.id }, req.body)
-      .then(dbItem => res.json(dbItem))
-      .catch(err => res.status(422).json(err));
-  },
-  delete: (req, res) => {
-    db.Item.findById(req.params.id)
-      .then(dbItem => dbItem.remove())
-      .then(dbItem => res.json(dbItem))
-      .catch(err => res.status(422).json(err));
-  }
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: Site Home Page');
+};
+
+// Display list of all items.
+exports.item_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item list');
+};
+
+// Display detail page for a specific item.
+exports.item_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item detail: ' + req.params.id);
+};
+
+// Display item create form on GET.
+exports.item_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item create GET');
+};
+
+// Handle item create on POST.
+exports.item_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item create POST');
+};
+
+// Display item delete form on GET.
+exports.item_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item delete GET');
+};
+
+// Handle item delete on POST.
+exports.item_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item delete POST');
+};
+
+// Display item update form on GET.
+exports.item_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item update GET');
+};
+
+// Handle item update on POST.
+exports.item_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Item update POST');
 };

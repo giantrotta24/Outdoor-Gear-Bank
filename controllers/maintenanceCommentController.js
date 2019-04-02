@@ -1,21 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../database');
+const maintComment = require ('../database/models/MaintenanceComment');
 
-router.get('/', (req, res) => {
-  db.maintComment.find({}).populate('item').then((dbMaintComment) => {
-    res.json(dbMaintComment);
-  }).catch((err) => {
-    console.log(err);
-  });
-});
+// Dummy callbacks for set-up
+// Display list of all maintComments
+exports.maint_comment_list = (req, res) => {
+  res.send('NOT IMPLEMENTED: maintComment List');
+};
 
-router.delete('/:maintCommentID', (req, res) => {
-  db.maintComment.deleteOne({ _id: req.params.maintCommentID }).then((dbMaintComment) => {
-    res.json(dbMaintComment);
-  }).catch((err) => {
-    console.log(err);
-  });
-});
+// Display detail page for a specific maintComment.
+exports.maint_comment_detail = function(req, res) {
+  res.send('NOT IMPLEMENTED: maintComment detail: ' + req.params.id);
+};
 
-module.exports = router;
+// Display maintComment create form on GET.
+exports.maint_comment_create_get = (req, res) => {
+  res.send('NOT IMPLEMENTED: maintComment create GET');
+};
+
+// Handle maintComment create on POST.
+exports.maint_comment_create_post = (req, res) => {
+  res.send('NOT IMPLEMENTED: maintComment create POST');
+};
+
+// Display maintComment delete form on GET.
+exports.maint_comment_delete_get = function(req, res) {
+  res.send('NOT IMPLEMENTED: maintComment delete GET');
+};
+
+// Handle maintComment delete on POST.
+exports.maint_comment_delete_post = function(req, res) {
+  res.send('NOT IMPLEMENTED: maintComment delete POST');
+};
+
+// Display maintComment update form on GET.
+exports.maint_comment_update_get = function(req, res) {
+  res.send('NOT IMPLEMENTED: maintComment update GET');
+};
+
+// Handle maintComment update on POST.
+exports.maint_comment_update_post = function(req, res) {
+  res.send('NOT IMPLEMENTED: maintComment update POST');
+};
