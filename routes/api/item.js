@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 // Require controller modules.
-const item_controller = require('../controllers/itemController');
-const comment_controller = require('../controllers/commentController');
-const maint_comment_controller = require('../controllers/maintenanceCommentController');
+const item_controller = require('../../controllers/itemController');
+const comment_controller = require('../../controllers/commentController');
+const maint_comment_controller = require('../../controllers/maintenanceCommentController');
 
 /// ITEM ROUTES ///
 

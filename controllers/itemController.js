@@ -1,4 +1,4 @@
-const Item = require('../models/item');
+const Item = require('../database/models/Item');
 
 exports.index = (req, res) => {
     res.send('NOT IMPLEMENTED: Site Home Page');
