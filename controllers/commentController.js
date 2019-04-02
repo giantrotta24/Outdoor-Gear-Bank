@@ -7,7 +7,7 @@ exports.comment_list = (req, res) => {
 };
 
 // Display detail page for a specific Comment.
-exports.comment_detail = function(req, res) {
+exports.comment_detail = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment detail: ' + req.params.id);
 };
 
@@ -22,21 +22,21 @@ exports.comment_create_post = (req, res) => {
 };
 
 // Display Comment delete form on GET.
-exports.comment_delete_get = function(req, res) {
+exports.comment_delete_get = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment delete GET');
 };
 
 // Handle Comment delete on POST.
-exports.comment_delete_post = function(req, res) {
+exports.comment_delete_post = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment delete POST');
 };
 
 // Display Comment update form on GET.
-exports.comment_update_get = function(req, res) {
+exports.comment_update_get = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment update GET');
 };
 
 // Handle Comment update on POST.
-exports.comment_update_post = function(req, res) {
+exports.comment_update_post = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment update POST');
 };

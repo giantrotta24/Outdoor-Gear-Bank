@@ -7,7 +7,7 @@ exports.maint_comment_list = (req, res) => {
 };
 
 // Display detail page for a specific maintComment.
-exports.maint_comment_detail = function(req, res) {
+exports.maint_comment_detail = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment detail: ' + req.params.id);
 };
 
@@ -22,21 +22,21 @@ exports.maint_comment_create_post = (req, res) => {
 };
 
 // Display maintComment delete form on GET.
-exports.maint_comment_delete_get = function(req, res) {
+exports.maint_comment_delete_get = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment delete GET');
 };
 
 // Handle maintComment delete on POST.
-exports.maint_comment_delete_post = function(req, res) {
+exports.maint_comment_delete_post = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment delete POST');
 };
 
 // Display maintComment update form on GET.
-exports.maint_comment_update_get = function(req, res) {
+exports.maint_comment_update_get = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment update GET');
 };
 
 // Handle maintComment update on POST.
-exports.maint_comment_update_post = function(req, res) {
+exports.maint_comment_update_post = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment update POST');
 };

@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Require customer controller modules.
-var customer_controller = require('../controllers/customerController');
+const customer_controller = require('../controllers/customerController');
 
 /// CUSTOMER ROUTES ///
 

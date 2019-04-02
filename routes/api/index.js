@@ -5,7 +5,7 @@ const itemRoutes = require("./item");
 router.use("/items", itemRoutes);
 
 // For anything else, render the html page
-router.use(function(req, res) {
+router.use((req, res) => {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 
