@@ -1,5 +1,6 @@
 const Customer = require('../models/Customer');
 
+// DUMMY CALLBACKS - THIS IS NOT FINISHED
 // Display list of all customers.
 exports.customer_list = (req, res) => {
     res.send('NOT IMPLEMENTED: Customer list');

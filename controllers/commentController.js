@@ -1,6 +1,8 @@
 const Comment = require ('../database/models/Comment');
 
 // Dummy callbacks for set-up
+// THIS IS NOT FINISHED
+
 // Display list of all Comments
 exports.comment_list = (req, res) => {
   res.send('NOT IMPLEMENTED: Comment List');

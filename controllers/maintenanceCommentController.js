@@ -1,6 +1,8 @@
 const maintComment = require ('../database/models/MaintenanceComment');
 
 // Dummy callbacks for set-up
+// THIS IS NOT FINISHED
+
 // Display list of all maintComments
 exports.maint_comment_list = (req, res) => {
   res.send('NOT IMPLEMENTED: maintComment List');
