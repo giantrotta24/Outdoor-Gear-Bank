@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const CustomerSchema = new Schema({
-    lastName: {
+    last_name: {
         type: String,
         required: true,
         description: "Customer's last name"
     },
-    firstName: {
+    first_name: {
         type: String,
         required: true,
         description: "Customer's first name"

@@ -57,11 +57,11 @@ const ItemSchema = new Schema({
             ref: "MaintenanceComment"
         }
     ],
-    dateRentedOut: {
+    date_rented_out: {
         type: Date,
         description: "If not currently out for rent, this will be left empty. If out for rent, this will be the date it left with the customer."
     },
-    dateDue: {
+    date_due: {
         type: Date,
         description: "The date the item is due back from rent"
     },
