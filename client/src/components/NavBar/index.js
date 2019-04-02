@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './style.css';
 import axios from 'axios';
 
-class NavTabs extends Component {
+class NavBar extends Component {
     constructor() {
         super()
 
@@ -79,4 +79,4 @@ class NavTabs extends Component {
         }
     }
 
-export default NavTabs;
+export default NavBar;
