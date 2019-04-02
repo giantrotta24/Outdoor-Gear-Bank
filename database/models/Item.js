@@ -64,6 +64,10 @@ const ItemSchema = new Schema({
     dateDue: {
         type: Date,
         description: "The date the item is due back from rent"
+    },
+    rented_by: {
+        type: Schema.Types.ObjectId,
+        ref: "Customer"
     }
 });
 

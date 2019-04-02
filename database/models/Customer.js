@@ -27,10 +27,13 @@ const CustomerSchema = new Schema({
         type: Number,
         description: "Customer's member number, not required."
     },
-    items_rented: {
-        type: [String],
-        description: "Items currently rented out to customer stored in an array. Empty if no items rented out. This will contain the item's unique id from database."
-    }
+    items: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Item',
+            description: "Items currently rented out by customer. To be cleared out when items are returned."
+        }
+    ]
 });
 
 const Customer = mongoose.model("Customer", CustomerSchema);
