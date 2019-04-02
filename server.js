@@ -12,6 +12,7 @@ const passport = require('./passport');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -28,11 +29,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // calls the deserializeUser
 
-//routes
+// Define API routes here
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gearbank", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gearbank", 
+{ 
+  useNewUrlParser: true 
+});
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
