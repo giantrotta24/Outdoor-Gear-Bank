@@ -14,6 +14,7 @@ import Inventory from "./components/pages/Inventory";
 // import Contact from "./components/pages/Contact";
 
 class App extends Component {
+  
   render() {
     return (
       <Router>
@@ -21,7 +22,7 @@ class App extends Component {
           <NavTabs />
           <div className="App">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h2>Welcome to Outdoor Gear Bank</h2>
+          <h2 className="mt-3">Outdoor Gear Bank</h2>
         </div>
           <Route exact path="/" component={Main} />
           <Route exact path="/rent" component={Rent} />
@@ -34,9 +35,9 @@ class App extends Component {
           <Route exact path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} /> */}
         
-        <p className="App-main mt-3 ml-3">
+        {/* <p className="App-main mt-3 ml-3">
           Supplemental information display area. <code>...</code>
-        </p>
+        </p> */}
       </div>
       </Router>
     );
