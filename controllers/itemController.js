@@ -13,9 +13,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: (req, res) => {
-    db.Item.create(req.body)
+    db.Item.save(req.body)
       .then(dbItem => res.json(dbItem))
       .catch(err => res.status(422).json(err));
+      res.send('item added successfully');
   },
   update: (req, res) => {
     db.Item.findOneAndUpdate({ id: req.params.id }, req.body)

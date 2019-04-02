@@ -39,3 +39,9 @@ const CustomerSchema = new Schema({
 const Customer = mongoose.model("Customer", CustomerSchema);
 
 module.exports = Customer;
+
+// Routes we will need to customer information:
+// Create/Post
+// Update --- for updating the items they have rented out and when they're returned
+//      to clear the items out
+// .populate -- in order to connect the items they have rented into the array of ObjectIds

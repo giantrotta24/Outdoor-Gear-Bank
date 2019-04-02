@@ -17,8 +17,9 @@ const ItemSchema = new Schema({
     status: {
         type: String,
         default: "Available",
+        enum: ['Available', 'Out for Rent', 'In Maintenance'],
         required: true,
-        description: "One of three potential statuses. 'Available', 'Out for Rent', or 'In Maintenance'"
+        description: "One of three potential statuses."
     },
     serial_number: {
         type: String,
@@ -35,8 +36,9 @@ const ItemSchema = new Schema({
     condition: {
         type: String,
         default: "New",
+        enum: ['New', 'Good', 'Fair', 'Poor'],
         required: true,
-        description: "General descriptor of the items condition. Options: 'New', 'Good', 'Fair', 'Poor'"
+        description: "General description of the item's condition."
     },
     comments: [
         {
@@ -74,3 +76,10 @@ const ItemSchema = new Schema({
 const Item = mongoose.model("Item", ItemSchema);
 
 module.exports = Item;
+
+// Routes that will be needed for Item:
+// create/post, read/get, update, delete findById, findByIdAndRemove, findByIdandUpdate
+// find().where(status).equals(available).where(type).equals(tent) ... etc ...
+// find().where(status).equals ... for all other status .. pull the requested information
+// from the form submission
+// .populate in order to populate the comments and maintenance comments
