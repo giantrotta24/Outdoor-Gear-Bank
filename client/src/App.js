@@ -8,7 +8,7 @@ import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
 import Home from './components/pages/home';
 import Main from './components/pages/Main';
-// import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import Maintenance from "./components/pages/Maintenance";
 import Rent from "./components/pages/Rent";
 import Return from "./components/pages/Return";
@@ -65,44 +65,48 @@ class App extends Component {
             {this.state.loggedIn &&
               <p>Welcome {this.state.username}!</p>
             }
-            <Route
-              exact path="/"
-              component={Home}
-            />
-            <Route
-              path="/login"
-              render={() =>
-                <LogIn
-                  updateUser={this.updateUser}
-                />}
-            />
-            <Route
-              path="/signup"
-              render={() =>
-                <SignUp />}
-            />
             <Switch>
-            <Route
-              exact path="/main"
-              component={Main}
-            />
-            <Route
-              exact path="/rent"
-              component={Rent}
-            />
-            <Route
-              exact path="/return"
-              component={Return}
-            />
-            <Route
-              exact path="/maintenance"
-              component={Maintenance}
-            />
-            <Route
-              exact path="/inventory"
-              component={Inventory}
-            />
-
+              <Route
+                exact path="/"
+                component={Home}
+              />
+              <Route
+                path="/login"
+                render={() =>
+                  <LogIn
+                    updateUser={this.updateUser}
+                  />}
+              />
+              <Route
+                path="/signup"
+                render={() =>
+                  <SignUp />}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                exact path='/main'
+                component={Main}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                exact path='/rent'
+                component={Rent}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/return'
+                component={Return}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/maintenance'
+                component={Maintenance}
+              />
+              <PrivateRoute
+                isAuthenticated={this.state.loggedIn}
+                path='/inventory'
+                component={Inventory}
+              />
             </Switch>
           </Wrapper>
         </Router>
