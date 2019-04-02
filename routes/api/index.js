@@ -1,6 +1,6 @@
 const path = require("path");
 const router = require("express").Router();
-const itemRoutes = require("./items");
+const itemRoutes = require("./item");
 
 router.use("/items", itemRoutes);
 
