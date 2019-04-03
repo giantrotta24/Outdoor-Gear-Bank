@@ -41,7 +41,7 @@ class Inventory extends Component {
             <div className="card-body">
               <h4 className="card-title mt-3 mb-3">Item Data</h4>
 
-              <label for="item-name">Name:</label>
+              <label htmlFor="item-name">Name:</label>
               <Input
                 value={this.state.itemName}
                 onChange={this.handleInputChange}
@@ -54,7 +54,7 @@ class Inventory extends Component {
                 </input> */}
               {/* </div> */}
 
-              <label for="item-catagory">Category:</label>
+              <label htmlFor="item-catagory">Category:</label>
               <Input
                 value= {this.state.category}
                 onChange= {this.handleInputChange}
@@ -63,7 +63,7 @@ class Inventory extends Component {
               />
               {console.log("category= ",this.state.category)}
 
-              <label for="item-status">Item Status:</label>
+              <label htmlFor="item-status">Item Status:</label>
               <SelectItemStatus
                 name="itemStatus" 
                 value={this.state.itemStatus} 
@@ -79,7 +79,7 @@ class Inventory extends Component {
                   </select>
               </div> */}
 
-              <label for="item-sn">Serial Number:</label>
+              <label htmlFor="item-sn">Serial Number:</label>
                 <Input
                   value= {this.state.serialNumber}
                   onChange= {this.handleInputChange}
@@ -87,7 +87,7 @@ class Inventory extends Component {
               />
               {console.log("category= ",this.state.serialNumber)}
 
-              <label for="item-image">Image URL:</label>
+              <label htmlFor="item-image">Image URL:</label>
                 <Input
                   value= {this.state.itemImage}
                   onChange= {this.handleInputChange}
@@ -95,7 +95,7 @@ class Inventory extends Component {
                 />  
               {console.log("category= ",this.state.imageURL)}
 
-              <label for="item-condition">Item Condition:</label>
+              <label htmlFor="item-condition">Item Condition:</label>
                 <SelectCondition
                 name="itemCondition" 
                 value={this.state.itemCondition} 
@@ -112,7 +112,7 @@ class Inventory extends Component {
                   </select>
               </div> */}
 
-              <label for="item-comment">Comment:</label>
+              <label htmlFor="item-comment">Comment:</label>
                 <TextArea
                   value= {this.state.itemComment}
                   onChange= {this.handleInputChange}
@@ -125,7 +125,7 @@ class Inventory extends Component {
                 <textarea className="form-control" rows="5" id="item-comment"></textarea>
               </div> */}
 
-              <label for="item-maint-comment">Maintenance Comments:</label>
+              <label htmlFor="item-maint-comment">Maintenance Comments:</label>
                 <TextArea
                     value= {this.state.maintComment}
                     onChange= {this.handleInputChange}
@@ -133,14 +133,14 @@ class Inventory extends Component {
                 />
                 {console.log("itemComment=", this.state.maintComment)}
 
-                <label for="item-dateout">Date Rented:</label>
+                <label htmlFor="item-dateout">Date Rented:</label>
                   <Input
                     value= {this.state.dateOut}
                     onChange= {this.handleInputChange}
                     name= "dateOut"                 
                   /> 
 
-                <label for="item-datedue">Date Due:</label>
+                <label htmlFor="item-datedue">Date Due:</label>
                   <Input
                     value= {this.state.dateDue}
                     onChange= {this.handleInputChange}
