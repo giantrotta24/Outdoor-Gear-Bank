@@ -64,6 +64,9 @@ class NavBar extends Component {
                             <i className="fas fa-mountain"></i> Outdoor Gear Bank
                     </Link>
                     )}
+                {loggedIn &&
+                    <span className="text-center">Welcome {this.props.username}!</span>
+                }
                 <ul className="navbar-nav ml-auto">
                     {loggedIn ? (
                         <section className="navbar-section">

@@ -5,7 +5,11 @@
     background-image: linear-gradient(to bottom right, rgb(3, 43, 104), rgb(14, 133, 231));
     position: fixed;
     width: 100%;
-    z-index: 99;
-    /* white-space: nowrap; */
+    z-index: 95;
+    white-space: nowrap;
     color: white;
+}
+
+.text-center {
+    margin-left: 250px;
 }

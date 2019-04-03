@@ -61,11 +61,9 @@ class App extends Component {
     return (
 
       <Router>
-        <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <NavBar updateUser={this.updateUser} username={this.state.username} loggedIn={this.state.loggedIn} />
         <Wrapper>
-          {this.state.loggedIn &&
-            <p>Welcome {this.state.username}!</p>
-          }
+          
           <Switch>
             <Route
               exact path="/"
