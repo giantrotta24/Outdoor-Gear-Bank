@@ -1,6 +1,6 @@
 import React from "react";
 
-function Main() {
+const Main = () => {
   return (
     <div className="container bg-light border">
       <div className="col-1-md"></div>
@@ -16,7 +16,7 @@ function Main() {
         elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
         consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
         malesuada fames ac ante ipsum primis in faucibus.
-      </p>
+            </p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
         varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
@@ -26,7 +26,7 @@ function Main() {
         elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
         consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
         malesuada fames ac ante ipsum primis in faucibus.
-      </p>
+            </p>
       <div className="col-1-md"></div>
     </div>
   );

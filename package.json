@@ -19,9 +19,20 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "clean-css": "^4.2.1",
+    "elemental": "^0.6.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "if-env": "^1.0.4",
-    "react": "^16.8.6",
+    "jquery": "^3.3.1",
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "react-materialize": "^3.0.3",
     "react-router-dom": "^5.0.0"
   }
 }
