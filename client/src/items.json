@@ -5,9 +5,11 @@
       "status": "rented",
       "serial_number": "123456",
       "image": "https://vignette.wikia.nocookie.net/spongebob/images/4/46/SVG_SpongeBob_SquarePants.svg/revision/latest/scale-to-width-down/200?cb=20181117230211",
-      "condition": "fair",
-      "comment": "This tent is dry as a bone.",
-      
+      "condition": "Fair",
+      "comment": "This comment will come from the ref Comment collection",
+      "number_of_times_rented": 10,
+      "maintenance_comments": "This maintenance will come from the ref Maintenance Comment collection"
+
     }
 
 

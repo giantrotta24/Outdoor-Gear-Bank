@@ -15,32 +15,6 @@ import Return from "./components/pages/Return";
 import Inventory from "./components/pages/Inventory";
 
 class App extends Component {
-<<<<<<< HEAD
-  
-  render() {
-    return (
-      <Router>
-        <div>
-          <NavTabs />
-          <div className="App">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h2 className="mt-3">Outdoor Gear Bank</h2>
-        </div>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/rent" component={Rent} />
-          <Route exact path="/return" component={Return} />
-          <Route exact path="/maintenance" component={Maintenance} />
-          <Route exact path="/inventory" component={Inventory} />
-
-          {/* <Route exact path="/calander" component={Calendar} /> */}
-          {/* <Route exact path="/about" component={About} />
-          <Route exact path="/blog" component={Blog} />
-          <Route path="/contact" component={Contact} /> */}
-        
-        {/* <p className="App-main mt-3 ml-3">
-          Supplemental information display area. <code>...</code>
-        </p> */}
-=======
   constructor() {
     super()
     this.state = {
@@ -132,7 +106,6 @@ class App extends Component {
             </Switch>
           </Wrapper>
         </Router>
->>>>>>> 0228cd799eeb3416c8c696c5a6a757eefedc25e3
       </div>
     );
   }
