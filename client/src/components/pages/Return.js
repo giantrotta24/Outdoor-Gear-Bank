@@ -1,35 +1,52 @@
-import React from "react";
+// import React from "react";
+import React, { Component } from "react";
 
-const Return = () => {
-  return (
-    <div className="container bg-light border">
-      <div className="col-1-md"></div>
-      <div className="col-10-md"></div>
+class Return extends Component {
+  // function Available() {
+  state = {
+    fName: '',
+    lName: '',
+    email: '',
+    custPhone: '',
+    itemComment: '',
+    custMemNum: 0,
+    itemsRented: '',
+    state: ''
+  };
 
-      <h1>Item Return Page</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-        varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-        Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-        imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-        ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-        elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-        consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-        malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-        varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-        Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-        imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-        ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-        elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-        consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-        malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-      <div className="col-1-md"></div>
-    </div>
-  );
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  };
+
+  render() {
+    return (
+      <div className="container bg-light border">
+        <div className="col-1-md"></div>
+        <div className="col-10-md"></div>
+
+        <h3 className="mt-3 mb-5">Rent</h3>
+        <form>
+          <div className="form-group mb-3">
+
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div className="col-1-md"></div>
+      </div>
+    );
+  }
 }
 
 export default Return;
