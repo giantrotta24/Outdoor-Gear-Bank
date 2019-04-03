@@ -1,54 +1,178 @@
 // import React from "react";
 import React, { Component } from "react";
-import items from "../../available.json";
+import { Input, FormBtn, TextArea} from "../Form";
 
+// import items from "../../available.json";
 
 
 class Rent extends Component {
-  // function Available() {
+// function Available() {
   state = {
-    items: ''
+    fName: '',
+    lName: '',
+    email: '',
+    custPhone: '',
+    itemComment: '',
+    custMemNum: 0,
+    itemsRented: '',
+    state: ''
   };
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  };
+    
   render() {
-    return (
-      <div className="container bg-light border">
-        <div className="col-1-md"></div>
-        <div className="col-10-md"></div>
+  return (
+    <div className="container bg-light border">
+      <div className="col-1-md"></div>
+      <div className="col-10-md"></div>
 
-        <h1>Available Rental Items Page</h1>
+      <h3 className= "mt-3 mb-5">Rent</h3>
+    
+      {/* {this.state.items.map((item,index) => (
+    //    console.log("item.fname= ",item.fname)
+    <p>
+      {item.fname}
+    </p>
+      ))} */}
 
-        {/* {this.state.items.map((item, index) => (
-          //    console.log("item.fname= ",item.fname)
-          <p>
-            {item.fname}
-          </p>
-        ))} */}
+    <form> 
+        <div className="form-group mb-3">
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-          varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-          Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-          imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-          ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-          elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-          consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-          varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-          Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-          imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-          ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-          elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-          consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-        <div className="col-1-md"></div>
-      </div>
-    );
-  }
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
+
+              <label for="cust-fname">Customer First Name:</label>
+              <Input
+                value={this.state.fName}
+                onChange={this.handleInputChange}
+                name="fName" 
+                placeholder="Customer First Name"
+              />
+              {console.log("first name= ",this.state.fName)}
+              {/* <div className="form-group"> */}               
+                {/* <input type="text" className="form-control" id="item-name" name="item-name">
+                </input> */}
+              {/* </div> */}
+
+              <label for="cust-lName">Customer Last Name:</label>
+              <Input
+                value= {this.state.lName}
+                onChange= {this.handleInputChange}
+                name= "lName" 
+                placeholder= "Customer Last Name"                
+              />
+              {console.log("last name= ",this.state.lName)}
+
+              <label for="cust-email">Customer Email:</label>
+              <Input
+                value= {this.state.email}
+                onChange= {this.handleInputChange}
+                name= "email" 
+                placeholder= "Customer email"                
+              />
+                {console.log("email=", this.state.email)}
+              {/* <div className="form-group">               
+                  <select className="custom-select" id="item-status">                    
+                    <option selected>Choose...</option>
+                    <option value="Available">Available</option>
+                    <option value="Out for Rend">Out for Rent</option>
+                    <option value="In Maintenance">In Maintenance</option>
+                  </select>
+              </div> */}
+
+              <label for="cust-phone">Customer Phone Number:</label>
+                <Input
+                  value= {this.state.custPhone}
+                  onChange= {this.handleInputChange}
+                  name= "custPhone"                 
+              />
+              {console.log("custPhone= ",this.state.custPhone)}
+
+              <label for="custMemNum">Customer Member Number:</label>
+                <Input
+                  value= {this.state.custMemNum}
+                  onChange= {this.handleInputChange}
+                  name= "custMemNum"                 
+                />  
+              {console.log("custMemNum= ",this.state.custMemNum)}
+
+              <label for="items-rented">Items Rented:</label>
+                <Input
+                  value= {this.state.itemsRented}
+                  onChange= {this.handleInputChange}
+                  name= "itemsRented"                 
+                />
+                {console.log("itemsRented=", this.state.itemsRented)}
+
+                  {/* <select className="custom-select" id="item-condition">
+                    <option selected>Choose...</option>
+                    <option value="New">New</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Poor">Poor</option>
+                  </select>
+              </div> */}
+
+              {/* <label for="item-comment">Comment:</label>
+                <TextArea
+                  value= {this.state.itemComment}
+                  onChange= {this.handleInputChange}
+                  name= "itemComment"
+                />
+                {console.log("itemComment=", this.state.itemComment)} */}
+
+
+              {/* <div className="form-group">
+                <textarea className="form-control" rows="5" id="item-comment"></textarea>
+              </div> */}
+
+              {/* <label for="item-maint-comment">Maintenance Comments:</label>
+                <TextArea
+                    value= {this.state.maintComment}
+                    onChange= {this.handleInputChange}
+                    name= "maintComment"
+                />
+                {console.log("itemComment=", this.state.maintComment)} */}
+
+                {/* <label for="item-dateout">Date Rented:</label>
+                  <Input
+                    value= {this.state.dateOut}
+                    onChange= {this.handleInputChange}
+                    name= "dateOut"                 
+                  /> 
+
+                <label for="item-datedue">Date Due:</label>
+                  <Input
+                    value= {this.state.dateDue}
+                    onChange= {this.handleInputChange}
+                    name= "dateDue"                 
+                  />  */}
+    </div>
+    </div>                
+              </div>
+              <FormBtn
+                // disabled={!(this.state.topic)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit</FormBtn>
+            </form>
+      
+
+
+
+
+
+
+      <div className="col-1-md"></div>
+    </div>
+  );
+    }
 }
 
 export default Rent;
