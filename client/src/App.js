@@ -19,7 +19,7 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
     }
 
     this.getUser = this.getUser.bind(this);
@@ -72,6 +72,13 @@ class App extends Component {
               />
               <Route
                 path="/login"
+                render={() =>
+                  <LogIn
+                    updateUser={this.updateUser}
+                  />}
+              />
+              <Route
+                path="/logout"
                 render={() =>
                   <LogIn
                     updateUser={this.updateUser}

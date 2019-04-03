@@ -6,8 +6,27 @@ import axios from 'axios';
 class NavBar extends Component {
     constructor() {
         super()
+        this.state = {
+            redirect: false
+        }
 
+
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
         this.logout = this.logout.bind(this);
+    }
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        });
+        this.renderRedirect();
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/login' />
+        }
     }
 
     logout(event) {
@@ -18,8 +37,9 @@ class NavBar extends Component {
             if (response.status === 200) {
                 this.props.updateUser({
                     loggedIn: false,
-                    username: null
+                    username: null,
                 });
+                this.setRedirect();
 
             }
 
@@ -47,7 +67,7 @@ class NavBar extends Component {
                 <ul className="navbar-nav ml-auto">
                     {loggedIn ? (
                         <section className="navbar-section">
-                            <Link to="#" className="nav-item btn btn-sm btn-secondary mr-1" onClick={this.logout}>
+                            <Link to="/" className="nav-item btn btn-sm btn-secondary mr-1" onClick={this.logout}>
                                 Logout
                             </Link>
                             <Link to="/rent" className="nav-item btn btn-sm btn-secondary mr-1" >
