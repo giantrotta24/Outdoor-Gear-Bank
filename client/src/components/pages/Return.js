@@ -3,50 +3,50 @@ import React, { Component } from "react";
 
 class Return extends Component {
   // function Available() {
-    state = {
-      fName: '',
-      lName: '',
-      email: '',
-      custPhone: '',
-      itemComment: '',
-      custMemNum: 0,
-      itemsRented: '',
-      state: ''
-    };
-  
-    handleInputChange = event => {
-      const { name, value } = event.target;
-      this.setState({
-        [name]: value
-      })
-    };
+  state = {
+    fName: '',
+    lName: '',
+    email: '',
+    custPhone: '',
+    itemComment: '',
+    custMemNum: 0,
+    itemsRented: '',
+    state: ''
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  };
 
   render() {
-  return (
-    <div className="container bg-light border">
-      <div className="col-1-md"></div>
-      <div className="col-10-md"></div>
+    return (
+      <div className="container bg-light border">
+        <div className="col-1-md"></div>
+        <div className="col-10-md"></div>
 
-      <h3 className= "mt-3 mb-5">Rent</h3>
-      <form> 
-        <div className="form-group mb-3">
+        <h3 className="mt-3 mb-5">Rent</h3>
+        <form>
+          <div className="form-group mb-3">
 
-          <div className="card">
-            <div className="card-body">
-              <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
-
-
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
 
 
-</div>
-</div>
-</div>
-      </form>
-      
-      <div className="col-1-md"></div>
-    </div>
-  );
-}
+
+
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div className="col-1-md"></div>
+      </div>
+    );
+  }
 }
 
 export default Return;
