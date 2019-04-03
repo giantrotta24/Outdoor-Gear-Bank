@@ -1,0 +1,11 @@
+.navbar {
+    padding: 20px;
+    font-family: "Cormorant SC";
+    box-shadow: 10px 5px 20px 2px rgb(2, 1, 0);
+    background-image: linear-gradient(to bottom right, rgb(3, 43, 104), rgb(14, 133, 231));
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    /* white-space: nowrap; */
+    color: white;
+}

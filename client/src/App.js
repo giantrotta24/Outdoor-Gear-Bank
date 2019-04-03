@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //components
@@ -9,10 +9,11 @@ import LogIn from './components/LogIn';
 import Home from './components/pages/home';
 import Main from './components/pages/Main';
 import PrivateRoute from './components/PrivateRoute';
-import Maintenance from "./components/pages/Maintenance";
-import Rent from "./components/pages/Rent";
-import Return from "./components/pages/Return";
-import Inventory from "./components/pages/Inventory";
+import Maintenance from './components/pages/Maintenance';
+import Rent from './components/pages/Rent';
+import Return from './components/pages/Return';
+import Inventory from './components/pages/Inventory';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor() {
@@ -58,66 +59,67 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Router>
-          <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          <Wrapper>
-            {this.state.loggedIn &&
-              <p>Welcome {this.state.username}!</p>
-            }
-            <Switch>
-              <Route
-                exact path="/"
-                component={Home}
-              />
-              <Route
-                path="/login"
-                render={() =>
-                  <LogIn
-                    updateUser={this.updateUser}
-                  />}
-              />
-              <Route
-                path="/logout"
-                render={() =>
-                  <LogIn
-                    updateUser={this.updateUser}
-                  />}
-              />
-              <Route
-                path="/signup"
-                render={() =>
-                  <SignUp />}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                exact path='/main'
-                component={Main}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                exact path='/rent'
-                component={Rent}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/return'
-                component={Return}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/maintenance'
-                component={Maintenance}
-              />
-              <PrivateRoute
-                isAuthenticated={this.state.loggedIn}
-                path='/inventory'
-                component={Inventory}
-              />
-            </Switch>
-          </Wrapper>
-        </Router>
-      </div>
+
+      <Router>
+        <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <Wrapper>
+          {this.state.loggedIn &&
+            <p>Welcome {this.state.username}!</p>
+          }
+          <Switch>
+            <Route
+              exact path="/"
+              component={Home}
+            />
+            <Route
+              path="/login"
+              render={() =>
+                <LogIn
+                  updateUser={this.updateUser}
+                />}
+            />
+            <Route
+              path="/logout"
+              render={() =>
+                <LogIn
+                  updateUser={this.updateUser}
+                />}
+            />
+            <Route
+              path="/signup"
+              render={() =>
+                <SignUp />}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              exact path="/main"
+              component={Main}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              exact path="/rent"
+              component={Rent}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              path="/return"
+              component={Return}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              path="/maintenance"
+              component={Maintenance}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              path="/inventory"
+              component={Inventory}
+            />
+          </Switch>
+        </Wrapper>
+        <Footer />
+      </Router>
+
     );
   }
 }
