@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { Component } from "react";
 
 class Return extends Component {
   // function Available() {
@@ -20,7 +21,7 @@ class Return extends Component {
       })
     };
 
-  Render() {
+  render() {
   return (
     <div className="container bg-light border">
       <div className="col-1-md"></div>
@@ -37,10 +38,11 @@ class Return extends Component {
 
 
 
-
-
+</div>
+</div>
+</div>
       </form>
-      </div>
+      
       <div className="col-1-md"></div>
     </div>
   );
