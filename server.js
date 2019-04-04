@@ -31,6 +31,8 @@ app.use(passport.session()); // calls the deserializeUser
 
 // Define API routes here
 app.use(routes);
+require('./routes/api/item')(app);
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gearbank", 
