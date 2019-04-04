@@ -5,6 +5,6 @@ module.exports = app => {
 
     app.post('/api/items', itemController.addItem);
 
-    app.get('/api/items', itemController.updateItem);
+    app.post('/api/items/:id', itemController.updateItem);
 }
 

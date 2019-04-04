@@ -20,7 +20,9 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     updateItem: (req, res) => {
-        db.Item.findByIdAndUpdate(req.params.id).then(dbItem => res.json(dbItem)).catch(err => res.status(422).json(err));
+        db.Item.findByIdAndUpdate({ _id: req.params.id }, req.body).
+        then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
     }
 }
 
