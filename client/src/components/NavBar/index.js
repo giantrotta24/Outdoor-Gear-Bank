@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, Link } from 'react-router-dom';
 import './style.css';
 import axios from 'axios';
 
@@ -56,11 +56,11 @@ class NavBar extends Component {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
                 {loggedIn ? (
-                    <Link to="/main" className="navbar-brand">
+                    <Link to="/main" className="navbar-brand" >
                         <i className="fas fa-mountain"></i> Outdoor Gear Bank
                     </Link>
                 ) : (
-                        <Link to="/" className="navbar-brand">
+                        <Link to="/" className="navbar-brand" >
                             <i className="fas fa-mountain"></i> Outdoor Gear Bank
                     </Link>
                     )}
@@ -70,30 +70,30 @@ class NavBar extends Component {
                 <ul className="navbar-nav ml-auto">
                     {loggedIn ? (
                         <section className="navbar-section">
-                            <Link to="/" className="nav-item btn mr-1" onClick={this.logout}>
+                            <NavLink to="/" className="nav-item btn mr-1" onClick={this.logout}>
                                 Logout
-                            </Link>
-                            <Link to="/rent" className={window.location.pathname === "/rent" ? "nav-item btn mr-1 selected" : "nav-item btn mr-1"} >
+                            </NavLink>
+                            <NavLink to="/rent" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                 Rent
-                            </Link>
-                            <Link to="/return" className="nav-item btn mr-1" >
+                            </NavLink>
+                            <NavLink to="/return" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                 Return
-                            </Link>
-                            <Link to="/maintenance" className="nav-item btn mr-1" >
+                            </NavLink>
+                            <NavLink to="/maintenance" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                 Maintenance
-                            </Link>
-                            <Link to="/inventory" className="nav-item btn mr-1" >
+                            </NavLink>
+                            <NavLink to="/inventory" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                 Add Inventory
-                            </Link>
+                            </NavLink>
                         </section>
                     ) : (
                             <section className="navbar-section">
-                                <Link to="/login" className="nav-item btn mr-1" >
+                                <NavLink to="/login" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                     Log-In
-                            </Link>
-                                <Link to="/signup" className="nav-item btn mr-1" >
+                            </NavLink>
+                                <NavLink to="/signup" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                     Sign-Up
-                            </Link>
+                            </NavLink>
                             </section>
                         )}
                 </ul>

@@ -16,6 +16,11 @@
     transition-duration: 0.4s;
 }
 
+.selected {
+    background-color: rgb(194, 194, 194);
+    color: rgb(53, 52, 52);
+}
+
 .btn:hover {
     background-color: rgb(194, 194, 194);
     color: rgb(53, 52, 52);
