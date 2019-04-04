@@ -153,4 +153,4 @@ mongoose.connect('mongodb://localhost/gearbank');
 items.map(data => {
     const item = new Item(data);
     item.save();
-  });
+});

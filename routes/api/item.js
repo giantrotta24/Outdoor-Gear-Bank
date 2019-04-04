@@ -1,13 +1,10 @@
-// const itemController = require('../../controllers/itemController');
-// // const express = require('express');
-// // const router = express.Router();
+const itemController = require('../../controllers/itemController');
 
-// module.exports = app => {
-//     app.get('/api/items', itemController.findAll);
+module.exports = app => {
+    app.get('/api/items', itemController.findAll);
 
-//     app.post('/api/items', itemController.addInventory);
+    app.post('/api/items', itemController.addItem);
 
-//     app.update('api/items/:itemsid', itemController.updateInventory);
-// }
+    app.get('/api/items', itemController.updateItem);
+}
 
-// const todoRoutes = express.Router();
