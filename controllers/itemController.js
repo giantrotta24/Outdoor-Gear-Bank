@@ -1,65 +1,30 @@
 const db = require('../database');
-let itemController = module.exports;
+const express = require('express');
 
-itemController.getItems = (req, res) => {
-    db.Item.findAll({}).then(dbItem => {res.json(dbItem);
-    });
-};
+const router = express.Router();
 
-itemController.getItemById = (req, res) => {
-    db.Item.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(dbItem => {
-        res.json(dbItem);
-    });
-};
+router.get('/api/items', (req, res) => {
+    db.Item.find({}).populate('comments').populate('maintenance_comments')
+    .then(dbItem => res.json(dbItem))
+    .catch(err => res.status(422).json(err));
+});
 
-// const Item = require('../database/models/Item');
+router.post('/api/items', (req, res) => {
+    db.Item.create(req.body)
+    .then(dbItem => res.json(dbItem))
+    .catch(err => res.status(422).json(err));
+});
 
-// // DUMMY CALLBACKS -- THIS IS NOT FINISHED
+router.update('/api/items/:id', (req, res) => {
+    db.Item.findByIdAndUpdate(req.params.id)
+    .then(dbItem => res.json(dbItem))
+    .catch(err => res.status(422).json(err));
+});
 
-// exports.index = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Site Home Page');
-// };
+router.delete('/api/items/:id', (req, res) => {
+    db.Item.findByIdAndRemove(req.params.id)
+    .then(dbItem => res.json(dbItem))
+    .catch(err => res.status(422).json(err));
+});
 
-// // Display list of all items.
-// exports.item_list = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item list');
-// };
-
-// // Display detail page for a specific item.
-// exports.item_detail = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item detail: ' + req.params.id);
-// };
-
-// // Display item create form on GET.
-// exports.item_create_get = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item create GET');
-// };
-
-// // Handle item create on POST.
-// exports.item_create_post = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item create POST');
-// };
-
-// // Display item delete form on GET.
-// exports.item_delete_get = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item delete GET');
-// };
-
-// // Handle item delete on POST.
-// exports.item_delete_post = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item delete POST');
-// };
-
-// // Display item update form on GET.
-// exports.item_update_get = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item update GET');
-// };
-
-// // Handle item update on POST.
-// exports.item_update_post = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Item update POST');
-// };
+module.exports = router;

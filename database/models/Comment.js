@@ -8,6 +8,10 @@ const CommentSchema = new Schema({
   body: {
     type: String,
     required: true
+  },
+  user: {
+    type: body.Schema.ObjectId,
+    ref: "User"
   }
 });
 

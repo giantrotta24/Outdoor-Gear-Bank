@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../database');
 
 router.get('/', (req, res) => {
-  db.Comment.find({}).populate('item').then((dbComment) => {
+  db.Comment.find({}).populate('user').then((dbComment) => {
     res.json(dbComment);
   }).catch((err) => {
     console.log(err);
