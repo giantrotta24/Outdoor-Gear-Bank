@@ -4,6 +4,7 @@
   "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -11,7 +12,6 @@
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
-    "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js",
     "populate": "node_modules/babel-cli/bin/babel-node.js populate.js"
   },
   "author": "",
