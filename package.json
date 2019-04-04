@@ -29,6 +29,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "clean-css": "^4.2.1",
+    "dotenv": "^7.0.0",
     "cors": "^2.8.5",
     "elemental": "^0.6.1",
     "express": "^4.16.4",
@@ -43,6 +44,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react-materialize": "^3.0.3",
+    "react-particles-js": "^2.5.1",
     "react-router-dom": "^5.0.0"
   }
 }

@@ -1,3 +1,5 @@
+require('dotenv').config();
+const keys = require('./keys');
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3008;
@@ -20,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 
 //sessions
 app.use(session({
-  secret: 'puppy-heaven',
+  secret: keys.session.sessionSecret,
   resave: false,
   saveUninitialized: false
 }));

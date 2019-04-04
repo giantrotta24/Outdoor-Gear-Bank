@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Card from '../Card';
 import axios from 'axios';
 import './style.css';
 
@@ -9,7 +10,7 @@ class SignUp extends Component {
         this.state = {
             username: '',
             password: '',
-            confirmPassword: '',
+            redirectTo: null
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,13 +33,14 @@ class SignUp extends Component {
             password: this.state.password,
         }).then(response => {
             console.log(response);
-            if (!response.data.error) {
+            if (response.data.error) {
+                console.log('username already taken');
+            } else {
                 console.log('successful signup');
                 this.setState({
-                    redirectTo: '/'
+                    redirectTo: '/rent'
                 });
-            } else {
-                console.log('username already taken');
+                
             }
         }).catch(error => {
             console.log('sign up error: ');
@@ -51,42 +53,42 @@ class SignUp extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-                <div className="form-signup">
-                    <i className="fas fa-lock"></i>
-                    <div className="SignupForm">
-                        <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
-                        <label className="sr-only" htmlFor="username">Username</label>
-                        <input
-                            className="form-control"
-                            placeholder="Username"
-                            type="text"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            required
-                            autoFocus
-                        />
-                        <label className="sr-only" htmlFor="password">Password</label>
-                        <input
-                            className="form-control"
-                            placeholder="Password"
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            required
-                        />
+                <Card>
+                    <div className="form-signup">
+                        <i className="fas fa-lock"></i>
+                        <div className="SignupForm">
+                            <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
+                            <label className="sr-only" htmlFor="username">Username</label>
+                            <input
+                                className="form-control mb-1"
+                                placeholder="Username"
+                                type="text"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                                required
+                                autoFocus
+                            />
+                            <label className="sr-only" htmlFor="password">Password</label>
+                            <input
+                                className="form-control"
+                                placeholder="Password"
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                required
+                            />
 
-                        <button
-                            className="btn btn-lg btn-primary btn-block mt-3"
-                            onClick={this.handleSubmit}
-                            type="submit"
-                        >Sign up</button>
+                            <button
+                                className="btn btn-lg btn-primary btn-block mt-3"
+                                onClick={this.handleSubmit}
+                                type="submit"
+                            >Sign up</button>
 
-                        <p className="mt-5 mb-3 text-muted">© 2019</p>
+                        </div>
                     </div>
-                </div>
-
+                </Card>
             );
         }
     }
