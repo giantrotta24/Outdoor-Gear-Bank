@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const CustomerSchema = new Schema({
-    lastName: {
+    last_name: {
         type: String,
         required: true,
         description: "Customer's last name"
     },
-    firstName: {
+    first_name: {
         type: String,
         required: true,
         description: "Customer's first name"
@@ -27,12 +27,21 @@ const CustomerSchema = new Schema({
         type: Number,
         description: "Customer's member number, not required."
     },
-    items_rented: {
-        type: [String],
-        description: "Items currently rented out to customer stored in an array. Empty if no items rented out. This will contain the item's unique id from database."
-    }
+    items: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Item',
+            description: "Items currently rented out by customer. To be cleared out when items are returned."
+        }
+    ]
 });
 
 const Customer = mongoose.model("Customer", CustomerSchema);
 
 module.exports = Customer;
+
+// Routes we will need to customer information:
+// Create/Post
+// Update --- for updating the items they have rented out and when they're returned
+//      to clear the items out
+// .populate -- in order to connect the items they have rented into the array of ObjectIds
