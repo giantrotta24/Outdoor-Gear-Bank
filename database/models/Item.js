@@ -49,6 +49,7 @@ const ItemSchema = new Schema({
     ],
     number_of_times_rented: {
         type: Number,
+        default: 0,
         required: true,
         description: "Keeps track of the number of times an item has been rented out. Potential use for future statistics."
     },

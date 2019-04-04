@@ -2,7 +2,7 @@ const db = require('../database');
 
 
 module.exports = {
-    items: async (req, res) => {
+    findAll: async (req, res) => {
         console.log('item hit')
         // db.Item.findOne({}).then(dbItem => res.json(dbItem)).catch(err => res.status(422).json(err));
         try {
@@ -19,18 +19,24 @@ module.exports = {
         if (req.body.Item) {
             db.Item.create({
                 name: req.body.name,
-                otherDetail: req.body.otherDetail,
-                serialNumber: req.data.serialNumber,
-                blahBlah: req.body.blahBla
+                category: req.body.category,
+                status: "Available",
+                serial_number: req.body.serial_number,
+                image: req.body.image,
+                condition: req.body.condition
             }).then((results) => {
                 res.json(results);
-
             });
         }
         else {
-            return ('no item data entered or whatever whatever')
+            return ('Invalid Item Information Entered.')
         }
-
+    },
+    // Update Inventory will be used when Status is changed from available -> rented -> maintenance.
+    updateInventory: (req, res) => {
+        try {
+            let item = await Item.findByIdAndUpdate(req.params.itemId, req.body, )
+        }
     }
 }
 

@@ -3,7 +3,9 @@ const itemController = require('../../controllers/itemController');
 // const router = express.Router();
 
 module.exports = app => {
-    app.get('/api/items', itemController.items);
+    app.get('/api/items', itemController.findAll);
 
     app.post('/api/items', itemController.addInventory);
+
+    app.update('api/items/:itemsid', itemController.updateInventory);
 }
