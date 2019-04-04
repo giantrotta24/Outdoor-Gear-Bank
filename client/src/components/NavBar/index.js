@@ -70,28 +70,28 @@ class NavBar extends Component {
                 <ul className="navbar-nav ml-auto">
                     {loggedIn ? (
                         <section className="navbar-section">
-                            <Link to="/" className="nav-item btn btn-sm btn-secondary mr-1" onClick={this.logout}>
+                            <Link to="/" className="nav-item btn mr-1" onClick={this.logout}>
                                 Logout
                             </Link>
-                            <Link to="/rent" className="nav-item btn btn-sm btn-secondary mr-1" >
+                            <Link to="/rent" className={window.location.pathname === "/rent" ? "nav-item btn mr-1 selected" : "nav-item btn mr-1"} >
                                 Rent
                             </Link>
-                            <Link to="/return" className="nav-item btn btn-sm btn-secondary mr-1" >
+                            <Link to="/return" className="nav-item btn mr-1" >
                                 Return
                             </Link>
-                            <Link to="/maintenance" className="nav-item btn btn-sm btn-secondary mr-1" >
+                            <Link to="/maintenance" className="nav-item btn mr-1" >
                                 Maintenance
                             </Link>
-                            <Link to="/inventory" className="nav-item btn btn-sm btn-secondary mr-1" >
+                            <Link to="/inventory" className="nav-item btn mr-1" >
                                 Add Inventory
                             </Link>
                         </section>
                     ) : (
                             <section className="navbar-section">
-                                <Link to="/login" className="nav-item btn btn-sm btn-secondary mr-1" >
+                                <Link to="/login" className="nav-item btn mr-1" >
                                     Log-In
                             </Link>
-                                <Link to="/signup" className="nav-item btn btn-sm btn-secondary mr-1" >
+                                <Link to="/signup" className="nav-item btn mr-1" >
                                     Sign-Up
                             </Link>
                             </section>

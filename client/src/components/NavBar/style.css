@@ -10,6 +10,17 @@
     color: white;
 }
 
+.btn {
+    color: white;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.btn:hover {
+    background-color: rgb(194, 194, 194);
+    color: rgb(53, 52, 52);
+}
+
 .text-center {
-    margin-left: 250px;
+    margin-left: 320px;
 }
