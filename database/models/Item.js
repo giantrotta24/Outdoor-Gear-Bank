@@ -15,8 +15,9 @@ const ItemSchema = new Schema({
         description: "category the product falls under, ex. Tents"
     },
     status: {
-        $in: ["Available", "Out for Rent", "In Maintenance"],
+        type: String,
         default: "Available",
+        enum: ['Available', 'Out for Rent', 'In Maintenance'],
         required: true,
         description: "One of three potential statuses."
     },
@@ -33,10 +34,11 @@ const ItemSchema = new Schema({
         description: "URL for image"
     },
     condition: {
-        $in: ["New", "Good", "Fair", "Poor"],
+        type: String,
         default: "New",
+        enum: ['New', 'Good', 'Fair', 'Poor'],
         required: true,
-        description: "General descriptor of the items condition"
+        description: "General description of the item's condition."
     },
     comments: [
         {
@@ -47,6 +49,7 @@ const ItemSchema = new Schema({
     ],
     number_of_times_rented: {
         type: Number,
+        default: 0,
         required: true,
         description: "Keeps track of the number of times an item has been rented out. Potential use for future statistics."
     },
@@ -57,16 +60,27 @@ const ItemSchema = new Schema({
             ref: "MaintenanceComment"
         }
     ],
-    dateRentedOut: {
+    date_rented_out: {
         type: Date,
         description: "If not currently out for rent, this will be left empty. If out for rent, this will be the date it left with the customer."
     },
-    dateDue: {
+    date_due: {
         type: Date,
         description: "The date the item is due back from rent"
+    },
+    rented_by: {
+        type: Schema.Types.ObjectId,
+        ref: "Customer"
     }
 });
 
 const Item = mongoose.model("Item", ItemSchema);
 
 module.exports = Item;
+
+// Routes that will be needed for Item:
+// create/post, read/get, update, delete findById, findByIdAndRemove, findByIdandUpdate
+// find().where(status).equals(available).where(type).equals(tent) ... etc ...
+// find().where(status).equals ... for all other status .. pull the requested information
+// from the form submission
+// .populate in order to populate the comments and maintenance comments
