@@ -54,7 +54,7 @@ class Inventory extends Component {
                 </input> */}
               {/* </div> */}
 
-              <label htmlFor="item-catagory">Category:</label>
+              <label htmlFor="item-category">Category:</label>
               <Input
                 value= {this.state.category}
                 onChange= {this.handleInputChange}

@@ -1,8 +1,8 @@
 // import React from "react";
 import React, { Component } from "react";
 import { Input, FormBtn, TextArea } from "../Form";
-
-// import items from "../../available.json";
+import Select from 'react-select';
+import items from "../../items.json";
 
 
 class Rent extends Component {
@@ -15,8 +15,19 @@ class Rent extends Component {
     itemComment: '',
     custMemNum: 0,
     itemsRented: '',
+    selectedOption: null,
+    categoryOptions: [
+      { value: 'Tent', label: 'Tent' },
+      { value: 'Stove', label: 'Stove'},
+      { value: 'Snow Shoes', label: 'Snnow Shoes'}      
+     ],
     state: ''
   };
+
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -26,6 +37,32 @@ class Rent extends Component {
   };
 
   render() {
+
+    var uniq = {}
+    let testArray = [];
+    var arr  = [{ value: 'Tent', label: 'Tent' },
+    { value: 'Stove', label: 'Stove'},
+    { value: 'Snow Shoes', label: 'Snnow Shoes'}]
+    var arrFiltered = arr.filter(obj => !uniq[obj.value] && (uniq[obj.value] = true));
+    console.log('arrFiltered', arrFiltered)
+
+    // for (let p in this.state.categoryOptions ) {
+    //   console.log("value= ",[value] )}
+    // let testArray = ['Tent', 'Stove', 'Tent'];
+    // const distinct = (value,index,self) => {
+    //   return self.indexOf(value) === index;
+    // }
+    // const distinctCat = testArray.filter(distinct);
+    // console.log("distinctCat= ", distinctCat);
+
+    // this.state.categoryOptions.forEach(function(element) {
+    //   console.log([element.value], "/ ", [element.label]);
+    //   console.log("element.value type= ", typeof([element.value]), "/ ", [element.label]);
+      
+    //   if ([element.value] == "Tent") console.log("Got Tent")
+
+    // });
+
     return (
       <div className="container bg-light border">
         <div className="col-1-md"></div>
@@ -46,6 +83,17 @@ class Rent extends Component {
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
+
+                <label htmlFor="item-category">Enter Category:</label>
+                  <Select
+                    value={this.state.selectedOption}
+                    onChange={this.handleChange}
+                    options={this.state.categoryOptions}
+                  />
+
+
+
+
 
                 <label htmlFor="cust-fname">Customer First Name:</label>
                 <Input
