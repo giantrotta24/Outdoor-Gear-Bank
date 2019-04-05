@@ -1,7 +1,7 @@
 const db = require('../database');
 
-
 module.exports = {
+    // CONTROLLERS FOR ITEMS
     findAll: async (req, res) => {
         // console.log('item hit');
         // db.Item.findOne({}).then(dbItem => res.json(dbItem)).catch(err => res.status(422).json(err));
@@ -23,8 +23,76 @@ module.exports = {
         db.Item.findByIdAndUpdate({ _id: req.params.id }, req.body).
         then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
+    },
+    deleteItem: (req, res) => {
+        db.Item.findById(req.params.id)
+        .then(dbItem => dbItem.remove())
+        .then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
+    },
+    // IMPORTANT IMPORTANT IMPORTANT
+    // STILL NEED TO ADD A ROUTE TO FINDITEM BY ID
+
+    // CONTROLLERS FOR COMMENTS
+    findItemWithComments: (req, res) => {
+        db.Item.find({ _id: req.params.itemID }).populate('comments').then((dbItem) => {
+            res.json(dbItem);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
+    addComment: (req, res) => {
+        console.log(req.body);
+        db.Comment.create(req.body)
+        .then(function(dbComment) {
+            return db.Item.findOneAndUpdate(
+                { _id: req.params.itemID }, 
+                { $push: { comments: dbComment._id } }, 
+                { new: true }
+            );
+        })
+        .then(function(dbItem) {
+            res.json(dbItem);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+    },
+
+    // CONTROLLERS FOR MAINTENANCE COMMENTS
+    findItemWithMaintComments: (req, res) => {
+        db.Item.find({ _id: req.params.itemID }).populate('maintenance_comments').then((dbItem) => {
+            res.json(dbItem);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
+    addMaintComment: (req, res) => {
+        let maintComment;
+        req.body.item = req.params.itemID;
+        db.MaintenanceComment.create(req.body).then((dbMaintenanceComment) => {
+          maintComment = dbMaintenanceComment;
+          return db.Item.findOneAndUpdate(
+            { _id: req.params.itemID },
+            { $push: { maintenance_comments: dbMaintenanceComment._id } },
+            { new: true },
+          );
+        }).then(() => {
+          res.json(maintComment);
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+    
+    // IMPORTANT
+    // STILL NEED TO CONTROL COMMENTS FOR CUSTOMERS
+    // CONTROLLERS FOR CUSTOMERS
+    addCustomer: (req, res) => {
+            db.Item.create(req.body).
+            then(dbItem => res.json(dbItem))
+            .catch(err => res.status(422).json(err));
     }
-}
+};
 
 
 
