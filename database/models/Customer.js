@@ -15,7 +15,6 @@ const CustomerSchema = new Schema({
     email: {
         type: String,
         required: true,
-        match: [/.+@\..+/, "Please enter valid email address."],
         description: "Customer email."
     },
     phone_number: {

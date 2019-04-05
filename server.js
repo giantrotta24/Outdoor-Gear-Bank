@@ -34,7 +34,7 @@ app.use(passport.session()); // calls the deserializeUser
 
 // Define API routes here
 app.use(routes);
-require('./routes/api/item')(app);
+require('./routes/api/apiroutes')(app);
 
 
 // Connect to the Mongo DB
