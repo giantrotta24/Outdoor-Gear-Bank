@@ -30,6 +30,8 @@ module.exports = {
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
+    // IMPORTANT IMPORTANT IMPORTANT
+    // STILL NEED TO ADD A ROUTE TO FINDITEM BY ID
 
     // CONTROLLERS FOR COMMENTS
     findItemWithComments: (req, res) => {
@@ -82,6 +84,8 @@ module.exports = {
         });
     },
     
+    // IMPORTANT
+    // STILL NEED TO CONTROL COMMENTS FOR CUSTOMERS
     // CONTROLLERS FOR CUSTOMERS
     addCustomer: (req, res) => {
             db.Item.create(req.body).
