@@ -46,5 +46,8 @@
     "react-materialize": "^3.0.3",
     "react-particles-js": "^2.5.1",
     "react-router-dom": "^5.0.0"
+  },
+  "engines": {
+    "node": "10.14.1"
   }
 }
