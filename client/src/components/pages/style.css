@@ -21,3 +21,7 @@
     background-size: cover;
     background-image: url('./images/North-Bend-Park-Campground.jpg');
 }
+
+.form-control {
+    color: black;
+}
