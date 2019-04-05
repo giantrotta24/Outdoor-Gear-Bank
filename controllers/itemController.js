@@ -1,6 +1,5 @@
 const db = require('../database');
 
-
 module.exports = {
     // CONTROLLERS FOR ITEMS
     findAll: async (req, res) => {
@@ -41,6 +40,7 @@ module.exports = {
         });
     },
     addComment: (req, res) => {
+        console.log(req.body);
         db.Comment.create(req.body)
         .then(function(dbComment) {
             return db.Item.findOneAndUpdate(

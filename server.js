@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('./passport');
+const db = require('./database');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
