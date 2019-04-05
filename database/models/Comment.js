@@ -5,10 +5,11 @@ const { Schema } = mongoose;
 
 // Using the Schema constructor, create a new CommentSchema object
 const CommentSchema = new Schema({
-  body: {
+  text: {
     type: String,
     required: true
   },
+  posted: Date.now(), 
   user: {
     type: body.Schema.ObjectId,
     ref: "User"
