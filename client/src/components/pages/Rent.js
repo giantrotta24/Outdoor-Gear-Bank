@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Select from 'react-select';
+import SelectCard from '../SelectCard';
 import API from '../../utils/API';
 
 
@@ -8,7 +8,7 @@ class Rent extends Component {
     super()
 
     this.state = {
-      selectOptions: null,
+      selectOption: null,
       inventory: [],
     }
 
@@ -16,7 +16,7 @@ class Rent extends Component {
 
   // loads saved books on initial page render
   componentDidMount() {
-    API.findAll().then(res => {
+    API.findCategories().then(res => {
       this.setState({
         inventory: res.data
       });
@@ -32,18 +32,14 @@ class Rent extends Component {
   render() {
     const { selectedOption } = this.state;
     return (
-      <div className="container">
-        <h1>Hello World</h1>
-        <Select
-          className="form-control"
-          onChange={this.handleChange}
-          value={selectedOption}
-          options={this.state.inventory.map(item => ({
-            label: item.name,
-            value: item.name,
-          }))}
-        />
-      </div>
+      <SelectCard 
+        onChange={this.handleChange}
+        value={this.selectedOption}
+        options={this.state.inventory.map(item => ({
+          label: item,
+          value: item,
+        }))}
+      />
     );
   }
 }
