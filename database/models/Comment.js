@@ -9,8 +9,12 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   user: {
-    type: body.Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User"
   }
 });
