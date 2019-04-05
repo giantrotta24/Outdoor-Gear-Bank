@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Card from '../Card';
 import axios from 'axios';
 import './style.css';
 
@@ -52,41 +53,42 @@ class LogIn extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-                <div className="form-login">
-                    <i className="fas fa-lock"></i>
-                    <div className="LogInForm">
-                        <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
-                        <label className="sr-only" htmlFor="username">Username</label>
-                        <input
-                            className="form-control"
-                            placeholder="Username"
-                            type="text"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            required
-                            autoFocus
-                        />
-                        <label className="sr-only" htmlFor="password">Password</label>
-                        <input
-                            className="form-control"
-                            placeholder="Password"
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            required
-                        />
+                <Card>
+                    <div className="form-login">
+                        <i className="fas fa-lock"></i>
+                        <div className="LogInForm">
+                            <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
+                            <label className="sr-only" htmlFor="username">Username</label>
+                            <input
+                                className="form-control mb-1"
+                                placeholder="Username"
+                                type="text"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                                required
+                                autoFocus
+                            />
+                            <label className="sr-only" htmlFor="password">Password</label>
+                            <input
+                                className="form-control"
+                                placeholder="Password"
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                required
+                            />
 
-                        <button
-                            className="btn btn-lg btn-primary btn-block mt-3"
-                            onClick={this.handleSubmit}
-                            type="submit"
-                        >Log In</button>
+                            <button
+                                className="btn btn-lg btn-primary btn-block mt-3"
+                                onClick={this.handleSubmit}
+                                type="submit"
+                            >Log In</button>
 
-                        <p className="mt-5 mb-3 text-muted">© 2019</p>
+                        </div>
                     </div>
-                </div>
+                </Card>
             );
         }
     }

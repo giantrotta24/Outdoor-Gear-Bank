@@ -1,14 +1,14 @@
 import React from "react";
-import {  Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
 
     return (
         <Route
             {...rest}
-            render={props => (
+            render={props =>
                 isAuthenticated === true ? (
-                    <Component {...{ ...props }} />
+                    <Component { ...props } />
                 ) : (
                         <Redirect
                             to={{
@@ -17,13 +17,10 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
                             }}
                         />
                     )
-            )
+
             }
         />
     );
 }
 
 export default PrivateRoute;
-
-
-

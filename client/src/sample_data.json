@@ -72,7 +72,7 @@
         "number_of_times_rented": 0
     },
     {
-        "name:" "REI Trail Pod 30",
+        "name": "REI Trail Pod 30",
         "category": "Sleeping Bags",
         "serial_number": "REI-SLEEP-111",
         "image": "https://www.rei.com/media/44f4874b-af2f-4c9c-a693-74ea311ea34c?size=646x485",
@@ -142,5 +142,5 @@
         "image": "https://www.rei.com/media/64f83ef6-7981-4a3d-b247-68e71b1f2fe9?size=646x485",
         "condition": "New",
         "number_of_times_rented": 0
-    },
+    }
 ]

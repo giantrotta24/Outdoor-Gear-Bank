@@ -13,6 +13,19 @@ const userSchema = new Schema({
         unique: false,
         required: false,
     },
+    comments: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+        }
+    ],
+    maintenance_comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'MaintenanceComment'
+        }
+    ]
+
 });
 
 userSchema.methods = {

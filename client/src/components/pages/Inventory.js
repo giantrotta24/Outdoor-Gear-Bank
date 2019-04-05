@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import { Input, FormBtn, SelectItemStatus, SelectCondition, TextArea} from "../Form";
 
-
 class Inventory extends Component {
 
   state = {
