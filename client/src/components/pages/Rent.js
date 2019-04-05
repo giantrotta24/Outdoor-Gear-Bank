@@ -4,7 +4,6 @@ import { Input, FormBtn, TextArea } from "../Form";
 import Select from 'react-select';
 import items from "../../items.json";
 
-
 class Rent extends Component {
   // function Available() {
   state = {
@@ -19,7 +18,9 @@ class Rent extends Component {
     categoryOptions: [
       { value: 'Tent', label: 'Tent' },
       { value: 'Stove', label: 'Stove'},
-      { value: 'Snow Shoes', label: 'Snnow Shoes'}      
+      { value: 'Snow Shoes', label: 'Snow Shoes'},
+      { value: 'Accessories', label: 'Accessories'},
+      { value: 'Sleeping Bags', label: 'Sleeping Bags'}     
      ],
     state: ''
   };
@@ -38,13 +39,18 @@ class Rent extends Component {
 
   render() {
 
-    var uniq = {}
-    let testArray = [];
-    var arr  = [{ value: 'Tent', label: 'Tent' },
-    { value: 'Stove', label: 'Stove'},
-    { value: 'Snow Shoes', label: 'Snnow Shoes'}]
-    var arrFiltered = arr.filter(obj => !uniq[obj.value] && (uniq[obj.value] = true));
-    console.log('arrFiltered', arrFiltered)
+      // .find(req.query)
+      // .sort({ date: -1 })
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
+
+    // var uniq = {}
+    // let testArray = [];
+    // var arr  = [{ value: 'Tent', label: 'Tent' },
+    // { value: 'Stove', label: 'Stove'},
+    // { value: 'Snow Shoes', label: 'Snnow Shoes'}]
+    // var arrFiltered = arr.filter(obj => !uniq[obj.value] && (uniq[obj.value] = true));
+    // console.log('arrFiltered', arrFiltered)
 
     // for (let p in this.state.categoryOptions ) {
     //   console.log("value= ",[value] )}
@@ -91,11 +97,7 @@ class Rent extends Component {
                     options={this.state.categoryOptions}
                   />
 
-
-
-
-
-                <label htmlFor="cust-fname">Customer First Name:</label>
+                <label htmlFor="item-name">Item Name:</label>
                 <Input
                   value={this.state.fName}
                   onChange={this.handleInputChange}
