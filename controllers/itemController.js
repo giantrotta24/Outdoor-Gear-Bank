@@ -4,7 +4,8 @@ const db = require('../database');
 module.exports = {
     // CONTROLLERS FOR ITEMS
     findAll: async (req, res) => {
-        console.log('item hit')
+        // console.log('item hit');
+        // db.Item.findOne({}).then(dbItem => res.json(dbItem)).catch(err => res.status(422).json(err));
         try {
             const response = await db.Item.find({});
             const items = response;
