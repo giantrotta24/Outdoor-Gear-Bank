@@ -7,7 +7,7 @@ module.exports = {
         try {
             let response = await db.Item.find({});
             let items = response;
-            console.log(items);
+            // console.log(items);
             return res.json(items);
         } catch (error) {
             throw new Error('No API Response');

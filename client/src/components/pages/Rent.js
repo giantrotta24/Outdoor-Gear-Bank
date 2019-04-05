@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import AsyncSelect from 'react-select/lib/Async';
-import './style.css';
+import Select from 'react-select';
 import API from '../../utils/API';
 
 
 class Rent extends Component {
   constructor() {
     super()
+
     this.state = {
+      selectOptions: null,
       inventory: [],
-      selectedOption: null,
     }
 
   }
@@ -21,7 +21,6 @@ class Rent extends Component {
         inventory: res.data
       });
 
-
     });
   }
 
@@ -29,6 +28,7 @@ class Rent extends Component {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
   }
+
 
 
   //   <div>
@@ -39,18 +39,19 @@ class Rent extends Component {
 
   render() {
     const { selectedOption } = this.state;
-
     return (
-      // <div className="container">
-
-      <AsyncSelect
-        className="form-control"
-        value={selectedOption}
-        onChange={this.handleChange}
-        defaultOptions={this.state.inventory}
-      />
-
-
+      <div className="container">
+        <h1>Hello World</h1>
+        <Select
+          className="form-control"
+          onChange={this.handleChange}
+          value={selectedOption}
+          options={this.state.inventory.map(item => ({
+            label: item.name,
+            value: item.name,
+          }))}
+        />
+      </div>
     );
   }
 }
