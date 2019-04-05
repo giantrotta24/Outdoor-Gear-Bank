@@ -29,14 +29,6 @@ class Rent extends Component {
     console.log(`Option selected:`, selectedOption);
   }
 
-
-
-  //   <div>
-  //   {this.props.highlights_data.data.map((e, i) =>
-  //     <SomeComponent key={i} label={e.label} value={e.value} />
-  //   )}
-  // </div>
-
   render() {
     const { selectedOption } = this.state;
     return (
