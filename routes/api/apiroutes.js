@@ -7,7 +7,7 @@ module.exports = app => {
     // Route to find item by ID
     app.get('/api/items/:id', Controller.findItemByID);
     // Find all categories that exist in the items collection
-    app.get('/api/items/categories', Controller.findCategories);
+    app.get('/api/categories', Controller.findCategories);
     // Find all items within a specified category
     //
     // INSERT ABOVE ROUTE HERE
