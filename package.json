@@ -11,8 +11,7 @@
     "install": "cd client && npm install",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
-    "populate": "node_modules/babel-cli/bin/babel-node.js populate.js"
+    "build": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -46,6 +45,11 @@
     "react-materialize": "^3.0.3",
     "react-select": "^2.4.2",
     "react-particles-js": "^2.5.1",
+    "react-router-dom": "^5.0.0"
+  },
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.4.1",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.2"
   }

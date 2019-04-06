@@ -8,15 +8,15 @@ class Main extends Component {
   }
 
   // loads saved books on initial page render
-  componentDidMount() {
-    API.findAll().then(res => {
-      this.setState({
-        inventory: res.data
-      });
+  // componentDidMount() {
+  //   API.findAll().then(res => {
+  //     this.setState({
+  //       inventory: res.data
+  //     });
 
-      console.log(this.setState.inventory)
-    });
-  }
+  //     console.log(this.setState.inventory)
+  //   });
+  // }
 
   render() {
     return (
