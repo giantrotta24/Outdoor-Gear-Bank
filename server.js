@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
 
 //sessions
 app.use(session({
-  secret: keys.session.sessionSecret,
+  secret: "puppy-heaven",
   resave: false,
   saveUninitialized: false
 }));
@@ -35,6 +35,9 @@ app.use(passport.session()); // calls the deserializeUser
 // Define API routes here
 app.use(routes);
 require('./routes/api/apiroutes')(app);
+// app.use((req, res) =>
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"))
+// );
 
 
 // Connect to the Mongo DB

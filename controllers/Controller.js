@@ -10,7 +10,7 @@ module.exports = {
             // console.log(items);
             return res.json(items);
         } catch (error) {
-            throw new Error('No API Response');
+            throw res.status(422).json(error) ;
         }
     }, 
     // Find Item By ID
