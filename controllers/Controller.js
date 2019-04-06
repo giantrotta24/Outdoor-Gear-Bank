@@ -19,7 +19,6 @@ module.exports = {
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
-    //
     // Find all existing categories in the items database
     findCategories: (req, res) => {
         console.log("find categories");
@@ -29,10 +28,7 @@ module.exports = {
             res.status(422).json(err);
         });
     },
-    // WILL NEED ANOTHER ROUTE TO FIND ALL ITEMS THAT FALL UNDER THE REQUESTED CATEGORY
-    // ALSO USING DISTINCT SIMILAR TO ABOVE
-    // MONGODB DOCS: https://docs.mongodb.com/manual/reference/method/db.collection.distinct/
-    //
+    // 
     findItemsByCategory: (req, res) => {
         console.log("find item by category");
         db.Item.find({}).distinct("_id", {category: req.params.category}).then((dbItems) => {
