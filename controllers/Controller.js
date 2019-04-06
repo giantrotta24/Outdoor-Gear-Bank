@@ -22,8 +22,8 @@ module.exports = {
     // Find all existing categories in the items database
     findCategories: (req, res) => {
         console.log("find categories");
-        db.Item.find({}).distinct("category").then((dbItems) => {
-            res.json(dbItems);
+        db.Item.find({}).distinct("category").then((dbCategories) => {
+            res.json(dbCategories);
         }).catch(err => {
             res.status(422).json(err);
         });
