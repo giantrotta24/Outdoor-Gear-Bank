@@ -33,7 +33,14 @@ module.exports = {
     // ALSO USING DISTINCT SIMILAR TO ABOVE
     // MONGODB DOCS: https://docs.mongodb.com/manual/reference/method/db.collection.distinct/
     //
-
+    findItemsByCategory: (req, res) => {
+        console.log("find item by category");
+        db.Item.find({}).distinct("_id", {category: req.params.category}).then((dbItems) => {
+            res.json(dbItems);
+        }).catch(err => {
+            res.status(422).json(err);
+        });
+    },
     // Add item to database
     addItem: (req, res) => {
         db.Item.create(req.body).
