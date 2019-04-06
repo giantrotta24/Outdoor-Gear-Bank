@@ -10,5 +10,6 @@
     flex-flow: row wrap;
     justify-content: space-around;
     align-content: center;
+    background-size: cover;
     overflow: auto;
 }
