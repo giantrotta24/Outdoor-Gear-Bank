@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('./passport');
+const db = require('./database');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -33,10 +34,14 @@ app.use(passport.session()); // calls the deserializeUser
 
 // Define API routes here
 app.use(routes);
+<<<<<<< HEAD
 require('./routes/api/item')(app);
 app.use((req, res) =>
   res.sendFile(path.join(__dirname, "../client/build/index.html"))
 );
+=======
+require('./routes/api/apiroutes')(app);
+>>>>>>> dc2f6888c275d075ba5685eac6bfe3f2fabab510
 
 
 // Connect to the Mongo DB

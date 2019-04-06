@@ -8,7 +8,7 @@ const MaintenanceCommentSchema = new Schema({
     required: true
   },
   user: {
-    type: body.Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User"
   }
 });
