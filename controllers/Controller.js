@@ -28,7 +28,7 @@ module.exports = {
             res.status(422).json(err);
         });
     },
-    // 
+    // Find items by the category requested
     findItemsByCategory: (req, res) => {
         console.log("find item by category");
         db.Item.find({}).distinct("_id", {category: req.params.category}).then((dbItems) => {
@@ -39,8 +39,8 @@ module.exports = {
     },
     // Add item to database
     addItem: (req, res) => {
-        db.Item.create(req.body).
-        then(dbItem => res.json(dbItem))
+        db.Item.create(req.body)
+        .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
     // Update item in database based on the req.body
@@ -49,8 +49,11 @@ module.exports = {
     // Use this to updated number_of_times_rented
     // Use this to update date_rented_out & date_due
     updateItem: (req, res) => {
-        db.Item.findByIdAndUpdate({ _id: req.params.id }, req.body).
-        then(dbItem => res.json(dbItem))
+        db.Item.findByIdAndUpdate(
+            { _id: req.params.id }, 
+            req.body
+        )
+        .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
     // Use this if ever necessary to delete an item
@@ -120,8 +123,8 @@ module.exports = {
     // CONTROLLERS FOR CUSTOMERS
     // Add a customer to the database
     addCustomer: (req, res) => {
-            db.Customer.create(req.body).
-            then(dbItem => res.json(dbItem))
+            db.Customer.create(req.body)
+            .then(dbItem => res.json(dbItem))
             .catch(err => res.status(422).json(err));
     },
     // Add an item to a customer's "items" in database
@@ -130,9 +133,9 @@ module.exports = {
     // selected item in some way to add more than one at a time ???
     addItemToCustomer: (req, res) => {
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID },
-            { $push: {items: req.params.itemID}}
-            ).
-        then(dbCustomer => res.json(dbCustomer))
+            { $push: {items: req.params.itemID }}
+            )
+        .then(dbCustomer => res.json(dbCustomer))
         .catch(err => res.status(422).json(err));
     },
     // Find Customer by ID with a list of all current items rented out
@@ -147,8 +150,8 @@ module.exports = {
     deleteItemFromCustomer: (req, res) => {
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID }, 
             { $unset: {items: req.params.itemID}}
-            ).
-        then(dbCustomer => res.json(dbCustomer))
+            )
+        .then(dbCustomer => res.json(dbCustomer))
         .catch(err => res.status(422).json(err));
     }   
 };
