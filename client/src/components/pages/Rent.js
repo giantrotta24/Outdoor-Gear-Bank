@@ -30,9 +30,10 @@ class Rent extends Component {
   }
 
   mapSelect = () => {
-    this.state.inventory.map(item => {
-      return {label: item, value: item}
-    })
+    return this.state.inventory.map(item => ({
+      label: item,
+      value: item
+    }));
   } 
 
   render() {
@@ -41,7 +42,10 @@ class Rent extends Component {
       <SelectCard 
         onChange={this.handleChange}
         value={selectedOption}
-        options={this.mapSelect}
+        options={this.state.inventory.map(item => ({
+          label: item,
+          value: item,
+        }))}
       />
     );
   }
