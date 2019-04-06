@@ -7,7 +7,7 @@ module.exports = {
         try {
             let response = await db.Item.find({});
             let items = response;
-            console.log(items);
+            // console.log(items);
             return res.json(items);
         } catch (error) {
             throw new Error('No API Response');
@@ -21,13 +21,12 @@ module.exports = {
     },
     //
     // Find all existing categories in the items database
-    // THIS CURRENTLY DOES NOT WORK
     findCategories: (req, res) => {
         console.log("find categories");
         db.Item.find({}).distinct("category").then((dbItems) => {
             res.json(dbItems);
-        }).catch((err) => {
-            console.log(err);
+        }).catch(err => {
+            res.status(422).json(err);
         });
     },
     // WILL NEED ANOTHER ROUTE TO FIND ALL ITEMS THAT FALL UNDER THE REQUESTED CATEGORY
