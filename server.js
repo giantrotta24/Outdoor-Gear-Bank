@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
 
 //sessions
 app.use(session({
-  secret: keys.session.sessionSecret,
+  secret: "puppy-heaven",
   resave: false,
   saveUninitialized: false
 }));
