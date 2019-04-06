@@ -11,8 +11,7 @@
     "install": "cd client && npm install",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
-    "populate": "node_modules/babel-cli/bin/babel-node.js populate.js"
+    "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist"
   },
   "author": "",
   "license": "ISC",
