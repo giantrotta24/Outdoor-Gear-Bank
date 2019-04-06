@@ -9,9 +9,7 @@ module.exports = app => {
     // Find all categories that exist in the items collection
     app.get('/api/categories', Controller.findCategories);
     // Find all items within a specified category
-    //
-    // INSERT ABOVE ROUTE HERE
-    //
+    app.get('/api/categories/:category', Controller.findItemsByCategory);
     // Route to add an item to the database
     app.post('/api/items', Controller.addItem);
     // Route to update a specific item in the database
