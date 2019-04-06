@@ -23,12 +23,9 @@ module.exports = {
     // Find all existing categories in the items database
     // THIS CURRENTLY DOES NOT WORK
     findCategories: (req, res) => {
-        console.log("find categories");
-        db.Item.find({}).distinct("category").then((dbItems) => {
-            res.json(dbItems);
-        }).catch((err) => {
-            console.log(err);
-        });
+        db.Item.find({}).distinct("category", {status: "Available"}).
+        then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
     },
     // WILL NEED ANOTHER ROUTE TO FIND ALL ITEMS THAT FALL UNDER THE REQUESTED CATEGORY
     // ALSO USING DISTINCT SIMILAR TO ABOVE
