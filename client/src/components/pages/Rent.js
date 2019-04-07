@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SelectCard from '../SelectCard';
-import Select from 'react-select';
 import ResultsCard from '../ResultsCard';
 import API from '../../utils/API';
 
