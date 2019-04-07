@@ -1,0 +1,15 @@
+.container {
+    margin-bottom: 20px;
+}
+
+.card-header {
+    padding-top: 10px;
+}
+
+.card {
+    box-shadow: 3px 10px 30px 0px rgba(243, 243, 243, 0.5);
+    height: 560px;
+    position: relative;
+    overflow: auto;
+    display: flex; 
+}

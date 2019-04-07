@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SelectCard from '../SelectCard';
+import ResultsCard from '../ResultsCard';
 import API from '../../utils/API';
 
 
@@ -29,24 +30,22 @@ class Rent extends Component {
     console.log(`Option selected:`, selectedOption);
   }
 
-  mapSelect = () => {
-    return this.state.inventory.map(item => ({
-      label: item,
-      value: item
-    }));
-  } 
-
   render() {
     const { selectedOption } = this.state;
     return (
-      <SelectCard 
-        onChange={this.handleChange}
-        value={selectedOption}
-        options={this.state.inventory.map(item => ({
-          label: item,
-          value: item,
-        }))}
-      />
+      <div className="rentContainer">
+        <SelectCard
+          onChange={this.handleChange}
+          value={selectedOption}
+          options={this.state.inventory.map(item => ({
+            label: item,
+            value: item,
+          }))}
+        />
+        <ResultsCard>
+          
+        </ResultsCard>
+      </div>
     );
   }
 }
