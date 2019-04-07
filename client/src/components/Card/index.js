@@ -1,9 +1,9 @@
 import React from 'react';
-import "./style.css";
+import "./card-style.css";
 
 const Card = props => {
     return (
-        <div className="card">
+        <div className="login-card">
             <div className="card-body">
                 {props.children}
             </div>

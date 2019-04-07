@@ -11,7 +11,7 @@
 
 .jumbotron {
     width: 100%;
-    margin: 0;
+    margin-bottom: 0; 
     position: relative;
     padding: 0;
     height: 100%;
@@ -22,4 +22,17 @@
     background-image: url('./images/North-Bend-Park-Campground.jpg');
 }
 
+.rentContainer {
+    width: 980px;
+    margin-top: 125px;
+    margin-bottom: 50px;
+    text-align: center;
+    height: auto;
+    position: absolute;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    overflow: auto;
+    display: flex;
+
+}
 
