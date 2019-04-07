@@ -12,10 +12,21 @@ class SelectCard extends Component {
         }
     }
 
-    handleChange = (selectedOption) => {
+    handleChange = selectedOption => {
         this.setState({ selectedOption });
         console.log(`Option selected:`, selectedOption);
+
+        this.grabItems(selectedOption);
     }
+
+    grabItems = selectedOption => {
+        const arr = [];
+        arr.push(selectedOption);
+        arr.map(opt => {
+            console.log('this worked', opt.value);
+        })
+    }
+
 
     render() {
         const { selectedOption } = this.state;
