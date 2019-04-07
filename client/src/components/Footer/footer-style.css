@@ -4,7 +4,7 @@
     width: 100%;
     color: white;
     font-style: italic;
-    position: absolute;
+    position: sticky;
     box-shadow: 10px 5px 20px 2px rgb(2, 1, 0);
     z-index: 99;
 }
