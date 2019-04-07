@@ -8,9 +8,10 @@ const SelectCard = props => {
             <h3>Search Department</h3>
             <Select
                 className="form-control"
-                onChange={props.handleChange}
-                value={props.selectedOption}
-                options={props.options}
+                {...props}
+                // onChange={props.handleChange}
+                // value={props.selectedOption}
+                // options={props.options}
             />
         </div>
     )

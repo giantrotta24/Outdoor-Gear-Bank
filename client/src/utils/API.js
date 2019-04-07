@@ -14,8 +14,8 @@ export default {
     findItemByID: function() {
         return axios.get('/api/items/:id');
     },
-    addItem: function() {
-        return axios.post('/api/items');
+    addItem: function(itemData) {
+        return axios.post('/api/items', itemData);
     },
     updateItem: function() {
         return axios.post('/api/items/:id');

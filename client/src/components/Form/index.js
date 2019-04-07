@@ -1,4 +1,6 @@
 import React from "react";
+import Select from 'react-select';
+import './style.css';
 
 // This file exports the Input, TextArea, and FormBtn components
 
@@ -27,35 +29,62 @@ export function FormBtn(props) {
   );
 }
 
-export function SelectItemStatus(props) {
-  return (
-    <div className="form-group">
-      <select className="custom-select"
-        name={props.name}
-        value={props.value}
-        onChange={props.handleChange}>
-        <option defaultValue>Choose...</option>
-        <option value="Available">Available</option>
-        <option value="Out for Rend">Out for Rent</option>
-        <option value="In Maintenance">In Maintenance</option>
-      </select>
-    </div>
+// export function SelectItemStatus(props) {
+//   return (
+//     <div className="form-group">
+//       <select className="custom-select"
+//         name={props.name}
+//         value={props.value}
+//         onChange={props.handleChange}>
+//         <option defaultValue>Choose...</option>
+//         <option value="Available">Available</option>
+//         <option value="Out for Rend">Out for Rent</option>
+//         <option value="In Maintenance">In Maintenance</option>
+//       </select>
+//     </div>
+//   )
+// }
+
+// export function SelectCondition(props) {
+//   return (
+//     <div className="form-group">
+//       <select className="custom-select"
+//         name={props.name}
+//         value={props.value}
+//         onChange={props.handleChange}>
+//         <option defaultValue>Choose...</option>
+//         <option value="New">New</option>
+//         <option value="Good">Good</option>
+//         <option value="Fair">Fair</option>
+//         <option value="Poor">Poor</option>
+//       </select>
+//     </div>
+//   )
+// }
+
+export function FormInput(props) {
+  return ( 
+    <div className="container">
+          <input className="form-control"  {...props}
+          />
+          {/* // value={props.itemName}
+          // name={props.name}
+          // onChange={props.handleInputChange}
+          // options={props.options}
+          // placeholder={props.placeholder} />
+          /> */}
+          
+    </div>    
+    
   )
 }
 
-export function SelectCondition(props) {
-  return (
-    <div className="form-group">
-      <select className="custom-select"
-        name={props.name}
-        value={props.value}
-        onChange={props.handleChange}>
-        <option defaultValue>Choose...</option>
-        <option value="New">New</option>
-        <option value="Good">Good</option>
-        <option value="Fair">Fair</option>
-        <option value="Poor">Poor</option>
-      </select>
+export function FormSelect(props) {
+  return ( 
+    <div className="container">
+          <Select 
+            className="form-control"
+            {...props}/>
     </div>
   )
 }
