@@ -10,7 +10,7 @@ class Rent extends Component {
 
     this.state = {
       selectOption: null,
-      inventory: [],
+      categories: [],
     }
 
   }
@@ -19,7 +19,7 @@ class Rent extends Component {
   componentDidMount() {
     API.findCategories().then(res => {
       this.setState({
-        inventory: res.data
+        categories: res.data
       });
 
     });
@@ -37,7 +37,7 @@ class Rent extends Component {
         <SelectCard
           onChange={this.handleChange}
           value={selectedOption}
-          options={this.state.inventory.map(item => ({
+          options={this.state.categories.map(item => ({
             label: item,
             value: item,
           }))}

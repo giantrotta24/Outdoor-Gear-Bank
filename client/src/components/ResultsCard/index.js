@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './results-card-style.css';
 
 const ResultsCard = ({children}) => {
     return (
