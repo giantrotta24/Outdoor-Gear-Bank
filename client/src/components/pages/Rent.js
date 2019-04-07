@@ -10,12 +10,13 @@ class Rent extends Component {
 
     this.state = {
       categories: [],
+      grabbedOption: null,
     }
 
   }
 
   componentDidMount() {
-    API.findAll().then(res => {
+    API.findCategories().then(res => {
       this.setState({
         categories: res.data
       });
@@ -24,6 +25,8 @@ class Rent extends Component {
     });
   }
 
+  
+
   render() {
 
     return (
@@ -31,7 +34,7 @@ class Rent extends Component {
         <SelectCard
           className="form-control"
           options={this.state.categories.map(item => ({
-            label: item.name,
+            label: item,
             value: item,
           }))}
         />
