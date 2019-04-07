@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SelectCard from '../SelectCard';
-import ResultsCard from '../ResultsCard';
 import API from '../../utils/API';
 
 
@@ -11,6 +10,7 @@ class Rent extends Component {
     this.state = {
       categories: [],
       grabbedOption: null,
+      inventory: [],
     }
 
   }
@@ -23,6 +23,13 @@ class Rent extends Component {
       console.log(this.state.categories);
 
     });
+  }
+
+  grabInventory = inventory => {
+    this.setState({
+      inventory: inventory
+    });
+    console.log(`working ${this.state.inventory}`);
   }
 
   
@@ -38,9 +45,7 @@ class Rent extends Component {
             value: item,
           }))}
         />
-        <ResultsCard>
-
-        </ResultsCard>
+        
       </div>
     );
   }

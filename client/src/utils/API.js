@@ -8,8 +8,8 @@ export default {
     findCategories: function() {
         return axios.get('/api/categories');
     },
-    findItemsByCategory: function() {
-        return axios.get('/api/categories/:category');
+    findItemsByCategory: function(category) {
+        return axios.get('/api/categories/' + category);
     },
     findItemByID: function() {
         return axios.get('/api/items/:id');

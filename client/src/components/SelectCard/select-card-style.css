@@ -1,0 +1,32 @@
+.rent-container {
+    width: 980px;
+    overflow: hidden;
+    height: 100%
+}
+
+.small-card-body {
+    height: 100%;
+    border: 1px solid rgb(209, 209, 209);
+    padding: 50px;
+    margin: 15px;
+}
+
+.no-text {
+    margin-top: 50px;
+}
+
+.result-image {
+    float: left;
+    max-height: 100px;
+}
+
+.result-image:hover {
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.item-title {
+    margin: 15px;
+
+}
