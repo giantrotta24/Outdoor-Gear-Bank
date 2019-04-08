@@ -30,7 +30,31 @@ class Maintenance extends Component {
         
   
       });
+      this.state.itemsInMaintenance.forEach(inMaint => {
+        console.log('object id item in maint= ',inMaint._id);
+        API.findItemWithMaintComments(inMaint._id).then(res => {
+          console.log('findItemWithMaintComment= ', res);
+        })
+      })
+
+
+
     });
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
   }
 
   render() {
@@ -52,19 +76,19 @@ class Maintenance extends Component {
           {this.state.itemsInMaintenance.map((item,index) => (
           <ListItem key={item._id}>
       
-          <strong>
+          {/* <strong> */}
             
-            Item Name: {item.name}
+            <strong>Item Name:</strong>  {item.name}
             <br />            
-            Item Status:   {item.status}
+            <strong>Item Status:</strong>   {item.status}
             <br />
-            Serial Number: {item.serial_number} 
+            <strong>Serial Number:</strong> {item.serial_number} 
             <br />
             {/* <img src={item.image} alt="" style={{width: '200px',height: '200px'}}/>
             <br /> */}
-            Maintenance Comments: {item.maintenance_comments}
+            <strong>Maintenance Comments:</strong> {item.maintenance_comments}
                      
-          </strong>
+          {/* </strong> */}
         
         {/* <DeleteBtn 
         // onClick={() => this.deleteBook(book._id)}
