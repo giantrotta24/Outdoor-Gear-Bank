@@ -10,7 +10,6 @@ class Rent extends Component {
     this.state = {
       categories: [],
       grabbedOption: null,
-      inventory: [],
     }
 
   }
@@ -25,21 +24,11 @@ class Rent extends Component {
     });
   }
 
-  grabInventory = inventory => {
-    this.setState({
-      inventory: inventory
-    });
-    console.log(`working ${this.state.inventory}`);
-  }
-
-  
-
   render() {
 
     return (
       <div className="rentContainer">
         <SelectCard
-          className="form-control"
           options={this.state.categories.map(item => ({
             label: item,
             value: item,

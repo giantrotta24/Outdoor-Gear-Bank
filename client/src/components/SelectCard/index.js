@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import ResultsCard from '../ResultsCard';
+import SaveBtn from '../SaveBtn';
 import API from '../../utils/API';
 import './select-card-style.css';
 
@@ -12,6 +13,7 @@ class SelectCard extends Component {
         this.state = {
             selectedOption: null,
             inventory: [],
+            cart: [],
         }
     }
 
@@ -34,6 +36,14 @@ class SelectCard extends Component {
                 });
         });
     }
+
+    grabItemData = itemData => {
+        const cartItem = itemData;
+        this.state.cart.push(cartItem);
+        console.log(this.state.cart);
+    }
+
+
 
 
     render() {
@@ -63,7 +73,16 @@ class SelectCard extends Component {
                                         <div className='col-md-6' >
                                             {item.status === 'Available' ? (
                                                 <div className='col'>
-                                                    <button className='btn-success btn rent-button '>Rent Item</button>
+                                                    <SaveBtn  
+                                                        name={item.name}
+                                                        comments={item.comments}
+                                                        condition={item.condition}
+                                                        image={item.image}
+                                                        serial_number={item.serial_number}
+                                                        id={item._id}
+                                                        status={item.status}
+                                                        grabItemData={this.grabItemData}
+                                                    />
                                                 </div>
                                             ) : (
                                                     <div className='col'>
@@ -73,8 +92,6 @@ class SelectCard extends Component {
 
                                         </div>
                                     </div>
-
-
                                 </div>
                             ))}
                         </div>
