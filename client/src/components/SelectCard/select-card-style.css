@@ -1,7 +1,8 @@
 .rent-container {
     width: 980px;
     overflow: hidden;
-    height: 100%
+    height: 100%;
+    
 }
 
 .small-card-body {
@@ -28,5 +29,17 @@
 
 .item-title {
     margin: 15px;
+}
 
+.rent-button {
+    float: right;
+    margin-top: 50px; 
+    padding: 5px;
+}
+
+.unavailable {
+    float: right;
+    margin-top: 50px; 
+    margin-right: 25px; 
+    color: red;
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import ResultsCard from '../ResultsCard';
-import ReactImageMagnify from 'react-image-magnify';
 import API from '../../utils/API';
 import './select-card-style.css';
 
@@ -56,13 +55,26 @@ class SelectCard extends Component {
                                 <div className='small-card-body' key={key}>
 
                                     <div className='row'>
-                                        <div className='col-md-2'>
+                                        <div className='col-md-6'>
                                             <img src={item.image} alt={`${item.name} thumbnail`} className='result-image' />
-                                        </div>
-                                        <div className='col-sm-12 col-md-6' >
                                             <p className='font-italic item-title'>{item.name}</p>
+                                            <p className='item-title'>Comments: {item.commemnts}</p>
+                                        </div>
+                                        <div className='col-md-6' >
+                                            {item.status === 'Available' ? (
+                                                <div className='col'>
+                                                    <button className='btn-success btn rent-button '>Rent Item</button>
+                                                </div>
+                                            ) : (
+                                                    <div className='col'>
+                                                        <p className='unavailable'><strong> Item unavailable </strong> </p>
+                                                    </div>
+                                                )}
+
                                         </div>
                                     </div>
+
+
                                 </div>
                             ))}
                         </div>
