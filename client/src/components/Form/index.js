@@ -64,7 +64,8 @@ export function FormBtn(props) {
 
 export function FormInput(props) {
   return ( 
-    <div className="container">
+    // <div className="container">
+    <div>
           <input className="form-control"  {...props}
           />
           {/* // value={props.itemName}
@@ -81,7 +82,8 @@ export function FormInput(props) {
 
 export function FormSelect(props) {
   return ( 
-    <div className="container">
+    // <div className="container">
+    <div>
           <Select 
             className="form-control"
             {...props}/>

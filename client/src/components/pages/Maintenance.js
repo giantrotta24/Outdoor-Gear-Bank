@@ -1,49 +1,89 @@
-// import React from "react";
 import React, { Component } from "react";
-import items from "../../available.json";
+import { List, ListItem } from "../List";
+import API from '../../utils/API';
+// import items from "../../available.json";
 
 class Maintenance extends Component {
   // function Available() {
   state = {
-    items: ''
+    inventory: [],
+    itemsInMaintenance: []
+    
   };
+
+  componentDidMount() {
+    API.findAll().then(res => {
+      this.setState({
+        inventory: res.data
+      });
+      console.log("All inventory= ", this.state.inventory);
+      this.state.inventory.forEach( element => {
+        if (element.status == "In Maintenance"){
+          
+            this.setState({ itemsInMaintenance: [...this.state.itemsInMaintenance, element]})
+        
+          console.log("element= ", element);
+          console.log("itemsInMaintenance= ", this.state.itemsInMaintenance);
+          
+            // this.setState({itemsInMaintenance: [...element]})
+        }
+        
+  
+      });
+    });
+  }
 
   render() {
     return (
-      <div className="container bg-light border">
-        <div className="col-1-md"></div>
-        <div className="col-10-md"></div>
+      <div className="container bg-light border mt-5">
+        <div className="row">
+          <div className="col-md-2"></div>
 
-        <h1>Maintenance Page</h1>
+          <div className="col-md-8">
 
-        {/* {this.state.items.map((item, index) => (
-          //  console.log("item.fname= ",item.fname)
-          <p>
-            {item.fname}
-          </p>
-        ))} */}
+            <h3 className="mt-5 mb-1">Items In Maintenance</h3>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-          varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-          Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-          imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-          ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-          elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-          consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
-          varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
-          Etiam ut feugiat ex. Cras non risus mi. Curabitur mattis rutrum ipsum, ut aliquet urna
-          imperdiet ac. Sed nec nulla aliquam, bibendum odio eget, vestibulum tortor. Cras rutrum
-          ligula in tincidunt commodo. Morbi sit amet mollis orci, in tristique ex. Donec nec ornare
-          elit. Donec blandit est sed risus feugiat porttitor. Vestibulum molestie hendrerit massa non
-          consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus.
-      </p>
-        <div className="col-1-md"></div>
+            
+
+
+           
+        {this.state.itemsInMaintenance.length ? (
+        <List>
+          {this.state.itemsInMaintenance.map((item,index) => (
+          <ListItem key={item._id}>
+      
+          <strong>
+            
+            Item Name: {item.name}
+            <br />            
+            Item Status:   {item.status}
+            <br />
+            Serial Number: {item.serial_number} 
+            <br />
+            {/* <img src={item.image} alt="" style={{width: '200px',height: '200px'}}/>
+            <br /> */}
+            Maintenance Comments: {item.maintenance_comments}
+                     
+          </strong>
+        
+        {/* <DeleteBtn 
+        // onClick={() => this.deleteBook(book._id)}
+        /> */}
+
+      </ListItem>
+    ))}
+  </List>
+  ) : (
+    <h3>No Results to Display</h3>
+   )}
+
+
+
+
+            
+          </div>
+            <div className="col-md-2"></div>
+        </div>
       </div>
     );
   }
