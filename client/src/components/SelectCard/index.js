@@ -80,7 +80,7 @@ class SelectCard extends Component {
                                                         image={item.image}
                                                         serial_number={item.serial_number}
                                                         id={item._id}
-                                                        status={item.status}
+                                                        status={item.status = 'Unavailable'}
                                                         grabItemData={this.grabItemData}
                                                     />
                                                 </div>

@@ -4,7 +4,7 @@ class SaveBtn extends Component {
 
     constructor(props) {
         super(props)
-        
+
     }
 
 
@@ -21,8 +21,9 @@ class SaveBtn extends Component {
             status: this.props.status,
         }
 
-        this.props.grabItemData(itemData)
+        this.props.grabItemData(itemData);
 
+        
     }
 
     render() {
