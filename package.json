@@ -44,6 +44,7 @@
     "passport-local": "^1.0.0",
     "react-materialize": "^3.0.3",
     "react-particles-js": "^2.5.1",
+    "react-responsive-carousel": "^3.1.47",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.2"
   },

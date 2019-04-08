@@ -1,14 +1,13 @@
 import React from 'react';
 import Particles from 'react-particles-js';
+import Carousel from '../Carousel';
 import './style.css';
 
 const Home = () => {
+
     return (
         <div className="jumbotron ">
-            <div className="overlay"></div>
-            <div className="caption">
-                <h1 className="font-weight-bold">Outdoor Gear Bank</h1>
-            </div>
+        <Carousel />
             <Particles
                 height="500px"
                 params={{
@@ -62,6 +61,10 @@ const Home = () => {
                         }
                     }
                 }} />
+            {/* <div className="caption">
+                <h1 className="font-weight-bold">Outdoor Gear Bank</h1>
+            </div> */}
+            <div className="overlay"></div>
         </div>
     )
 }
