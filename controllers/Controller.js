@@ -56,6 +56,12 @@ module.exports = {
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
+    updateStatus: (req, res) => {
+        db.Item.findByIdAndUpdate(
+            { _id: req.params.id },
+            { status: req.params.status}
+        )
+    },
     // Use this if ever necessary to delete an item
     // This currently isn't something we will use in our application.
     deleteItem: (req, res) => {

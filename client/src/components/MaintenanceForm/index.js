@@ -1,20 +1,19 @@
 import React from "react";
-import "./return-form.css";
 
-function ReturnForm(props) {
+function MaintenanceForm(props) {
   return (
     <div className="container">
-      <form className="last_name">
+      <form className="serial_number">
         <div className="form-group">
-          <label htmlFor="customers">Search By Customer:</label>
+          <label htmlFor="items">Search By Serial Number:</label>
           <input
-            value={props.last_name}
+            value={props.serial_number}
             onChange={props.handleInputChange}
-            name="last_name"
+            serial_number="serial_number"
             type="text"
             className="form-control"
-            placeholder="Enter Customer's Last Name Here"
-            id="last_name"
+            placeholder="Enter Item's Serial Number"
+            id="serial_number"
           />
           <button type="submit" onClick={props.handleFormSubmit} className="btn btn-success">
             Search
@@ -26,4 +25,4 @@ function ReturnForm(props) {
   );
 }
 
-export default ReturnForm;
+export default MaintenanceForm;

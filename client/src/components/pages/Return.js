@@ -46,7 +46,8 @@ class Return extends Component {
           error: "",
           customers: "",
           items: res.data[0].items,
-          customerID: res.data[0]._id
+          customerID: res.data[0]._id,
+          customer: res.data[0].first_name + " " + res.data[0].last_name
         });
       })
       .catch(err => this.setState({ error: err.message }));
@@ -67,7 +68,7 @@ class Return extends Component {
         status: "In Maintenance"
       }
     ).then(res => this.loadItems())
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
   };
 
   loadItems = () => {
@@ -86,57 +87,57 @@ class Return extends Component {
       })
       .catch(err => this.setState({ error: err.message }));
   };
-  
+
 
   render() {
     return (
       <Wrapper>
-      <Container>
-        <Row>
-          <Col size="md-12">
-            <Container>
-              <Row>
-                <Col size="md-12">
-                  <ReturnForm
-                    handleFormSubmit={this.handleFormSubmit}
-                    handleInputChange={this.handleInputChange}
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-        <Row>
-        <Col size="md-12 sm-12">
-            {this.state.items.length ? (
-              // <h3>Items Rented Out By {this.results[0].first_name} {this.results[0].last_name}</h3>
-              <ReturnResults>
-                {this.state.items.map(item => {
-                  return (
-                    <ReturnResultsItem key={item._id}>
-                      <p>
-                        <strong>
-                          {item.name} ({item.category})
+        <Container>
+          <Row>
+            <Col size="md-12">
+              <Container>
+                <Row>
+                  <Col size="md-12">
+                    <ReturnForm
+                      handleFormSubmit={this.handleFormSubmit}
+                      handleInputChange={this.handleInputChange}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12 sm-12">
+              {this.state.items.length ? (
+                <ReturnResults>
+                  <h3>Items Rented Out By {this.state.customer}</h3>
+                  {this.state.items.map(item => {
+                    return (
+                      <ReturnResultsItem key={item._id}>
+                        <p>
+                          <strong>
+                            {item.name} ({item.category})
                         </strong>
-                      </p>
-                      <p>
-                        Serial Number: {item.serial_number}
-                      </p>
-                      <p>
-                        Date Due: {item.date_due}
-                      </p>
-                      <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id);}} />
-                    </ReturnResultsItem>
-                  );
-                })}
-              </ReturnResults>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
+                        </p>
+                        <p>
+                          Serial Number: {item.serial_number}
+                        </p>
+                        <p>
+                          Date Due: {item.date_due}
+                        </p>
+                        <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id); }} />
+                      </ReturnResultsItem>
+                    );
+                  })}
+                </ReturnResults>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </Col>
 
-        </Row>
-      </Container>
+          </Row>
+        </Container>
       </Wrapper>
     )
   }

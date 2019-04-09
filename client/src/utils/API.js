@@ -20,6 +20,9 @@ export default {
     updateItem: function(itemID) {
         return axios.post('/api/items/' + itemID);
     },
+    updateStatus: function(itemID, status) {
+        return axios.post('/api/' + itemID + '/' + status);
+    },
     deleteItem: function() {
         return axios.delete('/api/items/:id');
     },

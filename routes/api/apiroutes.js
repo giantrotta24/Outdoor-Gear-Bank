@@ -14,6 +14,8 @@ module.exports = app => {
     app.post('/api/items', Controller.addItem);
     // Route to update a specific item in the database
     app.post('/api/items/:id', Controller.updateItem);
+    //Route to update a specific item's status in the database
+    app.post('/api/:id/:status', Controller.updateStatus);
     // Route to delete a specific item in the database
     app.delete('/api/items/:id', Controller.deleteItem);
 
