@@ -159,7 +159,7 @@ module.exports = {
     // Deletes ALL items from a customer
     deleteItemFromCustomer: (req, res) => {
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID }, 
-            { $unset: {items: req.params.itemID}}
+            { $pull: {items: req.params.itemID}}
             )
         .then(dbCustomer => res.json(dbCustomer))
         .catch(err => res.status(422).json(err));
