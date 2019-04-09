@@ -17,8 +17,8 @@ export default {
     addItem: function() {
         return axios.post('/api/items');
     },
-    updateItem: function() {
-        return axios.post('/api/items/:id');
+    updateItem: function(id, body) {
+        return axios.post('/api/items/' + id, body);
     },
     deleteItem: function() {
         return axios.delete('/api/items/:id');
