@@ -7,7 +7,7 @@ class SaveBtn extends Component {
 
     saveItem = event => {
         event.preventDefault();
-        this.b.setAttribute('disabled', 'disabled');
+        this.btn.setAttribute('disabled', 'disabled');
 
         const itemData = {
             name: this.props.name,
