@@ -53,7 +53,7 @@ export default {
     findCustomerByLastName: function(lastname) {
         return axios.get('/api/' + lastname + '/items');
     },
-    deleteItemFromCustomer: function() {
-        return axios.delete('/api/:customerID/:itemID');
+    deleteItemFromCustomer: function(customerID, itemID) {
+        return axios.delete('/api/' + customerID + '/' + itemID);
     }
 }

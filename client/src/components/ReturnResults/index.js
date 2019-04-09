@@ -1,10 +1,13 @@
 import React from "react";
-import './return-results.css';
 
-// ReturnResults renders a bootstrap list item
-const ReturnResults = ({ children }) => {
-  return <ul className="list-group">{children}</ul>;
+export function ReturnResults({ children }) {
+  return (
+    <div className="list-overflow-container">
+      <ul className="list-group">{children}</ul>
+    </div>
+  );
 }
+
 
 export default ReturnResults;
 
