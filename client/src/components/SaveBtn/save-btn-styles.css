@@ -1,0 +1,13 @@
+.btn:disabled {
+    opacity: 0.65; 
+    cursor: not-allowed;
+    background-color: red;
+    color: white;
+}
+
+.btn:disabled:hover {
+    opacity: 0.65; 
+    cursor: not-allowed;
+    background-color: red;
+    color: white;
+}

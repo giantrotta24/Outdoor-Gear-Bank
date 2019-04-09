@@ -14,7 +14,6 @@ class SelectCard extends Component {
             selectedOption: null,
             inventory: [],
             cart: [],
-            render: null
         }
     }
 
@@ -39,7 +38,6 @@ class SelectCard extends Component {
     }
 
     grabItemData = itemData => {
-        this.setState({ render: this.state });
         this.state.cart.push(itemData);
         console.log(this.state.cart);
     }

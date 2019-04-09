@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import './save-btn-styles.css';
 import API from '../../utils/API';
 
 class SaveBtn extends Component {
 
 
-    saveItem = async (event) => {
+    saveItem = event => {
         event.preventDefault();
+        this.b.setAttribute('disabled', 'disabled');
 
         const itemData = {
             name: this.props.name,
@@ -18,11 +20,12 @@ class SaveBtn extends Component {
 
 
         API.updateItem(itemId, { "status": "Unavailable" }).then(this.props.grabItemData(itemData));
+
     }
 
     render() {
         return (
-            <button className='btn-success btn rent-button' onClick={this.saveItem}>Rent Item</button>
+            <button ref={btn => { this.btn = btn; }} className='btn-success btn rent-button' onClick={this.saveItem}>Rent Item</button>
         )
     }
 }
