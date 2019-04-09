@@ -127,6 +127,16 @@ module.exports = {
             .then(dbItem => res.json(dbItem))
             .catch(err => res.status(422).json(err));
     },
+    findAllCustomers: async (req, res) => {
+        try {
+            let response = await db.Customer.find({});
+            let customers = response;
+            // console.log(items);
+            return res.json(customers);
+        } catch (error) {
+            throw res.status(422).json(error) ;
+        }
+    }, 
     // Add an item to a customer's "items" in database
     // Currently only adds on item at a time so may have to use some 
     // kind of for loop through all selected items and call this for each 
@@ -139,8 +149,8 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     // Find Customer by ID with a list of all current items rented out
-    findCustomerByID: (req, res) => {
-        db.Customer.find({ _id: req.params.customerID }).populate('items').then((dbCustomer) => {
+    findCustomerByLastName: (req, res) => {
+        db.Customer.find({ last_name: req.params.lastname }).populate('items').then((dbCustomer) => {
             res.json(dbCustomer);
         }).catch((err) => {
             console.log(err);

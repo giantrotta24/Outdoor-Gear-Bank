@@ -44,11 +44,14 @@ export default {
     addCustomer: function() {
         return axios.post('/api/customers');
     },
+    findAllCustomers: function() {
+        return axios.get('/api/customers');
+    },
     addItemToCustomer: function() {
         return axios.post('/api/:customerID/:itemID');
     },
-    findCustomerByID: function() {
-        return axios.get('/api/:customerID/items');
+    findCustomerByLastName: function(lastname) {
+        return axios.get('/api/' + lastname + '/items');
     },
     deleteItemFromCustomer: function() {
         return axios.delete('/api/:customerID/:itemID');

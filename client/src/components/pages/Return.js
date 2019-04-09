@@ -1,19 +1,27 @@
 // import React from "react";
 import React, { Component } from "react";
-import { Input, FormBtn, TextArea } from "../Form";
+import ReturnForm from '../ReturnForm';
+import ReturnResults from '../ReturnResults';
+import ReturnResultsItem from '../ReturnResultsItem';
+import API from '../../utils/API';
+import { Container, Row, Col } from "../Grid";
 
 class Return extends Component {
-  // function Available() {
+
   state = {
-    fName: '',
-    lName: '',
-    email: '',
-    custPhone: '',
-    itemComment: '',
-    custMemNum: 0,
-    itemsRented: '',
-    state: ''
+    last_name: "",
+    customers: [],
+    results: [],
+    items: [],
+    error: ""
   };
+
+  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  componentDidMount() {
+    API.findAllCustomers()
+      .then(res => this.setState({ customers: res.data.message }))
+      .catch(err => console.log(err));
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -22,156 +30,70 @@ class Return extends Component {
     })
   };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.last_name);
+    API.findCustomerByLastName(this.state.last_name)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.status === "error") {
+          throw new Error(res.data.message);
+        }
+        this.setState({
+          results: res.data,
+          error: "",
+          customers: "",
+          items: res.data[0].items
+        });
+        console.log(this.state.items);
+      })
+      .catch(err => this.setState({ error: err.message }));
+  };
+
   render() {
     return (
-      <div className="outercontainer">
-        <div className="container bg-light border">
-          <div className="col-1-md"></div>
-          <div className="col-10-md"></div>
+      <Container>
+        <Row>
+          <Col size="md-12">
+              <Container>
+                <Row>
+                  <Col size="md-12">
+                    <ReturnForm
+                      handleFormSubmit={this.handleFormSubmit}
+                      handleInputChange={this.handleInputChange}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-12">
+            {!this.state.items.length ? (
+              <h3>No Results to Display, Enter Last Name Above</h3>
+            ) : (
+                <ReturnResults>
+                  <h3>Items Rented Out By {this.state.results[0].first_name} {this.state.results[0].last_name}</h3>
+                  {this.state.items.map(item => {
+                    return (
+                      <ReturnResultsItem
+                        key={item._id}
+                        name={item.name}
+                        serial_number={item.serial_number}
+                        date_due={item.date_due}
+                        thumbnail={item.image}
+                      />
+                    );
+                  })}
+                </ReturnResults>
+              )}
+          </Col>
+        </Row>
+      </Container>
 
-          <h3 className="mt-3 mb-5">Rent</h3>
-
-          {/* {this.state.items.map((item,index) => (
-    //    console.log("item.fname= ",item.fname)
-    <p>
-      {item.fname}
-    </p>
-      ))} */}
-
-          <form>
-            <div className="form-group mb-3">
-
-              <div className="card">
-                <div className="card-body">
-                  <h4 className="card-title mt-3 mb-3">Enter Customer's Rental</h4>
-
-                  <label htmlFor="cust-fname">Customer First Name:</label>
-                  <Input
-                    value={this.state.fName}
-                    onChange={this.handleInputChange}
-                    name="fName"
-                    placeholder="Customer First Name"
-                  />
-                  {console.log("first name= ", this.state.fName)}
-                  {/* <div className="form-group"> */}
-                  {/* <input type="text" className="form-control" id="item-name" name="item-name">
-                </input> */}
-                  {/* </div> */}
-
-                  <label htmlFor="cust-lName">Customer Last Name:</label>
-                  <Input
-                    value={this.state.lName}
-                    onChange={this.handleInputChange}
-                    name="lName"
-                    placeholder="Customer Last Name"
-                  />
-                  {console.log("last name= ", this.state.lName)}
-
-                  <label htmlFor="cust-email">Customer Email:</label>
-                  <Input
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    name="email"
-                    placeholder="Customer email"
-                  />
-                  {console.log("email=", this.state.email)}
-                  {/* <div className="form-group">               
-                  <select className="custom-select" id="item-status">                    
-                    <option selected>Choose...</option>
-                    <option value="Available">Available</option>
-                    <option value="Out for Rend">Out for Rent</option>
-                    <option value="In Maintenance">In Maintenance</option>
-                  </select>
-              </div> */}
-
-                  <label htmlFor="cust-phone">Customer Phone Number:</label>
-                  <Input
-                    value={this.state.custPhone}
-                    onChange={this.handleInputChange}
-                    name="custPhone"
-                  />
-                  {console.log("custPhone= ", this.state.custPhone)}
-
-                  <label htmlFor="custMemNum">Customer Member Number:</label>
-                  <Input
-                    value={this.state.custMemNum}
-                    onChange={this.handleInputChange}
-                    name="custMemNum"
-                  />
-                  {console.log("custMemNum= ", this.state.custMemNum)}
-
-                  <label htmlFor="items-rented">Items Rented:</label>
-                  <Input
-                    value={this.state.itemsRented}
-                    onChange={this.handleInputChange}
-                    name="itemsRented"
-                  />
-                  {console.log("itemsRented=", this.state.itemsRented)}
-
-                  {/* <select className="custom-select" id="item-condition">
-                    <option selected>Choose...</option>
-                    <option value="New">New</option>
-                    <option value="Good">Good</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Poor">Poor</option>
-                  </select>
-              </div> */}
-
-                  {/* <label htmlFor="item-comment">Comment:</label>
-                <TextArea
-                  value= {this.state.itemComment}
-                  onChange= {this.handleInputChange}
-                  name= "itemComment"
-                />
-                {console.log("itemComment=", this.state.itemComment)} */}
-
-
-                  {/* <div className="form-group">
-                <textarea className="form-control" rows="5" id="item-comment"></textarea>
-              </div> */}
-
-                  {/* <label htmlFor="item-maint-comment">Maintenance Comments:</label>
-                <TextArea
-                    value= {this.state.maintComment}
-                    onChange= {this.handleInputChange}
-                    name= "maintComment"
-                />
-                {console.log("itemComment=", this.state.maintComment)} */}
-
-                  {/* <label htmlFor="item-dateout">Date Rented:</label>
-                  <Input
-                    value= {this.state.dateOut}
-                    onChange= {this.handleInputChange}
-                    name= "dateOut"                 
-                  /> 
-
-                <label htmlFor="item-datedue">Date Due:</label>
-                  <Input
-                    value= {this.state.dateDue}
-                    onChange= {this.handleInputChange}
-                    name= "dateDue"                 
-                  />  */}
-                </div>
-              </div>
-            </div>
-            <FormBtn
-              // disabled={!(this.state.topic)}
-              onClick={this.handleFormSubmit}
-            >
-              Submit</FormBtn>
-          </form>
-
-
-
-
-
-
-
-          <div className="col-1-md"></div>
-        </div>
-      </div>
-    );
+    )
   }
 }
 
 export default Return;
+
