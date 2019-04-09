@@ -14,23 +14,21 @@ module.exports = app => {
     app.post('/api/items', Controller.addItem);
     // Route to update a specific item in the database
     app.post('/api/items/:id', Controller.updateItem);
-    //Route to update a specific item's status in the database
-    app.post('/api/:id/:status', Controller.updateStatus);
     // Route to delete a specific item in the database
     app.delete('/api/items/:id', Controller.deleteItem);
-
+    
     // COMMENT routes
     // Route to get a specific item with all it's comments
     app.get('/api/:itemID/comments', Controller.findItemWithComments);
     // Route to add a comment
     app.post('/api/:itemID/comments', Controller.addComment);
-
+    
     // MAINTENANCE COMMENT routes
     // Route to get a specific item with all it's maintenance comments
     app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
     // Route to add a maintenance comment
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
-
+    
     // CUSTOMER routes
     // Route to add customer
     app.post('/api/customers', Controller.addCustomer);

@@ -29,18 +29,18 @@ export default {
 
     // COMMENTS
     addComment: function() {
-        return axios.post('/api/:itemID/comments');
+        return axios.post('/api/comments/:itemID');
     },
     findItemWithComments: function() {
-        return axios.get('/api/:itemID/comments');
+        return axios.get('/api/comments/:itemID');
     },
 
     // MAINTENANCE COMMENTS
-    addMaintComment: function() {
-        return axios.post('/api/:itemID/maintcomments');
+    addMaintComment: function(id,comment) {
+        return axios.post('/api/' + id + '/maintcomments');
     },
-    findItemWithMaintComments: function() {
-        return axios.get('/api/:itemID/maintcomments');
+    findItemWithMaintComments: function(id) {
+        return axios.get('/api/' + id + '/maintcomments');
     },
 
     // CUSTOMER

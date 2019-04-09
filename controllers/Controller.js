@@ -117,7 +117,7 @@ module.exports = {
           return db.Item.findOneAndUpdate(
             { _id: req.params.itemID },
             { $push: { maintenance_comments: dbMaintenanceComment._id } },
-            { new: true },
+            { new: true }
           );
         }).then(() => {
           res.json(maintComment);
