@@ -6,7 +6,7 @@ import "./DeleteBtn.css";
 function DeleteBtn(props) {
   return (
     <span className="delete-btn" {...props} role="button" tabIndex="0">
-      ✗
+      Remove Item From Customer's Inventory
     </span>
   );
 }

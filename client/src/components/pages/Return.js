@@ -7,6 +7,7 @@ import API from '../../utils/API';
 import { Container, Row, Col } from "../Grid";
 // import { Input, FormBtn, SelectItemStatus, SelectCondition, TextArea } from "../Form";
 import DeleteBtn from '../DeleteBtn';
+import Wrapper from '../Wrapper';
 
 class Return extends Component {
 
@@ -17,9 +18,9 @@ class Return extends Component {
     results: [],
     items: [],
     error: "",
+    itemID: ""
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
     API.findAllCustomers()
       .then(res => this.setState({ customers: res.data.message }))
@@ -35,10 +36,8 @@ class Return extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.last_name);
     API.findCustomerByLastName(this.state.last_name)
       .then(res => {
-        console.log(res.data);
         if (res.data.status === "error") {
           throw new Error(res.data.message);
         }
@@ -49,23 +48,31 @@ class Return extends Component {
           items: res.data[0].items,
           customerID: res.data[0]._id
         });
-        console.log(this.state.items);
       })
       .catch(err => this.setState({ error: err.message }));
   };
 
   deleteItemFromCustomer = itemID => {
-    console.log("itemID:" + itemID);
-    console.log("customerID:" + this.state.customerID);
     API.deleteItemFromCustomer(this.state.customerID, itemID)
       .then(res => this.loadItems())
       .catch(err => console.log(err))
   };
 
+  updateItem = itemID => {
+    console.log("updating item");
+    console.log(itemID);
+    API.updateItem(
+      itemID,
+      {
+        status: "In Maintenance"
+      }
+    ).then(res => this.loadItems())
+    .catch(err => console.log(err))
+  };
+
   loadItems = () => {
     API.findCustomerByLastName(this.state.last_name)
       .then(res => {
-        console.log(res.data);
         if (res.data.status === "error") {
           throw new Error(res.data.message);
         }
@@ -76,7 +83,6 @@ class Return extends Component {
           items: res.data[0].items,
           customerID: res.data[0]._id
         });
-        console.log(this.state.items);
       })
       .catch(err => this.setState({ error: err.message }));
   };
@@ -84,6 +90,7 @@ class Return extends Component {
 
   render() {
     return (
+      <Wrapper>
       <Container>
         <Row>
           <Col size="md-12">
@@ -109,7 +116,7 @@ class Return extends Component {
                     <ReturnResultsItem key={item._id}>
                       <p>
                         <strong>
-                          {item.name}
+                          {item.name} ({item.category})
                         </strong>
                       </p>
                       <p>
@@ -118,7 +125,7 @@ class Return extends Component {
                       <p>
                         Date Due: {item.date_due}
                       </p>
-                      <DeleteBtn onClick={() => this.deleteItemFromCustomer(item._id)} />
+                      <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id);}} />
                     </ReturnResultsItem>
                   );
                 })}
@@ -130,7 +137,7 @@ class Return extends Component {
 
         </Row>
       </Container>
-
+      </Wrapper>
     )
   }
 }
