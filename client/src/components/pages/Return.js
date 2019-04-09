@@ -5,6 +5,8 @@ import ReturnResults from '../ReturnResults';
 import ReturnResultsItem from '../ReturnResultsItem';
 import API from '../../utils/API';
 import { Container, Row, Col } from "../Grid";
+// import { Input, FormBtn, SelectItemStatus, SelectCondition, TextArea } from "../Form";
+import DeleteBtn from '../DeleteBtn';
 
 class Return extends Component {
 
@@ -13,7 +15,7 @@ class Return extends Component {
     customers: [],
     results: [],
     items: [],
-    error: ""
+    error: "",
   };
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
@@ -55,16 +57,16 @@ class Return extends Component {
       <Container>
         <Row>
           <Col size="md-12">
-              <Container>
-                <Row>
-                  <Col size="md-12">
-                    <ReturnForm
-                      handleFormSubmit={this.handleFormSubmit}
-                      handleInputChange={this.handleInputChange}
-                    />
-                  </Col>
-                </Row>
-              </Container>
+            <Container>
+              <Row>
+                <Col size="md-12">
+                  <ReturnForm
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleInputChange={this.handleInputChange}
+                  />
+                </Col>
+              </Row>
+            </Container>
           </Col>
         </Row>
         <Row>
