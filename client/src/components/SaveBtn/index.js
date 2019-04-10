@@ -7,7 +7,6 @@ class SaveBtn extends Component {
 
     saveItem = event => {
         event.preventDefault();
-        this.btn.setAttribute('disabled', 'disabled');
 
         const itemData = {
             name: this.props.name,
@@ -19,14 +18,14 @@ class SaveBtn extends Component {
         const itemId = itemData.id;
 
 
-        API.updateItem(itemId, { "status": "Unavailable" }).then(this.props.grabItemData(itemData));
+        API.updateItem(itemId, { "status": "Unavailable" }).then(this.props.grabItemData(itemData, itemId));
 
     }
 
     render() {
         return (
-            <button ref={btn => { this.btn = btn; }} className='btn-success btn rent-button' onClick={this.saveItem}>Rent Item</button>
-        )
+            <button className='btn-success btn rent-button' onClick={this.saveItem}>Rent Item</button>
+        );
     }
 }
 export default SaveBtn;

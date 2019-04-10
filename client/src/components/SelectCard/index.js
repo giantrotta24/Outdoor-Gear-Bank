@@ -37,13 +37,27 @@ class SelectCard extends Component {
         });
     }
 
-    grabItemData = itemData => {
-        this.state.cart.push(itemData);
-        console.log(this.state.cart);
+    grabItemData = (itemData, itemId) => {
+        this.setState({ cart: [...this.state.cart, itemData] });
+        // console.log(this.state.cart);
+        let index = 0;
+
+        for (let i = 0; i < this.state.inventory.length; i++) {
+            if (this.state.inventory[i]._id === itemId) {
+                index = i
+            }
+        }
+
+        console.log('first one', this.state.inventory.slice(0, index));
+        console.log('second one', this.state.inventory.slice(index + 1));
+        this.setState({
+            inventory: [
+                ...this.state.inventory.slice(0, index),
+                { ...this.state.inventory[index], status: 'Unavailable' },
+                ...this.state.inventory.slice(index + 1)
+            ]
+        });
     }
-
-
-
 
     render() {
         const { selectedOption } = this.state;
@@ -72,7 +86,7 @@ class SelectCard extends Component {
                                         <div className='col-md-6' >
                                             {item.status === 'Available' ? (
                                                 <div className='col'>
-                                                    <SaveBtn  
+                                                    <SaveBtn
                                                         name={item.name}
                                                         image={item.image}
                                                         serial_number={item.serial_number}
@@ -99,6 +113,5 @@ class SelectCard extends Component {
         )
     }
 }
-
 
 export default SelectCard;
