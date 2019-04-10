@@ -59,16 +59,13 @@ const Home = () => {
                     }
                 }} />
             <div className="caption">
-                <div className="row">
-                    <h1 className="page-title" id="caption"><i id="header-mount" className="fas fa-mountain"></i>Outdoor Gear Bank</h1>
-                </div>
-                <div className="row">
-                    <h5 className="sub-header"id="caption">A simple way to manage your rental gear.</h5>
-                </div>
+
+                <h1 className="page-title" id="caption"><i id="header-mount" className="fas fa-mountain"></i>Outdoor Gear Bank</h1>
+
+                <h5 className="sub-header" id="caption">A simple way to manage your rental gear.</h5>
+
             </div>
             <div className="overlay"></div>
-
-
         </div>
     );
 }
