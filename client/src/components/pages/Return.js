@@ -5,9 +5,8 @@ import ReturnResults from '../ReturnResults';
 import ReturnResultsItem from '../ReturnResultsItem';
 import API from '../../utils/API';
 import { Container, Row, Col } from "../Grid";
-// import { Input, FormBtn, SelectItemStatus, SelectCondition, TextArea } from "../Form";
 import DeleteBtn from '../DeleteBtn';
-import Wrapper from '../Wrapper';
+import { SelectCondition, TextArea } from "../Form";
 
 class Return extends Component {
 
@@ -18,7 +17,9 @@ class Return extends Component {
     results: [],
     items: [],
     error: "",
-    itemID: ""
+    itemID: "",
+    itemCondition: [],
+    itemComment: []
   };
 
   componentDidMount() {
@@ -91,13 +92,13 @@ class Return extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <div className="returnContainer">
         <Container>
           <Row>
             <Col size="md-12">
               <Container>
                 <Row>
-                  <Col size="md-12">
+                  <Col size="md-8">
                     <ReturnForm
                       handleFormSubmit={this.handleFormSubmit}
                       handleInputChange={this.handleInputChange}
@@ -112,7 +113,7 @@ class Return extends Component {
               {this.state.items.length ? (
                 <ReturnResults>
                   <h3>Items Rented Out By {this.state.customer}</h3>
-                  {this.state.items.map(item => {
+                  {this.state.items.map((item, index) => {
                     return (
                       <ReturnResultsItem key={item._id}>
                         <p>
@@ -126,6 +127,18 @@ class Return extends Component {
                         <p>
                           Date Due: {item.date_due}
                         </p>
+                        <label htmlFor="item-condition">Item Condition:</label>
+                        <SelectCondition
+                          name={"itemCondition" + index}
+                          value={this.state.itemCondition[index]}
+                          handleChange={this.handleInputChange}
+                        />
+                        <label htmlFor="item-comment">Comment:</label>
+                        <TextArea
+                          value={this.state.itemComment[index]}
+                          onChange={this.handleInputChange}
+                          name={"itemComment" + index} 
+                        />
                         <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id); }} />
                       </ReturnResultsItem>
                     );
@@ -135,13 +148,11 @@ class Return extends Component {
                   <h3>No Results to Display</h3>
                 )}
             </Col>
-
           </Row>
         </Container>
-      </Wrapper>
+      </div>
     )
   }
 }
 
 export default Return;
-
