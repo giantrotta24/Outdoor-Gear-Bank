@@ -117,6 +117,7 @@ class Return extends Component {
         <Container>
           <Row>
             <Col size="md-12">
+            <h2>Returning Rental Items?</h2>
               <Container>
                 <Row>
                   <Col size="md-12">

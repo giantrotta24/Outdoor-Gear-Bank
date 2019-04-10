@@ -16,7 +16,7 @@ function ReturnForm(props) {
             placeholder="Enter Customer's Last Name Here"
             id="last_name"
           />
-          <button type="submit" onClick={props.handleFormSubmit} className="btn btn-success">
+          <button type="submit" onClick={props.handleFormSubmit} className="customer-btn btn btn-primary">
             Search
         </button>
         </div>
