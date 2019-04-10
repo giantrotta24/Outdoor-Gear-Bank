@@ -37,7 +37,6 @@ class Inventory extends Component {
   };
 
   updateInv = () => {
-    // console.log("books at top of loadbooks", this.state.books);
 
     let newItem = {
       name: this.state.itemName,
@@ -72,10 +71,7 @@ class Inventory extends Component {
             seletedOption: ''
           });
           console.log("state after inv update= ", this.state);
-        }
-        // this.setState({ 
-        //   books: [...res.data.items], 
-        //   topic: ""})        
+        }    
       })
       .catch(err => console.log(err))
   };
@@ -104,7 +100,6 @@ class Inventory extends Component {
   }
 
   render() {
-
     return (
       <div className="container bg-light border mt-5">
       
