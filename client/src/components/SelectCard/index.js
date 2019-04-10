@@ -39,7 +39,7 @@ class SelectCard extends Component {
 
     grabItemData = (itemData, itemId) => {
         this.setState({ cart: [...this.state.cart, itemData] });
-        // console.log(this.state.cart);
+        console.log(this.state.cart);
         let index = 0;
 
         for (let i = 0; i < this.state.inventory.length; i++) {
