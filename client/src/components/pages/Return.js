@@ -60,16 +60,31 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  updateItem = itemID => {
+  updateItem = (itemID, condition) => {
     console.log("updating item");
     console.log(itemID);
+    console.log(condition);
     API.updateItem(
       itemID,
       {
-        status: "In Maintenance"
+        status: "In Maintenance",
+        condition: condition
       }
     ).then(res => this.loadItems())
       .catch(err => console.log(err))
+  };
+
+  addComment = (itemID, comment) => {
+    console.log("adding comment");
+    console.log(itemID);
+    console.log(comment);
+    API.addComment(
+      itemID,
+      {
+        body: comment
+      }
+    ).then(res => this.loadItems())
+    .catch(err => console.log(err))
   };
 
   loadItems = () => {
@@ -98,7 +113,7 @@ class Return extends Component {
             <Col size="md-12">
               <Container>
                 <Row>
-                  <Col size="md-8">
+                  <Col size="md-12">
                     <ReturnForm
                       handleFormSubmit={this.handleFormSubmit}
                       handleInputChange={this.handleInputChange}
@@ -124,22 +139,19 @@ class Return extends Component {
                         <p>
                           Serial Number: {item.serial_number}
                         </p>
-                        <p>
-                          Date Due: {item.date_due}
-                        </p>
-                        <label htmlFor="item-condition">Item Condition:</label>
+                        <label htmlFor="item-condition">Update Item Condition:</label>
                         <SelectCondition
                           name={"itemCondition" + index}
                           value={this.state.itemCondition[index]}
                           handleChange={this.handleInputChange}
                         />
-                        <label htmlFor="item-comment">Comment:</label>
+                        <label htmlFor="item-comment">Add Comment About Item's Condition:</label>
                         <TextArea
                           value={this.state.itemComment[index]}
                           onChange={this.handleInputChange}
                           name={"itemComment" + index} 
                         />
-                        <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id); }} />
+                        <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
                       </ReturnResultsItem>
                     );
                   })}

@@ -25,8 +25,8 @@ export default {
     },
 
     // COMMENTS
-    addComment: function() {
-        return axios.post('/api/comments/:itemID');
+    addComment: function(itemID, comment) {
+        return axios.post('/api/comments/' + itemID, comment);
     },
     findItemWithComments: function() {
         return axios.get('/api/comments/:itemID');

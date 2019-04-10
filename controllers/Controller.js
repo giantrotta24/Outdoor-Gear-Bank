@@ -79,6 +79,7 @@ module.exports = {
         console.log(req.body);
         db.Comment.create(req.body)
         .then(function(dbComment) {
+            console.log("hit add comment route");
             return db.Item.findOneAndUpdate(
                 { _id: req.params.itemID }, 
                 { $push: { comments: dbComment._id } }, 

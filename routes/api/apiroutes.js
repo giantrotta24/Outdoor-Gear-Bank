@@ -1,6 +1,7 @@
 const Controller = require('../../controllers/Controller');
 
 module.exports = app => {
+    
     // ITEM routes
     // Route to find all items in database
     app.get('/api/items', Controller.findAll);
@@ -18,17 +19,18 @@ module.exports = app => {
     app.delete('/api/items/:id', Controller.deleteItem);
     
     // COMMENT routes
+    // Route to add a comment
+    app.post('/api/comments/:itemID', Controller.addComment);
     // Route to get a specific item with all it's comments
     app.get('/api/:itemID/comments', Controller.findItemWithComments);
-    // Route to add a comment
-    app.post('/api/:itemID/comments', Controller.addComment);
-    
+
+
     // MAINTENANCE COMMENT routes
     // Route to get a specific item with all it's maintenance comments
     app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
     // Route to add a maintenance comment
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
-    
+
     // CUSTOMER routes
     // Route to add customer
     app.post('/api/customers', Controller.addCustomer);
