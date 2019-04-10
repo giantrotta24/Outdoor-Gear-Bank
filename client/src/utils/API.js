@@ -28,8 +28,8 @@ export default {
     addComment: function(itemID, comment) {
         return axios.post('/api/comments/' + itemID, comment);
     },
-    findItemWithComments: function() {
-        return axios.get('/api/comments/:itemID');
+    findItemWithComments: function(itemID) {
+        return axios.get('/api/comments/' + itemID);
     },
 
     // MAINTENANCE COMMENTS

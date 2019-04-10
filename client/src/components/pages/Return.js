@@ -61,9 +61,6 @@ class Return extends Component {
   };
 
   updateItem = (itemID, condition) => {
-    console.log("updating item");
-    console.log(itemID);
-    console.log(condition);
     API.updateItem(
       itemID,
       {
@@ -75,9 +72,6 @@ class Return extends Component {
   };
 
   addComment = (itemID, comment) => {
-    console.log("adding comment");
-    console.log(itemID);
-    console.log(comment);
     API.addComment(
       itemID,
       {

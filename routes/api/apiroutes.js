@@ -22,7 +22,7 @@ module.exports = app => {
     // Route to add a comment
     app.post('/api/comments/:itemID', Controller.addComment);
     // Route to get a specific item with all it's comments
-    app.get('/api/:itemID/comments', Controller.findItemWithComments);
+    app.get('/api/comments/:itemID', Controller.findItemWithComments);
 
 
     // MAINTENANCE COMMENT routes

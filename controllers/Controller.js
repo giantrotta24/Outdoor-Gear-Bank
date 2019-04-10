@@ -76,7 +76,6 @@ module.exports = {
     },
     // Add a comment to a specific item
     addComment: (req, res) => {
-        console.log(req.body);
         db.Comment.create(req.body)
         .then(function(dbComment) {
             console.log("hit add comment route");
