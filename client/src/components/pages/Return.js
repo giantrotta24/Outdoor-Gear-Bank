@@ -6,6 +6,7 @@ import ReturnResultsItem from '../ReturnResultsItem';
 import API from '../../utils/API';
 import { Container, Row, Col } from "../Grid";
 import DeleteBtn from '../DeleteBtn';
+import ReturnBtn from '../ReturnBtn';
 import { SelectCondition, TextArea } from "../Form";
 
 class Return extends Component {
@@ -60,11 +61,22 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  updateItem = (itemID, condition) => {
+  putInMaintenance = (itemID, condition) => {
     API.updateItem(
       itemID,
       {
         status: "In Maintenance",
+        condition: condition
+      }
+    ).then(res => this.loadItems())
+      .catch(err => console.log(err))
+  };
+
+  makeAvailable = (itemID, condition) => {
+    API.updateItem(
+      itemID,
+      {
+        status: "Available",
         condition: condition
       }
     ).then(res => this.loadItems())
@@ -145,7 +157,8 @@ class Return extends Component {
                           onChange={this.handleInputChange}
                           name={"itemComment" + index} 
                         />
-                        <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.updateItem(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
+                        <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.putInMaintenance(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
+                        <ReturnBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.makeAvailable(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
                       </ReturnResultsItem>
                     );
                   })}
