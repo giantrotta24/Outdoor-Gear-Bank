@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Modal from '../Modal';
 import ResultsCard from '../ResultsCard';
 import SaveBtn from '../SaveBtn';
+import RemoveBtn from '../RemoveBtn';
 import API from '../../utils/API';
 import './select-card-style.css';
 
@@ -15,11 +16,12 @@ class SelectCard extends Component {
             selectedOption: null,
             inventory: [],
             cart: [],
+            itemId: null,
         }
 
     }
 
-    // componentDidMount () {
+    // componentDidMount() {
     //     API.findAll().then(res => {
     //         let data = res.data;
     //         this.setState({ cart: res.data });
@@ -68,24 +70,20 @@ class SelectCard extends Component {
         });
     }
 
-    removeItem = event => {
-        event.preventDefault();
-
-        const itemId = this.props.id;
-
-        API.updateItem(itemId, { "status": "Available" }).then(this.updateInventory(itemId));
-    }
-
     updateInventory = itemId => {
         let index = 0;
-        const arr = [...this.state.cart];
         for (let i = 0; i < this.state.cart.length; i++) {
             if (this.state.cart[i]._id === itemId) {
                 index = i;
             }
         }
-        arr.splice(index, 1);
-        this.setState({ cart: arr });
+
+        this.setState({
+            cart: [
+                ...this.state.cart.slice(0, index),
+                ...this.state.cart.slice(index + 1)
+            ]
+        });
 
         for (let i = 0; i < this.state.inventory.length; i++) {
             if (this.state.inventory[i]._id === itemId) {
@@ -165,7 +163,10 @@ class SelectCard extends Component {
                                                 <div className='col'>
                                                     <p className='font-italic cart-title'>{item.name}</p>
                                                     <img src={item.image} alt={`${item.name} thumbnail`} className='cart-image' />
-                                                    <button className='btn btn-danger remove-button' id={item._id} onClick={this.removeItem}>Remove</button>
+                                                    <RemoveBtn
+                                                        id={item._id}
+                                                        updateInventory={this.updateInventory}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
