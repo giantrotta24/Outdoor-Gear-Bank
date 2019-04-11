@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import API from '../../utils/API';
 
 class Main extends Component {
@@ -15,10 +15,8 @@ class Main extends Component {
       inventory.map(item => {
         if (item.status === 'Out for Rent') {
           this.setState({ rentedInventory: [...this.state.rentedInventory, item] });
-          // console.log(this.state.rentedInventory);
         } else if (item.status === 'In Maintenance') {
           this.setState({ maintInventory: [...this.state.maintInventory, item] });
-          console.log(this.state.maintInventory);
         }
       })
     });
@@ -28,14 +26,14 @@ class Main extends Component {
     return (
 
       <div>
-        <div className="rent-page-cont">
-          <div className="rent-cont-header">
-            <div className="rent-cont-title">
+        <div className='rent-page-cont'>
+          <div className='rent-cont-header'>
+            <div className='rent-cont-title'>
               Items Out for Rent
-              <i className="far fa-arrow-alt-circle-right"></i>
+              <i className='far fa-arrow-alt-circle-right'></i>
             </div>
           </div>
-          <div className="rent-cont-body">
+          <div className='rent-cont-body'>
             {this.state.rentedInventory.length ? (
               <ul>
                 {this.state.rentedInventory.map((item, key) => (
@@ -52,14 +50,14 @@ class Main extends Component {
           </div>
 
         </div>
-        <div className="maint-page-cont">
-          <div className="maint-cont-header">
-            <div className="maint-cont-title">
+        <div className='maint-page-cont'>
+          <div className='maint-cont-header'>
+            <div className='maint-cont-title'>
               Items in Maintenance
-              <i className="fas fa-tools"></i>
+              <i className='fas fa-tools'></i>
             </div>
           </div>
-          <div className="maint-cont-body">
+          <div className='maint-cont-body'>
             {this.state.maintInventory.length ? (
               <ul>
                 {this.state.maintInventory.map((item, key) => (
