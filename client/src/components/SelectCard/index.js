@@ -22,13 +22,6 @@ class SelectCard extends Component {
 
     }
 
-    componentDidMount() {
-        API.findAll().then(res => {
-            let data = res.data;
-            this.setState({ cart: res.data });
-        })
-    }
-
     handleChange = selectedOption => {
         this.setState({ selectedOption });
         console.log(`Option selected:`, selectedOption);
