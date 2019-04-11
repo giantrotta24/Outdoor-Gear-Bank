@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import ResultsCard from '../ResultsCard';
 import SaveBtn from '../SaveBtn';
@@ -172,14 +172,17 @@ class SelectCard extends Component {
                                             </div>
                                         </div>
                                     ))}
-                                    <NavLink to="#" className="btn btn-success checkout-button">
+                                    <Link to="/checkout" className="btn btn-success checkout-button">
                                         Checkout
-                                    </NavLink>
+                                    </Link>
                                 </div>
                             ) : (
                                     <p>No items in the cart</p>
                                 )}
                         </Modal>
+                        <Link to="/checkout" className="btn btn-success checkout-button">
+                            Checkout
+                        </Link>
                     </div>
                 </ResultsCard>
             </div>

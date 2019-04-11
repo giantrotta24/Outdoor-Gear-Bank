@@ -17,6 +17,12 @@ export default {
     addItem: function(itemData) {
         return axios.post('/api/items', itemData);
     },
+    process: function() {
+        return axios.get('/api/process');
+    },
+    checkout: function() {
+        return axios.post('/api/checkout');
+    },
     updateItem: function(id, body) {
         return axios.post('/api/items/' + id, body);
     },

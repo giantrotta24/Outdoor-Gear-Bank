@@ -8,6 +8,10 @@ module.exports = app => {
     app.get('/api/categories', Controller.findCategories);
     app.get('/api/categories/:category', Controller.findItemsByCategory);
     app.post('/api/items', Controller.addItem);
+    // Route to process for checkout 
+    app.get('/api/process', Controller.process);
+    // Route to checkout an item for rent
+    app.post('/api/checkout', Controller.checkout);
     app.post('/api/items/:id', Controller.updateItem);
     app.delete('/api/items/:id', Controller.deleteItem);
     

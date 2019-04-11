@@ -35,6 +35,21 @@ module.exports = {
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
+    process: (req, res) => {
+        db.Item.find({
+            'status' : 'Unavailable'  
+        }).then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
+    },
+    checkout: (req, res) => {
+        db.Item.updateMany({
+            'status' : 'Unavailable'  
+        }, {
+            'status' : 'Out for Rent'
+        })
+        .then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
+    },
     updateItem: (req, res) => {
         db.Item.findByIdAndUpdate(
             { _id: req.params.id }, 
