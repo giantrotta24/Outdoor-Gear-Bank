@@ -13,10 +13,10 @@ class Main extends Component {
       console.log(inventory);
       inventory.map(item => {
         if (item.status === 'Out for Rent') {
-          this.setState({ rentedInventory: item });
-          console.log(this.state.rentedInventory);
+          this.setState({ rentedInventory: [...this.state.rentedInventory, item] });
+          // console.log(this.state.rentedInventory);
         } else if (item.status === 'In Maintenance') {
-          this.setState({ maintInventory: item });
+          this.setState({ maintInventory: [...this.state.maintInventory, item] });
           console.log(this.state.maintInventory);
         }
       })
@@ -28,10 +28,51 @@ class Main extends Component {
 
       <div>
         <div className="rent-page-cont">
-          <p>hello</p>
+          <div className="rent-cont-header">
+            <div className="rent-cont-title">
+              Items Out for Rent
+              <i className="far fa-arrow-alt-circle-right"></i>
+            </div>
+          </div>
+          <div className="rent-cont-body">
+            {this.state.rentedInventory.length ? (
+              <ul>
+                {this.state.rentedInventory.map((item, key) => (
+                  <div key={key}>
+                    <li>Item Name: {item.name}</li>
+                    <li>Item Serial: {item.serial_number}</li>
+                  </div>
+                ))}
+
+              </ul>
+            ) : (
+                <p>No items out for rent.</p>
+              )}
+          </div>
+
         </div>
         <div className="maint-page-cont">
-          <p>hello</p>
+          <div className="maint-cont-header">
+            <div className="maint-cont-title">
+              Items in Maintenance
+              <i className="fas fa-tools"></i>
+            </div>
+          </div>
+          <div className="maint-cont-body">
+            {this.state.maintInventory.length ? (
+              <ul>
+                {this.state.maintInventory.map((item, key) => (
+                  <div key={key}>
+                    <li>Item Name: {item.name}</li>
+                    <li>Item Serial: {item.serial_number}</li>
+                  </div>
+                ))}
+
+              </ul>
+            ) : (
+                <p>No items in maintenance.</p>
+              )}
+          </div>
         </div>
       </div>
 
