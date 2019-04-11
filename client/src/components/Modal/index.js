@@ -1,39 +1,39 @@
 import React, { Component, Fragment } from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import './modal-style.css';
 
 const ModalTrigger = ({ onOpen, buttonRef }) => {
     return (
-        <button onClick={onOpen} ref={buttonRef} className="c-btnz">
-            <i className="fas fa-shopping-cart"></i>Item Cart
+        <button onClick={onOpen} ref={buttonRef} className='c-btnz'>
+            <i className='fas fa-shopping-cart'></i>Item Cart
         </button>
     );
-}
+};
 
 const ModalContent = ({ onClose, content, onKeyDown, modalRef, onClickAway, buttonRef }) => {
     return ReactDOM.createPortal(
         <div
-            className="c-modal-cover"
+            className='c-modal-cover'
             onKeyDown={onKeyDown}
             onClick={onClickAway}
-            aria-modal="true"
+            aria-modal='true'
         >
-            <div className="c-modal" ref={modalRef}>
-                <button ref={buttonRef} className="c-modal__close" aria-label="Close Modal" onClick={onClose}>
-                    <span className="u-hide-visually">Close</span>
-                    <svg className="c-modal__close-icon" viewBox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30"></path></svg>
+            <div className='c-modal' ref={modalRef}>
+                <button ref={buttonRef} className='c-modal__close' aria-label='Close Modal' onClick={onClose}>
+                    <span className='u-hide-visually'>Close</span>
+                    <svg className='c-modal__close-icon' viewBox='0 0 40 40'><path d='M 10,10 L 30,30 M 30,10 L 10,30'></path></svg>
                 </button>
-                <div className="c-modal__body">
-                    <div className="c-modal-title"><i className="fas fa-shopping-cart"></i>Item Cart</div>
-                    <div className="modal-container">
+                <div className='c-modal__body'>
+                    <div className='c-modal-title'><i className='fas fa-shopping-cart'></i>Item Cart</div>
+                    <div className='modal-container'>
                         {content}
                     </div>
                 </div>
             </div>
         </div>,
-        document.querySelector("#modal")
+        document.querySelector('#modal')
     );
-}
+};
 
 
 class Modal extends Component {
@@ -86,6 +86,6 @@ class Modal extends Component {
             </Fragment>
         );
     }
-}
+};
 
 export default Modal;
