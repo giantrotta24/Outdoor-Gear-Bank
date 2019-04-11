@@ -1,10 +1,10 @@
 import React from 'react';
-import "./card-style.css";
+import './card-style.css';
 
 const Card = props => {
     return (
-        <div className="login-card">
-            <div className="card-body">
+        <div className='login-card'>
+            <div className='card-body'>
                 {props.children}
             </div>
         </div>
