@@ -24,21 +24,15 @@ class LogIn extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('handleSubmit');
-
         axios.post('/user/login', {
             username: this.state.username,
             password: this.state.password
         }).then(response => {
-            console.log('login response: ');
-            console.log(response);
             if (response.status === 200) {
-                //update App.js state
                 this.props.updateUser({
                     loggedIn: true,
                     username: response.data.username
                 });
-                //redirect home
                 this.setState({
                     redirectTo: '/main'
                 });
@@ -54,38 +48,43 @@ class LogIn extends Component {
         } else {
             return (
                 <Card>
-                    <div className="form-login">
-                        <i className="fas fa-lock"></i>
-                        <div className="LogInForm">
-                            <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
-                            <label className="sr-only" htmlFor="username">Username</label>
+                    <div className='form-login'>
+                        <i className='fas fa-lock'></i>
+                        <div className='LogInForm'>
+                            <h1 className='h3 mb-3 font-weight-normal'>Log In</h1>
+                            <label className='sr-only' htmlFor='username'>
+                                Username
+                            </label>
                             <input
-                                className="form-control mb-1"
-                                placeholder="Username"
-                                type="text"
-                                name="username"
+                                className='form-control mb-1'
+                                placeholder='Username'
+                                type='text'
+                                name='username'
                                 value={this.state.username}
                                 onChange={this.handleChange}
                                 required
                                 autoFocus
                             />
-                            <label className="sr-only" htmlFor="password">Password</label>
+                            <label className='sr-only' htmlFor='password'>
+                                Password
+                            </label>
                             <input
-                                className="form-control"
-                                placeholder="Password"
-                                type="password"
-                                name="password"
+                                className='form-control'
+                                placeholder='Password'
+                                type='password'
+                                name='password'
                                 value={this.state.password}
                                 onChange={this.handleChange}
                                 required
                             />
 
                             <button
-                                className="btn btn-lg btn-primary btn-block mt-3"
+                                className='btn btn-lg btn-primary btn-block mt-3'
                                 onClick={this.handleSubmit}
-                                type="submit"
-                            >Log In</button>
-
+                                type='submit'
+                            >
+                                Log In
+                            </button>
                         </div>
                     </div>
                 </Card>
