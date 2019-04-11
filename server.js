@@ -1,7 +1,5 @@
 require('dotenv').config();
-const keys = require('./keys');
-const express = require("express");
-const path = require("path");
+const express = require('express');
 const PORT = process.env.PORT || 3008;
 const app = express();
 const routes = require('./routes');
@@ -9,7 +7,6 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('./passport');
-const db = require('./database');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,13 +14,13 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
-//sessions
+// Sessions
 app.use(session({
-  secret: "puppy-heaven",
+  secret: 'puppy-heaven',
   resave: false,
   saveUninitialized: false
 }));
@@ -35,13 +32,9 @@ app.use(passport.session()); // calls the deserializeUser
 // Define API routes here
 app.use(routes);
 require('./routes/api/apiroutes')(app);
-// app.use((req, res) =>
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"))
-// );
-
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gearbank", 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/gearbank', 
 { 
   useNewUrlParser: true 
 });
