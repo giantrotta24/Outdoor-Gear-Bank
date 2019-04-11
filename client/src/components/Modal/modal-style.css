@@ -54,7 +54,6 @@
     right: 0;
     padding: .5em;
     line-height: 1;
-    background: #f6f6f7;
     border: 0;
     box-shadow: 0;
     cursor: pointer;
@@ -87,4 +86,21 @@
 
 .u-lock-scroll {
     overflow: hidden !important;
+}
+
+.c-modal-title {
+    color: #3f5697;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.7em;
+    font-weight: bolder;
+    background:  #f6f6f7;
+    padding: 15px; 
+    margin: auto;
+    border-bottom: solid 1px rgba(113, 143, 243, 0.753);
+}
+
+.modal-container {
+    height: 100%;
+    max-height: auto;
+    padding-top: 15px;
 }

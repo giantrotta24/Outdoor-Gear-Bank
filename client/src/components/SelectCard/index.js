@@ -16,6 +16,14 @@ class SelectCard extends Component {
             inventory: [],
             cart: [],
         }
+
+    }
+
+    componentDidMount () {
+        API.findAll().then(res => {
+            let data = res.data;
+            this.setState({ cart: res.data });
+        })
     }
 
     handleChange = selectedOption => {
@@ -60,13 +68,8 @@ class SelectCard extends Component {
         });
     }
 
-    modalContent = (
-        <div>
-            <p>Hello world Lorem ipsum dolor sit amet, <a href="#1">first link</a> consectetur adipiscing elit. Phasellus sagittis erat ut ex bibendum consequat. Morbi luctus ex ex, at varius purus <a href="#2">second link</a> vehicula consectetur. Curabitur a sapien a augue consequat rhoncus. Suspendisse commodo ullamcorper nibh quis blandit. Etiam viverra neque quis mauris efficitur, lobortis aliquam ex pharetra. Nam et ante ex. Sed gravida gravida ligula, non blandit nunc. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer consectetur efficitur tempor. Nunc sollicitudin felis congue facilisis faucibus. Mauris faucibus sit amet ante eleifend dapibus.</p>
-        </div>
-    );
-
     render() {
+
         const { selectedOption } = this.state;
         const props = this.props
         return (
@@ -116,7 +119,24 @@ class SelectCard extends Component {
                             <p className='no-text'><strong>No items to display </strong> </p>
                         )}
                     <div>
-                        <Modal>{this.modalContent}</Modal>
+                        <Modal>
+                            {this.state.cart.length ? (
+                                <div className="cart-body">
+                                    {this.state.cart.map((item, key) => (
+                                        <div className="small-cart-body" key={key}>
+                                            <div className="row">
+                                                <div className='col-md-6'>
+                                                    <img src={item.image} alt={`${item.name} thumbnail`} className='image' />
+                                                    <p className='font-italic item-title'>{item.name}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                    <p>No items in the cart</p>
+                                )}
+                        </Modal>
                     </div>
                 </ResultsCard>
             </div>
@@ -125,3 +145,4 @@ class SelectCard extends Component {
 }
 
 export default SelectCard;
+
