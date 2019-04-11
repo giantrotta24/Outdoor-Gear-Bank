@@ -1,6 +1,6 @@
 import React from "react";
 
-function Calander() {
+function Calender() {
   return (
     <div className="container bg-light border">
       <div className="col-1-md"></div>
@@ -32,4 +32,4 @@ function Calander() {
   );
 }
 
-export default Calander;
+export default Calender;
