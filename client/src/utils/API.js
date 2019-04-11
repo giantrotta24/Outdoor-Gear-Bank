@@ -14,8 +14,8 @@ export default {
     findItemByID: function() {
         return axios.get('/api/items/:id');
     },
-    addItem: function() {
-        return axios.post('/api/items');
+    addItem: function(itemData) {
+        return axios.post('/api/items', itemData);
     },
     updateItem: function(id, body) {
         return axios.post('/api/items/' + id, body);
@@ -34,10 +34,14 @@ export default {
 
     // MAINTENANCE COMMENTS
     addMaintComment: function(id,comment) {
+        // return axios.post('/api/:itemID/maintcomments');
         return axios.post('/api/' + id + '/maintcomments');
+
     },
     findItemWithMaintComments: function(id) {
+        // return axios.get('/api/:itemID/maintcomments');
         return axios.get('/api/' + id + '/maintcomments');
+
     },
 
     // CUSTOMER

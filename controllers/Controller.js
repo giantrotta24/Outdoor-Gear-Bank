@@ -39,6 +39,7 @@ module.exports = {
     },
     // Add item to database
     addItem: (req, res) => {
+        console.log("req in addItem= ",req)
         db.Item.create(req.body)
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
