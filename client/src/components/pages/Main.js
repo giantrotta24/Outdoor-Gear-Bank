@@ -67,7 +67,6 @@ class Main extends Component {
                     <li>Item Serial: {item.serial_number}</li>
                   </div>
                 ))}
-
               </ul>
             ) : (
                 <p>No items in maintenance.</p>
