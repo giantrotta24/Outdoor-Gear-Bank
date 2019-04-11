@@ -7,11 +7,15 @@ class RemoveBtn extends Component {
 
     removeItem = event => {
         event.preventDefault();
-        
-        const cartId = this.props.id;
-        console.log(cartId);
 
-        API.updateItem(cartId, { "status": "Available" }).then(this.props.updateInventory(cartId));
+        const itemData = {
+            id: this.props.id
+        }
+
+        const itemId = itemData.id;
+        console.log(itemId);
+
+        API.updateItem(itemId, { "status" : "Available" }).then(this.props.updateInventory(itemId));
     }
 
     render() {
@@ -21,4 +25,4 @@ class RemoveBtn extends Component {
     }
 }
 
-export default RemoveBtn;
+export default RemoveBtn; 

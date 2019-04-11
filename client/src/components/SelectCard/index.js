@@ -22,6 +22,12 @@ class SelectCard extends Component {
 
     }
 
+    componentDidMount () {
+        API.findAll().then(res => {
+            this.setState({ cart: res.data })
+        })
+    }
+
     handleChange = selectedOption => {
         this.setState({ selectedOption });
         console.log(`Option selected:`, selectedOption);
@@ -44,7 +50,7 @@ class SelectCard extends Component {
 
     grabItemData = (itemData, itemId) => {
         this.setState({ cart: [...this.state.cart, itemData] });
-        console.log(this.state.cart);
+        // console.log(this.state.cart);
         let index = 0;
 
         for (let i = 0; i < this.state.inventory.length; i++) {
@@ -65,6 +71,7 @@ class SelectCard extends Component {
     }
 
     updateInventory = itemId => {
+        console.log(itemId);
         let index = 0;
         for (let i = 0; i < this.state.cart.length; i++) {
             if (this.state.cart[i]._id === itemId) {
@@ -151,14 +158,14 @@ class SelectCard extends Component {
                         <Modal>
                             {this.state.cart.length ? (
                                 <div className="cart-body">
-                                    {this.state.cart.map((item, key) => (
+                                    {this.state.cart.map((x, key) => (
                                         <div className="small-cart-body" key={key}>
                                             <div className="row">
                                                 <div className='col'>
-                                                    <p className='font-italic cart-title'>{item.name}</p>
-                                                    <img src={item.image} alt={`${item.name} thumbnail`} className='cart-image' />
+                                                    <p className='font-italic cart-title'>{x.name}</p>
+                                                    <img src={x.image} alt={`${x.name} thumbnail`} className='cart-image' />
                                                     <RemoveBtn
-                                                        id={item._id}
+                                                        id={x.id}
                                                         updateInventory={this.updateInventory}
                                                     />
                                                 </div>
