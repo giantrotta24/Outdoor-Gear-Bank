@@ -12,6 +12,10 @@ module.exports = app => {
     app.get('/api/categories/:category', Controller.findItemsByCategory);
     // Route to add an item to the database
     app.post('/api/items', Controller.addItem);
+    // Route to process for checkout 
+    app.get('/api/process', Controller.process);
+    // Route to checkout an item for rent
+    app.post('/api/checkout', Controller.checkout);
     // Route to update a specific item in the database
     app.post('/api/items/:id', Controller.updateItem);
     // Route to delete a specific item in the database

@@ -13,6 +13,7 @@ import Maintenance from './components/pages/Maintenance';
 import Rent from './components/pages/Rent';
 import Return from './components/pages/Return';
 import Inventory from './components/pages/Inventory';
+import Checkout from './components/pages/Checkout';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -112,6 +113,11 @@ class App extends Component {
               isAuthenticated={this.state.loggedIn}
               path="/inventory"
               component={Inventory}
+            />
+            <PrivateRoute
+              isAuthenticated={this.state.loggedIn}
+              path="/checkout"
+              component={Checkout}
             />
           </Switch>
         </Wrapper>

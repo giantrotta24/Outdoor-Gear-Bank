@@ -43,6 +43,23 @@ module.exports = {
         .then(dbItem => res.json(dbItem))
         .catch(err => res.status(422).json(err));
     },
+    //Process for checkout
+    process: (req, res) => {
+        db.Item.find({
+            'status' : 'Unavailable'  
+        }).then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
+    },
+    //Checkout item for rent
+    checkout: (req, res) => {
+        db.Item.updateMany({
+            'status' : 'Unavailable'  
+        }, {
+            'status' : 'Out for Rent'
+        })
+        .then(dbItem => res.json(dbItem))
+        .catch(err => res.status(422).json(err));
+    },
     // Update item in database based on the req.body
     // Use this to change status when needed
     // Use this to change condition when needed
