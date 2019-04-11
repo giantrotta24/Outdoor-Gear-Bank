@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { NavLink } from 'react-router-dom';
 import Modal from '../Modal';
 import ResultsCard from '../ResultsCard';
 import SaveBtn from '../SaveBtn';
@@ -21,12 +22,12 @@ class SelectCard extends Component {
 
     }
 
-    // componentDidMount() {
-    //     API.findAll().then(res => {
-    //         let data = res.data;
-    //         this.setState({ cart: res.data });
-    //     })
-    // }
+    componentDidMount() {
+        API.findAll().then(res => {
+            let data = res.data;
+            this.setState({ cart: res.data });
+        })
+    }
 
     handleChange = selectedOption => {
         this.setState({ selectedOption });
@@ -171,6 +172,9 @@ class SelectCard extends Component {
                                             </div>
                                         </div>
                                     ))}
+                                    <NavLink to="#" className="btn btn-success checkout-button">
+                                        Checkout
+                                    </NavLink>
                                 </div>
                             ) : (
                                     <p>No items in the cart</p>
