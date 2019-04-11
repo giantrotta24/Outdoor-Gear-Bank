@@ -1,7 +1,7 @@
 .wrapper {
     margin-bottom: 0;
     background: #ECEFF1;
-    min-height: 88%;
+    height: 88%;
     max-height: auto;
     display: flex;
     background-image: url("./88246.jpg");

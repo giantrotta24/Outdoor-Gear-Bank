@@ -38,6 +38,7 @@ class SelectCard extends Component {
     grabItems = selectedOption => {
         const arr = [];
         arr.push(selectedOption);
+        // eslint-disable-next-line
         arr.map(opt => {
             let apiQuery = opt.value;
             API.findItemsByCategory(apiQuery)

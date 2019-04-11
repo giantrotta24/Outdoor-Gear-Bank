@@ -11,6 +11,7 @@ class Main extends Component {
     API.findAll().then(res => {
       let inventory = res.data;
       console.log(inventory);
+      // eslint-disable-next-line
       inventory.map(item => {
         if (item.status === 'Out for Rent') {
           this.setState({ rentedInventory: [...this.state.rentedInventory, item] });

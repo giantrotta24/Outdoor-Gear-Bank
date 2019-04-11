@@ -1,6 +1,6 @@
 // import React from "react";
 import React, { Component } from "react";
-import { FormInput, FormSelect, Input, FormBtn, SelectItemStatus, SelectCondition, TextArea } from "../Form";
+import { FormInput, FormSelect, FormBtn } from "../Form";
 import API from '../../utils/API';
 
 class Inventory extends Component {

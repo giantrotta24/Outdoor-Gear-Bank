@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { List, ListItem } from "../List";
 import { CommentBtn } from "../CommentBtn";
-import { TextArea } from "../Form";
 import API from '../../utils/API';
-// import items from "../../available.json";
 
 class Maintenance extends Component {
-  // function Available() {
   state = {
     inventory: [],
     itemsInMaintenance: [],
@@ -48,7 +45,7 @@ class Maintenance extends Component {
       });
       console.log("All inventory= ", this.state.inventory);
       this.state.inventory.forEach( element => {
-        if (element.status == "In Maintenance"){
+        if (element.status === "In Maintenance"){
           
             this.setState({ itemsInMaintenance: [...this.state.itemsInMaintenance, element]})
         

@@ -19,7 +19,7 @@ class SaveBtn extends Component {
         console.log(itemId)
 
 
-        API.updateItem(itemId, { "status": "Unavailable" }).then(this.props.grabItemData(itemData, itemId));
+        API.updateItem(itemId, { 'status': 'Unavailable' }).then(this.props.grabItemData(itemData, itemId));
 
     }
 
