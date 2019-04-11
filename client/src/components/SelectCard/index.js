@@ -17,16 +17,16 @@ class SelectCard extends Component {
             selectedOption: null,
             inventory: [],
             cart: [],
-            itemId: null,
         }
 
     }
 
-    componentDidMount () {
-        API.findAll().then(res => {
-            this.setState({ cart: res.data })
-        })
-    }
+    //for modal testing and styling
+    // componentDidMount () {
+    //     API.findAll().then(res => {
+    //         this.setState({ cart: res.data })
+    //     })
+    // }
 
     handleChange = selectedOption => {
         this.setState({ selectedOption });
