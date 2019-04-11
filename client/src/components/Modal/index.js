@@ -4,8 +4,8 @@ import './modal-style.css';
 
 const ModalTrigger = ({ onOpen, buttonRef }) => {
     return (
-        <button onClick={onOpen} ref={buttonRef} className="c-btn">
-            <i class="fas fa-shopping-cart"></i>Item Cart
+        <button onClick={onOpen} ref={buttonRef} className="c-btnz">
+            <i className="fas fa-shopping-cart"></i>Item Cart
         </button>
     );
 }

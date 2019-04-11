@@ -1,4 +1,4 @@
-.c-btn {
+.c-btnz {
     padding: .1em .5em;
     color: #f44242;
     background: #ffe2e2;
@@ -8,11 +8,11 @@
     transition: background .15s ease-out;
 }
   
-.c-btn:hover {
+.c-btnz:hover {
     background: #fbcbcb;
 }
   
-.c-btn:focus {
+.c-btnz:focus {
     outline: 0;
     box-shadow: 0 0 4px currentColor;
 }
@@ -26,10 +26,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 80%;
-    z-index: 1000; /* This must be at a higher index to the rest of your page content */
+    height: 200%;
+    z-index: 900; /* This must be at a higher index to the rest of your page content */
     transform: translateZ(0);
-    background-color: rgba(65, 65, 65, 0.1);
+    background-color: rgba(0, 0, 0, 0.301);
 }
   
 .c-modal {
@@ -37,7 +37,6 @@
     border-radius: 1em;
     position: fixed;
     margin-top: 100px;
-
     top: 0;
     left: 800px;
     width: 460px;

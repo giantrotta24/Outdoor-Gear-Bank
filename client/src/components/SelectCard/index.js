@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import Modal from '../Modal';
 import ResultsCard from '../ResultsCard';
 import SaveBtn from '../SaveBtn';
 import API from '../../utils/API';
@@ -59,6 +60,12 @@ class SelectCard extends Component {
         });
     }
 
+    modalContent = (
+        <div>
+            <p>Hello world Lorem ipsum dolor sit amet, <a href="#1">first link</a> consectetur adipiscing elit. Phasellus sagittis erat ut ex bibendum consequat. Morbi luctus ex ex, at varius purus <a href="#2">second link</a> vehicula consectetur. Curabitur a sapien a augue consequat rhoncus. Suspendisse commodo ullamcorper nibh quis blandit. Etiam viverra neque quis mauris efficitur, lobortis aliquam ex pharetra. Nam et ante ex. Sed gravida gravida ligula, non blandit nunc. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer consectetur efficitur tempor. Nunc sollicitudin felis congue facilisis faucibus. Mauris faucibus sit amet ante eleifend dapibus.</p>
+        </div>
+    );
+
     render() {
         const { selectedOption } = this.state;
         const props = this.props
@@ -108,6 +115,9 @@ class SelectCard extends Component {
                     ) : (
                             <p className='no-text'><strong>No items to display </strong> </p>
                         )}
+                    <div>
+                        <Modal>{this.modalContent}</Modal>
+                    </div>
                 </ResultsCard>
             </div>
         )
