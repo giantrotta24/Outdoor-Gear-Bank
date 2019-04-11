@@ -90,10 +90,10 @@ class NavBar extends Component {
                             <section className="navbar-section">
                                 <NavLink to="/login" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                     Log-In
-                            </NavLink>
+                                </NavLink>
                                 <NavLink to="/signup" className="nav-item btn mr-1" activeClassName="nav-item btn mr-1 selected">
                                     Sign-Up
-                            </NavLink>
+                                </NavLink>
                             </section>
                         )}
                 </ul>

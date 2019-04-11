@@ -114,9 +114,9 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  putInMaintenance = (itemID, condition) => {
+  putInMaintenance = (id, condition) => {
     API.updateItem(
-      itemID,
+      id,
       {
         status: "In Maintenance",
         condition: condition
@@ -125,9 +125,9 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  makeAvailable = (itemID, condition) => {
+  makeAvailable = (id, condition) => {
     API.updateItem(
-      itemID,
+      id,
       {
         status: "Available",
         condition: condition

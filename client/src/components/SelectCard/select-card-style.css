@@ -1,0 +1,68 @@
+.rent-container {
+    width: 980px;
+    overflow: hidden;
+    height: 100%;
+    
+}
+
+.small-card-body {
+    height: auto;
+    border: 1px solid rgb(209, 209, 209);
+    padding: 50px;
+    margin: 15px;
+}
+
+.small-cart-body {
+    height: auto;
+    border: 1px solid rgb(209, 209, 209);
+    padding: 25px;
+    margin: 15px;
+}
+
+.cart-image {
+    float: left;
+    max-height: 50px;
+}
+
+.cart-image:hover {
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.item-title {
+    margin: 15px;
+}
+
+.no-text {
+    margin-top: 50px;
+}
+
+.result-image {
+    float: left;
+    max-height: 100px;
+}
+
+.result-image:hover {
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.item-title {
+    margin: 15px;
+}
+
+.rent-button {
+    float: right;
+    margin-top: 50px; 
+    padding: 5px;
+}
+
+.unavailable {
+    float: right;
+    margin-top: 50px; 
+    margin-right: 25px; 
+    color: red;
+}
+

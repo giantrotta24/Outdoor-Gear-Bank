@@ -31,7 +31,7 @@ module.exports = {
     // Find items by the category requested
     findItemsByCategory: (req, res) => {
         console.log("find item by category");
-        db.Item.find({}).distinct("_id", {category: req.params.category}).then((dbItems) => {
+        db.Item.find({category: req.params.category}).then((dbItems) => {
             res.json(dbItems);
         }).catch(err => {
             res.status(422).json(err);

@@ -1,15 +1,21 @@
-.container {
+.result-container {
     margin-bottom: 20px;
+    margin-top: 20px;
+    height: 100%;
+    max-height: auto;
 }
 
 .card-header {
     padding-top: 10px;
+    height: 100%;
 }
 
 .card {
     box-shadow: 3px 10px 30px 0px rgba(243, 243, 243, 0.5);
-    height: 560px;
+    height: 100%;
+    padding-bottom: 25px;
     position: relative;
     overflow: auto;
     display: flex; 
+
 }

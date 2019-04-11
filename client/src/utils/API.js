@@ -8,8 +8,8 @@ export default {
     findCategories: function() {
         return axios.get('/api/categories');
     },
-    findItemsByCategory: function() {
-        return axios.get('/api/categories/:category');
+    findItemsByCategory: function(category) {
+        return axios.get('/api/categories/' + category);
     },
     findItemByID: function() {
         return axios.get('/api/items/:id');
@@ -17,8 +17,8 @@ export default {
     addItem: function() {
         return axios.post('/api/items');
     },
-    updateItem: function(itemID, itemData) {
-        return axios.post('/api/items/' + itemID, itemData);
+    updateItem: function(id, body) {
+        return axios.post('/api/items/' + id, body);
     },
     deleteItem: function() {
         return axios.delete('/api/items/:id');
