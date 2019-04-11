@@ -17,40 +17,52 @@ export default {
     addItem: function() {
         return axios.post('/api/items');
     },
-    updateItem: function() {
-        return axios.post('/api/items/:id');
+    updateItem: function(itemID, itemData) {
+        return axios.post('/api/items/' + itemID, itemData);
     },
     deleteItem: function() {
         return axios.delete('/api/items/:id');
     },
 
     // COMMENTS
-    addComment: function() {
-        return axios.post('/api/:itemID/comments');
+    addComment: function(itemID, comment) {
+        return axios.post('/api/comments/' + itemID, comment);
     },
-    findItemWithComments: function() {
-        return axios.get('/api/:itemID/comments');
+    findItemWithComments: function(itemID) {
+        return axios.get('/api/comments/' + itemID);
     },
 
     // MAINTENANCE COMMENTS
-    addMaintComment: function() {
-        return axios.post('/api/:itemID/maintcomments');
+    addMaintComment: function(id,comment) {
+        return axios.post('/api/' + id + '/maintcomments');
     },
-    findItemWithMaintComments: function() {
-        return axios.get('/api/:itemID/maintcomments');
+    findItemWithMaintComments: function(id) {
+        return axios.get('/api/' + id + '/maintcomments');
     },
 
     // CUSTOMER
     addCustomer: function() {
         return axios.post('/api/customers');
     },
+    findAllCustomers: function() {
+        return axios.get('/api/customers');
+    },
     addItemToCustomer: function() {
         return axios.post('/api/:customerID/:itemID');
     },
-    findCustomerByID: function() {
-        return axios.get('/api/:customerID/items');
+    findCustomerByLastName: function(lastname) {
+        return axios.get('/api/lastname/' + lastname + '/items');
     },
-    deleteItemFromCustomer: function() {
-        return axios.delete('/api/:customerID/:itemID');
+    findCustomerByPhoneNumber: function(phonenumber) {
+        return axios.get('/api/phonenumber/' + phonenumber + '/items');
+    },
+    findCustomerByMemberNumber: function(membernumber) {
+        return axios.get('/api/membernumber/' + membernumber + '/items');
+    },
+    findCustomerByEmail: function(email) {
+        return axios.get('/api/email/' + email + '/items');
+    },
+    deleteItemFromCustomer: function(customerID, itemID) {
+        return axios.delete('/api/' + customerID + '/' + itemID);
     }
 }
