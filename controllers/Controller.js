@@ -156,6 +156,27 @@ module.exports = {
             console.log(err);
         });
     },
+    findCustomerByPhoneNumber: (req, res) => {
+        db.Customer.find({ phone_number: req.params.phonenumber}).populate('items').then((dbCustomer) => {
+            res.json(dbCustomer);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
+    findCustomerByMemberNumber: (req, res) => {
+        db.Customer.find({ member_number: req.params.membernumber}).populate('items').then((dbCustomer) => {
+            res.json(dbCustomer);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
+    findCustomerByEmail: (req, res) => {
+        db.Customer.find({ email: req.params.email}).populate('items').then((dbCustomer) => {
+            res.json(dbCustomer);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
     // Deletes ALL items from a customer
     deleteItemFromCustomer: (req, res) => {
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID }, 

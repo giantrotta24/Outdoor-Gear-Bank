@@ -51,7 +51,16 @@ export default {
         return axios.post('/api/:customerID/:itemID');
     },
     findCustomerByLastName: function(lastname) {
-        return axios.get('/api/' + lastname + '/items');
+        return axios.get('/api/lastname/' + lastname + '/items');
+    },
+    findCustomerByPhoneNumber: function(phonenumber) {
+        return axios.get('/api/phonenumber/' + phonenumber + '/items');
+    },
+    findCustomerByMemberNumber: function(membernumber) {
+        return axios.get('/api/membernumber/' + membernumber + '/items');
+    },
+    findCustomerByEmail: function(email) {
+        return axios.get('/api/email/' + email + '/items');
     },
     deleteItemFromCustomer: function(customerID, itemID) {
         return axios.delete('/api/' + customerID + '/' + itemID);

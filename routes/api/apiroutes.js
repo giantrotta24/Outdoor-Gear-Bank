@@ -37,7 +37,10 @@ module.exports = app => {
     // Route to get list of all customers
     app.get('/api/customers', Controller.findAllCustomers);
     // Route to get a specific customer with all the gear they currently have rented out
-    app.get('/api/:lastname/items', Controller.findCustomerByLastName);
+    app.get('/api/lastname/:lastname/items', Controller.findCustomerByLastName);
+    app.get('/api/phonenumber/:phonenumber/items', Controller.findCustomerByPhoneNumber);
+    app.get('/api/membernumber/:membernumber/items', Controller.findCustomerByMemberNumber);
+    app.get('/api/email/:email/items', Controller.findCustomerByEmail);
     // Route to add an item to a customer's "bank"
     app.post('/api/:customerID/:itemID', Controller.addItemToCustomer);
     // Route to delete an item from a customer's "bank"

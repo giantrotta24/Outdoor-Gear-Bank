@@ -13,6 +13,9 @@ class Return extends Component {
 
   state = {
     last_name: "",
+    phone_number: "",
+    member_number: "",
+    email: "",
     customerID: "",
     customers: [],
     results: [],
@@ -38,7 +41,40 @@ class Return extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.findCustomerByLastName(this.state.last_name)
+    if (this.state.last_name) {
+      API.findCustomerByLastName(this.state.last_name)
+        .then(res => {
+          if (res.data.status === "error") {
+            throw new Error(res.data.message);
+          }
+          this.setState({
+            results: res.data,
+            error: "",
+            customers: "",
+            items: res.data[0].items,
+            customerID: res.data[0]._id,
+            customer: res.data[0].first_name + " " + res.data[0].last_name
+          });
+        })
+        .catch(err => this.setState({ error: err.message }));
+    } else if (this.state.phone_number) {
+      API.findCustomerByPhoneNumber(this.state.phone_number)
+        .then(res => {
+          if (res.data.status === "error") {
+            throw new Error(res.data.message);
+          }
+          this.setState({
+            results: res.data,
+            error: "",
+            customers: "",
+            items: res.data[0].items,
+            customerID: res.data[0]._id,
+            customer: res.data[0].first_name + " " + res.data[0].last_name
+          });
+        })
+        .catch(err => this.setState({ error: err.message }));
+    } else if (this.state.member_number) {
+      API.findCustomerByMemberNumber(this.state.member_number)
       .then(res => {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
@@ -53,6 +89,23 @@ class Return extends Component {
         });
       })
       .catch(err => this.setState({ error: err.message }));
+    } else if (this.state.email) {
+      API.findCustomerByEmail(this.state.email)
+      .then(res => {
+        if (res.data.status === "error") {
+          throw new Error(res.data.message);
+        }
+        this.setState({
+          results: res.data,
+          error: "",
+          customers: "",
+          items: res.data[0].items,
+          customerID: res.data[0]._id,
+          customer: res.data[0].first_name + " " + res.data[0].last_name
+        });
+      })
+      .catch(err => this.setState({ error: err.message }));
+    }
   };
 
   deleteItemFromCustomer = itemID => {
@@ -90,7 +143,7 @@ class Return extends Component {
         body: comment
       }
     ).then(res => this.loadItems())
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
   };
 
   loadItems = () => {
@@ -117,7 +170,7 @@ class Return extends Component {
         <Container>
           <Row>
             <Col size="md-12">
-            <h2>Returning Rental Items?</h2>
+              <h2>Returning Rental Items?</h2>
               <Container>
                 <Row>
                   <Col size="md-12">
@@ -156,7 +209,7 @@ class Return extends Component {
                         <TextArea
                           value={this.state.itemComment[index]}
                           onChange={this.handleInputChange}
-                          name={"itemComment" + index} 
+                          name={"itemComment" + index}
                         />
                         <DeleteBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.putInMaintenance(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
                         <ReturnBtn onClick={() => { this.deleteItemFromCustomer(item._id); this.makeAvailable(item._id, this.state["itemCondition" + index]); this.addComment(item._id, this.state["itemComment" + index]); }} />
