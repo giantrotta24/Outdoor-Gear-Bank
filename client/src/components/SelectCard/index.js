@@ -19,12 +19,12 @@ class SelectCard extends Component {
 
     }
 
-    componentDidMount () {
-        API.findAll().then(res => {
-            let data = res.data;
-            this.setState({ cart: res.data });
-        })
-    }
+    // componentDidMount () {
+    //     API.findAll().then(res => {
+    //         let data = res.data;
+    //         this.setState({ cart: res.data });
+    //     })
+    // }
 
     handleChange = selectedOption => {
         this.setState({ selectedOption });
@@ -53,7 +53,7 @@ class SelectCard extends Component {
 
         for (let i = 0; i < this.state.inventory.length; i++) {
             if (this.state.inventory[i]._id === itemId) {
-                index = i
+                index = i;
             }
         }
 
@@ -66,6 +66,43 @@ class SelectCard extends Component {
                 ...this.state.inventory.slice(index + 1)
             ]
         });
+    }
+
+    removeItem = event => {
+        event.preventDefault();
+
+        const itemId = this.props.id;
+
+        API.updateItem(itemId, { "status": "Available" }).then(this.updateInventory(itemId));
+    }
+
+    updateInventory = itemId => {
+        let index = 0;
+        const arr = [...this.state.cart];
+        for (let i = 0; i < this.state.cart.length; i++) {
+            if (this.state.cart[i]._id === itemId) {
+                index = i;
+            }
+        }
+        arr.splice(index, 1);
+        this.setState({ cart: arr });
+
+        for (let i = 0; i < this.state.inventory.length; i++) {
+            if (this.state.inventory[i]._id === itemId) {
+                index = i;
+            }
+        }
+
+        console.log('first one', this.state.inventory.slice(0, index));
+        console.log('second one', this.state.inventory.slice(index + 1));
+        this.setState({
+            inventory: [
+                ...this.state.inventory.slice(0, index),
+                { ...this.state.inventory[index], status: 'Available' },
+                ...this.state.inventory.slice(index + 1)
+            ]
+        });
+
     }
 
     render() {
@@ -125,9 +162,10 @@ class SelectCard extends Component {
                                     {this.state.cart.map((item, key) => (
                                         <div className="small-cart-body" key={key}>
                                             <div className="row">
-                                                <div className='col-md-6'>
-                                                    <img src={item.image} alt={`${item.name} thumbnail`} className='image' />
-                                                    <p className='font-italic item-title'>{item.name}</p>
+                                                <div className='col'>
+                                                    <p className='font-italic cart-title'>{item.name}</p>
+                                                    <img src={item.image} alt={`${item.name} thumbnail`} className='cart-image' />
+                                                    <button className='btn btn-danger remove-button' id={item._id} onClick={this.removeItem}>Remove</button>
                                                 </div>
                                             </div>
                                         </div>

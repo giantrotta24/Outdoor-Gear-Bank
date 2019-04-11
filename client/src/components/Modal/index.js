@@ -24,7 +24,7 @@ const ModalContent = ({ onClose, content, onKeyDown, modalRef, onClickAway, butt
                     <svg className="c-modal__close-icon" viewBox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30"></path></svg>
                 </button>
                 <div className="c-modal__body">
-                    <div className="c-modal-title">Item Cart</div>
+                    <div className="c-modal-title"><i className="fas fa-shopping-cart"></i>Item Cart</div>
                     <div className="modal-container">
                         {content}
                     </div>
