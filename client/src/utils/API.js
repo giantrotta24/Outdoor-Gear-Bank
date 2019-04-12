@@ -47,8 +47,8 @@ export default {
     },
 
     // CUSTOMER
-    addCustomer: function() {
-        return axios.post('/api/customers');
+    addCustomer: function(customerData) {
+        return axios.post('/api/customers', customerData);
     },
     findAllCustomers: function() {
         return axios.get('/api/customers');

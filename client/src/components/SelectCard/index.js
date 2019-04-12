@@ -176,17 +176,14 @@ class SelectCard extends Component {
                                             </div>
                                         </div>
                                     ))}
-                                    <Link to="/checkout" className="btn btn-success checkout-button">
-                                        Checkout
-                                    </Link>
+                                <Link to="/checkout" className="btn btn-success checkout-button">
+                                    Checkout
+                                </Link>
                                 </div>
                             ) : (
                                     <p>No items in the cart</p>
                                 )}
                         </Modal>
-                        <Link to="/checkout" className="btn btn-success checkout-button">
-                            Checkout
-                        </Link>
                     </div>
                 </ResultsCard>
             </div>

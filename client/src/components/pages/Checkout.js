@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
 import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
+import CustomerForm from '../CustomerForm';
 import ReturnForm from '../ReturnForm';
 import API from '../../utils/API';
 
@@ -121,11 +122,12 @@ class Checkout extends Component {
     };
 
     processFunction = () => {
+        console.log(this.state.customer);
         let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
             console.log(this.state.checkoutCart);
-            this.state.checkoutCart.map(item => {
+            this.state.checkoutCart.forEach(item => {
                 itemIds.push(item._id);
             });
             console.log(itemIds);
@@ -140,6 +142,26 @@ class Checkout extends Component {
 
     renderUserSubmit = () => {
         this.setState({ newCustomer: true });
+    }
+
+    handleCustomerFormSubmit = event => {
+        event.preventDefault();
+        let newCustomer = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            phone_number: this.state.phone_number,
+            email: this.state.email,
+            member_number: this.state.member_number
+        }
+
+        API.addCustomer(newCustomer);
+        API.findCustomerByMemberNumber(this.state.member_number).then(res => {
+            this.setState({
+                customer: res.data,
+                customerId: res.data[0]._id
+            });
+            this.processFunction();
+        });
     }
 
 
@@ -165,7 +187,10 @@ class Checkout extends Component {
                                             />
                                         }
                                         {this.state.newCustomer &&
-                                            <p>Hello new customer</p>
+                                            <CustomerForm
+                                                handleFormSubmit={this.handleCustomerFormSubmit}
+                                                handleInputChange={this.handleInputChange}
+                                            />
                                         }
                                     </Col>
                                 </Row>
