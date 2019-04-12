@@ -26,8 +26,8 @@ export default {
     checkout: function() {
         return axios.post('/api/checkout');
     },
-    updateItem: function(id, body) {
-        return axios.post('/api/items/' + id, body);
+    updateItem: function(itemID, itemData) {
+        return axios.post('/api/items/' + itemID, itemData);
     },
     deleteItem: function() {
         return axios.delete('/api/items/:id');

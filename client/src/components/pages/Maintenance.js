@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { List, ListItem } from "../List";
 import { CommentBtn } from "../CommentBtn";
-import { MaintStatusBtn, AddMaintCommentBtn, MaintCommentInput } from "../Form";
+import { Container, Row, Col } from '../Grid';
+import { MaintStatusBtn, AddMaintCommentBtn, MaintCommentInput, TextArea } from "../Form";
 import API from '../../utils/API';
 
 class Maintenance extends Component {
@@ -33,7 +34,7 @@ class Maintenance extends Component {
           this.setState({ state: this.state })
         }
       })
-      this.findAllMaintenanceItems();
+    this.findAllMaintenanceItems();
   }
 
   updateMaintComment = (itemID, newComment) => {
@@ -53,73 +54,73 @@ class Maintenance extends Component {
   }
 
   componentDidMount() {
-    API.findMaintenanceItems()
-      .then(res => {
-        this.setState({ 
-          itemsInMaint: res.data,
-          maintCommentIn: '' })
-      })
+    this.findAllMaintenanceItems();
   }
 
   findAllMaintenanceItems() {
     API.findMaintenanceItems()
     .then(res => {
-      this.setState({ itemsInMaint: res.data })
-    })
+      console.log(res.data);
+        this.setState({ itemsInMaint: res.data })
+      })
   }
 
   render() {
     return (
       <div className="inventoryContainer">
-      <div className="container bg-light border mt-5">
-        <div className="row">
-          <div className="col-md-2"></div>
-          <div className="col-md-8">
-            <h3 className="mt-5 mb-1">Items In Maintenance</h3>
-            {this.state.itemsInMaint.length ? (
-              <List>
-                {this.state.itemsInMaint.map((item, index) => (
-                  <ListItem key={item._id}>
-                    <strong>Item Name:</strong>  {item.name}
-                    <br />
-                    <strong>Item Status:</strong>   {item.status}
-                    <br />
-                    <strong>Serial Number:</strong> {item.serial_number}
-                    <br />
-                    <strong>Maintenance Comments:</strong>
-                    <ul>
-                      {item.maintenance_comments.map((cText, index) => {
-                        return (
-                          <li>{cText.body} </li>
-                        )
-                      })}
-                      <li>
-                        <MaintCommentInput
-                          value={this.state.maintCommentIn[index]}
-                          onChange={this.handleInputChange}
-                          name={"maintCommentIn" + index}
-                          placeholder="Type comment then click Add Comment..."
-                        />
-                      </li>
-                    </ul>
-                    <MaintStatusBtn
-                      id={item._id}
-                      onClick={() => this.updateStatus(item._id)}
-                    />
-                    <AddMaintCommentBtn
-                      id={item._id}
-                      onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
-                    />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </div>
-          <div className="col-md-2"></div>
-        </div>
-      </div>
+        <Container>
+          <Row>
+            <Col size='md-12'>
+              <h2 className="mb-5">Items In Maintenance</h2>
+              {this.state.itemsInMaint.length ? (
+                <List>
+                  {this.state.itemsInMaint.map((item, index) => (
+                    <ListItem key={item._id}>
+                      <p><strong>{item.name}</strong></p>
+                      <strong>Serial Number:</strong> {item.serial_number}
+                      <br />
+                      <strong>Item Condition:</strong> {item.condition}
+                      <br />
+                      <strong>Return Comments:</strong>
+                      <ul>
+                        {item.comments.map((cText, index) => {
+                          return (
+                            <li key={cText._id}>{cText.body} </li>
+                          )
+                        })}
+                      </ul>
+                      <strong>Maintenance Comments:</strong>
+                      <ul>
+                        {item.maintenance_comments.map((cText, index) => {
+                          return (
+                            <li key={cText._id}>{cText.body} </li>
+                          )
+                        })}
+                      </ul>
+                      <br />
+                      <TextArea
+                        value={this.state.maintCommentIn[index]}
+                        onChange={this.handleInputChange}
+                        name={"maintCommentIn" + index}
+                        placeholder="Enter New Maintenance Comment Here..."
+                      />
+                      <MaintStatusBtn
+                        id={item._id}
+                        onClick={() => this.updateStatus(item._id)}
+                      />
+                      <AddMaintCommentBtn
+                        id={item._id}
+                        onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

@@ -176,6 +176,9 @@ module.exports = {
         });
     },
     deleteItemFromCustomer: (req, res) => {
+        console.log('HIT ROUTE');
+        console.log(req.params.customerID);
+        console.log(req.params.itemID);
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID }, 
             { $pull: {items: req.params.itemID}}
             )

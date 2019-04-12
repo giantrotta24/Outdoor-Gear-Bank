@@ -13,7 +13,7 @@ export function Input(props) {
 export function TextArea(props) {
   return (
     <div className='form-group'>
-      <textarea className='form-control' rows='3' {...props}>
+      <textarea className='form-control' rows='2' {...props}>
       </textarea>
     </div>
   );
@@ -45,21 +45,21 @@ export function SelectCondition(props) {
 };
 
 export function FormInput(props) {
-  return ( 
+  return (
     <div>
-          <input className='form-control'  {...props}
-          />      
-    </div>    
-    
+      <input className='form-control'  {...props}
+      />
+    </div>
+
   )
 };
 
 export function FormSelect(props) {
-  return ( 
+  return (
     <div>
-          <Select 
-            className='form-control'
-            {...props}/>
+      <Select
+        className='form-control'
+        {...props} />
     </div>
   )
 }
@@ -67,7 +67,7 @@ export function FormSelect(props) {
 export function AddMaintCommentBtn(props) {
   return (
     <div>
-      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+      <button {...props} style={{ float: "left", marginBottom: 10 }} className="btn btn-info mr-2">
         {props.children}
         Add Comment
       </button>
@@ -78,8 +78,8 @@ export function AddMaintCommentBtn(props) {
 export function MaintCommentInput(props) {
   return (
     <div>
-          <input className="form-control" {...props}
-          />
+      <input className="form-control" {...props}
+      />
     </div>
 
   )
@@ -88,7 +88,7 @@ export function MaintCommentInput(props) {
 export function MaintStatusBtn(props) {
   return (
     <div>
-      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
         {props.children}
         Change Status to Available
       </button>

@@ -23,8 +23,6 @@ class Inventory extends Component {
     state: ''
   };
 
-
-
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.itemName && this.state.category &&
@@ -37,7 +35,6 @@ class Inventory extends Component {
   };
 
   updateInv = () => {
-
     let newItem = {
       name: this.state.itemName,
       category: this.state.category,
@@ -46,7 +43,6 @@ class Inventory extends Component {
       condition: 'New',
       number_of_times_rented: 0
     };
-
     API.addItem(newItem)
       .then(res => {
         if (res.status === 200) {
@@ -74,7 +70,7 @@ class Inventory extends Component {
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
     this.setState({ category: selectedOption.value })
-  }
+  };
 
   componentDidMount() {
     API.findCategories().then(res => {
@@ -82,7 +78,7 @@ class Inventory extends Component {
         inventory: res.data
       });
     });
-  }
+  };
 
   render() {
     return (
