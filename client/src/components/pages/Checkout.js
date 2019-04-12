@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
-import { SelectCondition, TextArea } from '../Form';
+import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
 import ReturnForm from '../ReturnForm';
 import API from '../../utils/API';
 
-
-
 class Checkout extends Component {
     state = {
+        last_name: '',
         phone_number: '',
         member_number: '',
         email: '',
@@ -17,18 +17,12 @@ class Checkout extends Component {
         customer: [],
         newCustomer: null,
         error: '',
+        itemIds: [],
+        customerId: ''
     }
 
     componentDidMount() {
-        this.processFunction();
-        this.findCustomers();
-    }
-
-    findCustomers = () => {
-        API.findAllCustomers()
-            .then(res => this.setState({ customers: res.data }))
-            .catch(err => console.log(err));
-        console.log(this.state.customers);
+        this.processFunction()
     }
 
     handleInputChange = event => {
@@ -38,9 +32,47 @@ class Checkout extends Component {
         })
     };
 
+    checkoutCustomer = event => {
+        event.preventDefault();
+        this.state.itemIds.forEach(id => {
+            API.addItemToCustomer(this.state.customerId, id).then(res => {
+                if (res.data.status === 'error') {
+                    throw new Error(res.data.message);
+                }
+            });
+        });
+        this.checkout();
+        alert('Thank you for using Outdoor Gear Bank');
+        this.reroute();
+    }
+
+    reroute = () => {
+        let path = '/main';
+        this.props.history.push(path)
+    }
+
+    checkout = () => {
+        API.checkout();
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.phone_number) {
+        if (this.state.last_name) {
+            API.findCustomerByLastName(this.state.last_name)
+                .then(res => {
+                    if (res.data.status === 'error') {
+                        throw new Error(res.data.message);
+                    }
+                    this.setState({
+                        customer: res.data,
+                        error: '',
+                        customerId: res.data[0]._id
+                    });
+                    console.log(this.state.customer);
+                    console.log(this.state.customerId);
+                })
+                .catch(err => this.setState({ error: err.message }));
+        } else if (this.state.phone_number) {
             API.findCustomerByPhoneNumber(this.state.phone_number)
                 .then(res => {
                     if (res.data.status === 'error') {
@@ -49,8 +81,10 @@ class Checkout extends Component {
                     this.setState({
                         customer: res.data,
                         error: '',
+                        customerId: res.data[0]._id
                     });
                     console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.member_number) {
@@ -62,8 +96,10 @@ class Checkout extends Component {
                     this.setState({
                         customer: res.data,
                         error: '',
+                        customerId: res.data[0]._id
                     });
                     console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.email) {
@@ -75,18 +111,27 @@ class Checkout extends Component {
                     this.setState({
                         customer: res.data,
                         error: '',
+                        customerId: res.data[0]._id
                     });
                     console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         }
     };
 
     processFunction = () => {
+        let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
             console.log(this.state.checkoutCart);
-        })
+            this.state.checkoutCart.map(item => {
+                itemIds.push(item._id);
+            });
+            console.log(itemIds);
+            this.setState({ itemIds: itemIds });
+            console.log(this.state.itemIds);
+        });
     }
 
     renderUserSearch = () => {
@@ -127,11 +172,44 @@ class Checkout extends Component {
                             </Container>
                         </Col>
                     </Row>
+                    {this.state.customer.length ? (
+                        <Row>
+                            <Col size='md-12'>
+                                <Container>
+                                    <Row>
+                                        <Col className='text-center' size='md-12'>
+                                            <h3>Cutsomer Info</h3>
+                                            <CustomerCard>
+                                                <button className='btn-danger btn rent-button' onClick={this.checkoutCustomer}>Checkout</button>
+                                                {this.state.customer.map((info, key) => {
+                                                    return (
+                                                        <div className='row' key={key}>
+                                                            <div className='col text-left'>
+                                                                <p> Name: {info.first_name + ' ' + info.last_name}</p>
+                                                                <p> Member #: {info.member_number}</p>
+                                                                <p> Email: {info.email}</p>
+                                                                <p> Phone #: {info.phone_number}</p>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </CustomerCard>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </Col>
+                        </Row>
+                    ) : (
+                            <Row>
+
+                            </Row>
+                        )
+                    }
                 </Container>
             </div>
-            
+
         );
     }
 }
 
-export default Checkout;
+export default withRouter(Checkout);

@@ -11,8 +11,8 @@ export default {
     findItemsByCategory: function(category) {
         return axios.get('/api/categories/' + category);
     },
-    findItemByID: function() {
-        return axios.get('/api/items/:id');
+    findItemByID: function(id) {
+        return axios.get('/api/items/' + id);
     },
     addItem: function(itemData) {
         return axios.post('/api/items', itemData);
@@ -53,8 +53,8 @@ export default {
     findAllCustomers: function() {
         return axios.get('/api/customers');
     },
-    addItemToCustomer: function() {
-        return axios.post('/api/:customerID/:itemID');
+    addItemToCustomer: function(custId, itemId) {
+        return axios.post('/api/' + custId + '/' + itemId);
     },
     findCustomerByLastName: function(lastname) {
         return axios.get('/api/lastname/' + lastname + '/items');

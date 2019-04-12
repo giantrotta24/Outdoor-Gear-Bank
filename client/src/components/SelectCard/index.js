@@ -125,12 +125,15 @@ class SelectCard extends Component {
                                 <div className='small-card-body' key={key}>
 
                                     <div className='row'>
-                                        <div className='col-md-6'>
+                                        <div className='col'>
                                             <img src={item.image} alt={`${item.name} thumbnail`} className='result-image' />
-                                            <p className='font-italic item-title'>{item.name}</p>
-                                            <p className='item-title'>Comments: {item.commemnts}</p>
                                         </div>
-                                        <div className='col-md-6' >
+                                        <div className='col'>
+                                            <p className='item-title'><strong>Name: </strong>{item.name}</p>
+                                            <p className='item-title'><strong>Serial: </strong>{item.serial_number}</p>
+                                            <p className='item-title'><strong>Comments: </strong>{item.comments}</p>
+                                        </div>
+                                        <div className='col' >
                                             {item.status === 'Available' ? (
                                                 <div className='col'>
                                                     <SaveBtn

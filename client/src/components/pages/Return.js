@@ -41,7 +41,23 @@ class Return extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.phone_number) {
+    if (this.state.last_name) {
+      API.findCustomerByLastName(this.state.last_name)
+        .then(res => {
+          if (res.data.status === 'error') {
+            throw new Error(res.data.message);
+          }
+          this.setState({
+            results: res.data,
+            error: '',
+            customers: '',
+            items: res.data[0].items,
+            customerID: res.data[0]._id,
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+          });
+        })
+        .catch(err => this.setState({ error: err.message }));
+    } else if (this.state.phone_number) {
       API.findCustomerByPhoneNumber(this.state.phone_number)
         .then(res => {
           if (res.data.status === 'error') {
