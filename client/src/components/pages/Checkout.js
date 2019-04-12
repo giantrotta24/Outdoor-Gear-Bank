@@ -3,25 +3,12 @@ import { Container, Row, Col } from '../Grid';
 import { SelectCondition, TextArea } from '../Form';
 import CheckoutForm from '../CheckoutForm';
 import ReturnForm from '../ReturnForm';
-
 import API from '../../utils/API';
 
-// const SearchButton = ({ renderUserSearch }) => {
-//     return (
-//         <button onClick={renderUserSearch} className='btn-success btn find-user-button' >Find Customer</button>
-//     );
-// }
-
-// const EnterButton = ({ renderUserSubmit }) => {
-//     return (
-//         <button onClick={renderUserSubmit} className='btn-primary btn submit-user-button ml-3' >Find Customer</button>
-//     );
-// }
 
 
 class Checkout extends Component {
     state = {
-        last_name: '',
         phone_number: '',
         member_number: '',
         email: '',
@@ -50,24 +37,10 @@ class Checkout extends Component {
             [name]: value
         })
     };
-    
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.last_name) {
-            API.findCustomerByLastName(this.state.last_name)
-                .then(res => {
-                    if (res.data.status === 'error') {
-                        throw new Error(res.data.message);
-                    }
-                    this.setState({
-                        customer: res.data,
-                        error: '',
-                    });
-                    console.log(this.state.customer);
-                })
-                .catch(err => this.setState({ error: err.message }));
-        } else if (this.state.phone_number) {
+        if (this.state.phone_number) {
             API.findCustomerByPhoneNumber(this.state.phone_number)
                 .then(res => {
                     if (res.data.status === 'error') {
@@ -156,7 +129,7 @@ class Checkout extends Component {
                     </Row>
                 </Container>
             </div>
-
+            
         );
     }
 }
