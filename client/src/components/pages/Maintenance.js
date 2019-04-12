@@ -128,9 +128,9 @@ class Maintenance extends Component {
                     <p>
                       <strong>
                         {this.state.item.name} ({this.state.item.category})
-                                  </strong>
+                      </strong>
                     </p>
-                    <p>Serial Number: {this.state.item.serial_number}</p>
+                    <p><strong>Serial Number:</strong> {this.state.item.serial_number}</p>
                     <Row>
                       <h6><strong>Return Comments:</strong></h6>
                       {this.state.comments.map((comment, index) => {
@@ -167,7 +167,7 @@ class Maintenance extends Component {
                   </ReturnResultsItem>
                 </ReturnResults>
               ) : (
-                  <h5>Enter Serial Number Above to Display Results</h5>
+                  <h5>Enter Serial Number Above to Display Specific Item Information Here</h5>
                 )}
             </Col>
           </Row>

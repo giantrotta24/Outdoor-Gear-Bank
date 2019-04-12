@@ -100,7 +100,7 @@ module.exports = {
 
     // MAINTENANCE COMMENTS
     findItemWithMaintComments: (req, res) => {
-        db.Item.find({ serial_number: req.params.itemID }).populate('maintenance_comments').populate('comments').then((dbItem) => {
+        db.Item.find({ serial_number: req.params.itemID, status: "In Maintenance" }).populate('maintenance_comments').populate('comments').then((dbItem) => {
             res.json(dbItem);
         }).catch((err) => {
             console.log(err);
