@@ -52,7 +52,7 @@ class Maintenance extends Component {
       if (res.status === 200) {
         alert("Maintenance Comment added successful!");
         this.setState({
-          maintCommentIn: ''
+          maintCommentIn: []
         });
       }
       else console.log("error: ",res.status);
