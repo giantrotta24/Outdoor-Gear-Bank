@@ -24,8 +24,6 @@ class SignUp extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('sign-up-form, username: ');
-        console.log(this.state.username);
         //request to server here (add new username/password)
         axios.post('/user/', {
             username: this.state.username,

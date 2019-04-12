@@ -23,7 +23,6 @@ class SelectCard extends Component {
 
     handleChange = selectedOption => {
         this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
         this.grabItems(selectedOption)
 
     }
@@ -31,20 +30,17 @@ class SelectCard extends Component {
     grabItems = selectedOption => {
         const arr = [];
         arr.push(selectedOption);
-        // eslint-disable-next-line
-        arr.map(opt => {
+        arr.forEach(opt => {
             let apiQuery = opt.value;
             API.findItemsByCategory(apiQuery)
                 .then(res => {
                     this.setState({ inventory: res.data });
-                    console.log(this.state.inventory);
                 });
         });
     }
 
     grabItemData = (itemData, itemId) => {
         this.setState({ cart: [...this.state.cart, itemData] });
-        // console.log(this.state.cart);
         let index = 0;
 
         for (let i = 0; i < this.state.inventory.length; i++) {
@@ -53,8 +49,6 @@ class SelectCard extends Component {
             }
         }
 
-        console.log('first one', this.state.inventory.slice(0, index));
-        console.log('second one', this.state.inventory.slice(index + 1));
         this.setState({
             inventory: [
                 ...this.state.inventory.slice(0, index),
@@ -65,7 +59,6 @@ class SelectCard extends Component {
     }
 
     updateInventory = itemId => {
-        console.log(itemId);
         let index = 0;
         for (let i = 0; i < this.state.cart.length; i++) {
             if (this.state.cart[i]._id === itemId) {
@@ -86,8 +79,6 @@ class SelectCard extends Component {
             }
         }
 
-        console.log('first one', this.state.inventory.slice(0, index));
-        console.log('second one', this.state.inventory.slice(index + 1));
         this.setState({
             inventory: [
                 ...this.state.inventory.slice(0, index),
@@ -169,8 +160,8 @@ class SelectCard extends Component {
                                             </div>
                                         </div>
                                     ))}
-                                <Link to="/checkout" className="btn btn-success checkout-button">
-                                    Checkout
+                                    <Link to="/checkout" className="btn btn-success checkout-button">
+                                        Checkout
                                 </Link>
                                 </div>
                             ) : (

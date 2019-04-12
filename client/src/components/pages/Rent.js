@@ -19,8 +19,6 @@ class Rent extends Component {
       this.setState({
         categories: res.data
       });
-      console.log(this.state.categories);
-
     });
   }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function ReturnResultsItem({ children }) {
+const ReturnResultsItem = ({ children }) => {
   return <li className="list-group-item">{children}</li>;
 }
 

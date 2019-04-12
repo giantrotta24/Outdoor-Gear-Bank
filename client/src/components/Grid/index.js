@@ -1,15 +1,15 @@
 import React from 'react';
 import './grid.css'
 
-export function Container({ fluid, children }) {
+export const Container = ({ fluid, children }) => {
   return <div className={`container${fluid ? '-fluid' : ''}`}>{children}</div>;
 };
 
-export function Row({ fluid, children }) {
+export const Row = ({ fluid, children }) => {
   return <div className={`row${fluid ? '-fluid' : ''}`}>{children}</div>;
 };
 
-export function Col({ size, children }) {
+export const Col = ({ size, children }) => {
   return (
     <div
       className={size

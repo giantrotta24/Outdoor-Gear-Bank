@@ -16,7 +16,6 @@ class SaveBtn extends Component {
         }
 
         const itemId = itemData.id;
-        console.log(itemId)
 
 
         API.updateItem(itemId, { 'status': 'Unavailable' }).then(this.props.grabItemData(itemData, itemId));

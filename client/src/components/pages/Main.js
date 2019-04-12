@@ -10,9 +10,7 @@ class Main extends Component {
   componentDidMount() {
     API.findAll().then(res => {
       let inventory = res.data;
-      console.log(inventory);
-      // eslint-disable-next-line
-      inventory.map(item => {
+      inventory.forEach(item => {
         if (item.status === 'Out for Rent') {
           this.setState({ rentedInventory: [...this.state.rentedInventory, item] });
         } else if (item.status === 'In Maintenance') {

@@ -1,7 +1,7 @@
 import React from "react";
 import "./return-form.css";
 
-function ReturnForm(props) {
+const ReturnForm = props => {
   return (
     <div className="container">
       <form className="last_name">

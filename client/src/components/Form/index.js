@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import './style.css';
 
-export function Input(props) {
+export const Input = props => {
   return (
     <div className='form-group'>
       <input className='form-control' {...props} />
@@ -10,7 +10,7 @@ export function Input(props) {
   );
 };
 
-export function TextArea(props) {
+export const TextArea = props => {
   return (
     <div className='form-group'>
       <textarea className='form-control' rows='3' {...props}>
@@ -19,7 +19,7 @@ export function TextArea(props) {
   );
 };
 
-export function FormBtn(props) {
+export const FormBtn = props => {
   return (
     <button {...props} style={{ float: 'right', marginBottom: 10 }} className='btn btn-success mt-3'>
       {props.children}
@@ -27,7 +27,7 @@ export function FormBtn(props) {
   );
 };
 
-export function SelectCondition(props) {
+export const SelectCondition = props => {
   return (
     <div className='form-group'>
       <select className='custom-select'
@@ -44,7 +44,7 @@ export function SelectCondition(props) {
   )
 };
 
-export function FormInput(props) {
+export const FormInput = props => {
   return ( 
     <div>
           <input className='form-control'  {...props}
@@ -54,7 +54,7 @@ export function FormInput(props) {
   )
 };
 
-export function FormSelect(props) {
+export const FormSelect = props => {
   return ( 
     <div>
           <Select 
