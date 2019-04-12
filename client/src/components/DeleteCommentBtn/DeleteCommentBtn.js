@@ -3,7 +3,7 @@ import "./DeleteCommentBtn.css";
 
 function DeleteCommentBtn(props) {
   return (
-    <span className="delete-btn" {...props} role="button" tabIndex="0">
+    <span className="deletecomment-btn" {...props} role="button" tabIndex="0">
       ✗
     </span>
   );
