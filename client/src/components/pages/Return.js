@@ -75,36 +75,36 @@ class Return extends Component {
         .catch(err => this.setState({ error: err.message }));
     } else if (this.state.member_number) {
       API.findCustomerByMemberNumber(this.state.member_number)
-      .then(res => {
-        if (res.data.status === 'error') {
-          throw new Error(res.data.message);
-        }
-        this.setState({
-          results: res.data,
-          error: '',
-          customers: '',
-          items: res.data[0].items,
-          customerID: res.data[0]._id,
-          customer: res.data[0].first_name + ' ' + res.data[0].last_name
-        });
-      })
-      .catch(err => this.setState({ error: err.message }));
+        .then(res => {
+          if (res.data.status === 'error') {
+            throw new Error(res.data.message);
+          }
+          this.setState({
+            results: res.data,
+            error: '',
+            customers: '',
+            items: res.data[0].items,
+            customerID: res.data[0]._id,
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+          });
+        })
+        .catch(err => this.setState({ error: err.message }));
     } else if (this.state.email) {
       API.findCustomerByEmail(this.state.email)
-      .then(res => {
-        if (res.data.status === 'error') {
-          throw new Error(res.data.message);
-        }
-        this.setState({
-          results: res.data,
-          error: '',
-          customers: '',
-          items: res.data[0].items,
-          customerID: res.data[0]._id,
-          customer: res.data[0].first_name + ' ' + res.data[0].last_name
-        });
-      })
-      .catch(err => this.setState({ error: err.message }));
+        .then(res => {
+          if (res.data.status === 'error') {
+            throw new Error(res.data.message);
+          }
+          this.setState({
+            results: res.data,
+            error: '',
+            customers: '',
+            items: res.data[0].items,
+            customerID: res.data[0]._id,
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+          });
+        })
+        .catch(err => this.setState({ error: err.message }));
     }
   };
 
