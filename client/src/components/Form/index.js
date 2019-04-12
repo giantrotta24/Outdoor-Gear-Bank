@@ -62,4 +62,36 @@ export function FormSelect(props) {
             {...props}/>
     </div>
   )
-};
+}
+
+export function AddMaintCommentBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+        {props.children}
+        Add Comment
+      </button>
+    </div>
+  );
+}
+
+export function MaintCommentInput(props) {
+  return (
+    <div>
+          <input className="form-control" {...props}
+          />
+    </div>
+
+  )
+}
+
+export function MaintStatusBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+        {props.children}
+        Change Status to Available
+      </button>
+    </div>
+  );
+}

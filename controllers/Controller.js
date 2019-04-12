@@ -73,6 +73,14 @@ module.exports = {
             console.log(err);
         });
     },
+    findItemsInMaintenance: (req, res) => {
+        db.Item.find({status: "In Maintenance"}).populate("maintenance_comments").then((dbItems) => {
+            res.json(dbItems);
+        }).catch(err => {
+            res.status(422).json(err);
+        });
+    },
+    // Add a comment to a specific item
     addComment: (req, res) => {
         db.Comment.create(req.body)
         .then(function(dbComment) {
@@ -101,6 +109,8 @@ module.exports = {
     addMaintComment: (req, res) => {
         let maintComment;
         req.body.item = req.params.itemID;
+        console.log('req.parms= ',req.params)
+        console.log('addMaintComment req.body= ',req.body);
         db.MaintenanceComment.create(req.body).then((dbMaintenanceComment) => {
           maintComment = dbMaintenanceComment;
           return db.Item.findOneAndUpdate(

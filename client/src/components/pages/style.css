@@ -146,15 +146,6 @@
     margin-top: 225px;
 }
 
-/* .invContainer {
-    width: 980px;
-    margin-top: 125px;
-    margin-bottom: 50px;
-    text-align: center;
-    height: auto;
-    position: absolute;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    overflow: auto;
-    display: flex;
-} */
+ul {
+    list-style-type: none;
+}

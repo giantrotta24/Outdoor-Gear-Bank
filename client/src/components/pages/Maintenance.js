@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { List, ListItem } from "../List";
 import { CommentBtn } from "../CommentBtn";
+import { MaintStatusBtn, AddMaintCommentBtn, MaintCommentInput } from "../Form";
 import API from '../../utils/API';
 
 class Maintenance extends Component {
   state = {
     inventory: [],
-    itemsInMaintenance: [],
+    itemsInMaint: [],
     maintID: null,
-    maintComments: []
-
+    maintComments: [],
+    comment_text: [],
+    maintCommentIn: [],
+    maintCommentItem: '',
+    state: '' 
   };
 
   handleInputChange = event => {
@@ -19,58 +23,79 @@ class Maintenance extends Component {
     })
   };
 
-  // updateMaintcomment = () => {
-  //   API.addmaintComment(maintID,comment)
-  //     .then(res => {
-  //     console.log('newItem= ', newItem)
-  //     console.log("res= ", res);
-  //     if (res.status === 200) {
-  //       alert("Inventory update successful!");
-  //       this.setState({
-  //         state: this.state.state,
-  //         itemName: '',
-  //         category: '',
-  //         serialNumber: '',
-  //         imageURL: '',
-  //         seletedOption: ''
-  //       });
-  //     }
-  //   })
+  updateStatus = (itemID) => {
+    let body = {
+      status: "Available"
+    }
+    console.log("updating status for id= ", itemID);
+    API.updateItem(itemID, body)
+    .then( res => {
+      if (res.status === 200) {
+        alert("Item status changed to Available!");
+        this.setState({state: this.state})
+      }
+    })
+  }
+
+  updateMaintComment = (itemID, newComment) => {
+    console.log('newcommnet= ', newComment);
+    // let newComment= { 
+    //   body: this.state.maintCommentIn
+    // }
+    API.addMaintComment(itemID,
+      {
+        body: newComment
+      })
+      .then(res => {
+      if (res.status === 200) {
+        alert("Maintenance Comment added successful!");
+        this.setState({
+          maintCommentIn: ''
+        });
+      }
+      else console.log("error: ",res.status);
+    })
+  }
+
+  // componentDidMount() {
+  //   API.findAll().then(res => {
+  //     this.setState({
+  //       inventory: res.data
+  //     });
+  //     console.log("All inventory= ", this.state.inventory);
+  //     this.state.inventory.forEach( element => {
+  //       // console.log("element.status= ", element.status)
+  //       if (element.status === "In Maintenance"){
+  //         console.log("elements in maintenance= ", element)
+  //           this.setState({ itemsInMaintenance: [...this.state.itemsInMaintenance, element]})
+  //           // console.log("itemsInMaintenance= ", this.state.itemsInMaintenance);
+  //           // API.findItemWithMaintComments(this.state.itemsInMaintenance._id).then(res => {
+  //           API.findItemWithMaintComments(element._id).then(res => {
+  //             this.setState({maintComments: res.data})
+  //            //  console.log('findItemWithMaintComment= ', this.state.maintComments);
+  //             this.state.maintComments.map((maint_comment,index) => {
+  //                // console.log('comment= ', maint_comment.maintenance_comments, ' index= ',index)
+  //                maint_comment.maintenance_comments.map((comment_text,index) => {
+  //                  // console.log('comment text= ',comment_text.body, ' index= ', index)
+  //                  this.setState({comment_text: [...this.state.comment_text, comment_text.body]})
+  //                 //  console.log("comment_text=", this.state.comment_text)
+  //                })
+  //             })
+
+  //           });
+  //         }
+  //     });
+  //   });
   // }
 
   componentDidMount() {
-    API.findAll().then(res => {
-      this.setState({
-        inventory: res.data
-      });
-      console.log("All inventory= ", this.state.inventory);
-      this.state.inventory.forEach( element => {
-        if (element.status === "In Maintenance"){
-          
-            this.setState({ itemsInMaintenance: [...this.state.itemsInMaintenance, element]})
-        
-          console.log("element= ", element);
-          console.log("itemsInMaintenance= ", this.state.itemsInMaintenance);
-          
-            // this.setState({itemsInMaintenance: [...element]})
-        }
-        
-  
-      });
-      this.state.itemsInMaintenance.forEach(inMaint => {
-        // this.setState({
-        //   maintID: inMaint._id,
-        //   maintComment: inMaint.maintenance_comments
-        // });
-      
-        console.log('object id item in maint= ',inMaint._id);
-        API.findItemWithMaintComments(inMaint._id).then(res => {
-          this.setState({maintComments: res.data})
-          console.log('findItemWithMaintComment= ', res.data);
-        })
+    API.findMaintenanceItems()
+    .then(res => {
+      console.log('res.data= ',res.data)
+        this.setState({itemsInMaint: res.data})
+        // console.log('itemsInMaint= ',this.state.itemsInMaint)
       })
-    });
-  }
+    }    
 
   render() {
     return (
@@ -81,14 +106,17 @@ class Maintenance extends Component {
           <div className="col-md-8">
 
             <h3 className="mt-5 mb-1">Items In Maintenance</h3>  
-        {this.state.itemsInMaintenance.length ? (
+        {/* {this.state.itemsInMaintenance.length ? ( */}
+          {/* {console.log("itemsInMaintenance.length= ",this.state.itemsInMaintenance.length)} */}
+          {console.log('itemsInMaint= ',this.state.itemsInMaint)}
+          {this.state.itemsInMaint.length ? (
         <List>
-          {this.state.itemsInMaintenance.map((item,index) => (
-          <ListItem key={item._id}>
-          
-      
-          {/* <strong> */}
+          {/* {this.state.itemsInMaintenance.map((item,index) => ( */}
             
+            {this.state.itemsInMaint.map((item,index) => (
+            
+          <ListItem key={item._id}>
+            {/* {console.log('item from array map= ', item)} */}
             <strong>Item Name:</strong>  {item.name}
             <br />            
             <strong>Item Status:</strong>   {item.status}
@@ -98,18 +126,42 @@ class Maintenance extends Component {
             {/* <img src={item.image} alt="" style={{width: '200px',height: '200px'}}/>
             <br /> */}
             <strong>Maintenance Comments:</strong> 
-            <br />
-            {console.log('maint comment= ',this.state.maintComments)}
-            {this.state.maintComments.map((comment,index) => {
             
-              console.log('comment= ', comment)
+             {/* {this.state.comment_text.map((cText,index) => { 
+              // console.log('cText.body=', cText);   
+          })} */}
+          <ul>
+          {/* {this.state.comment_text.map((cText,index) => { */}
+          {item.maintenance_comments.map((cText,index) => {
             
-            })}
+            return(
+              
+              <li>{cText.body} </li>
+            )
+          })}
+            <li>
+            <MaintCommentInput
+              value={this.state.maintCommentIn[index]}
+              onChange={this.handleInputChange}
+              name={"maintCommentIn" + index}
+              placeholder="Type comment then click Add Comment..."
+          />
+            </li>
+          </ul>
+          
+        <MaintStatusBtn
+          id={item._id}
+          onClick={() => this.updateStatus(item._id)}
+        />
+        <AddMaintCommentBtn
+        id={item._id}
+        onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
+        />
         
-        <CommentBtn 
+        {/* <CommentBtn 
         id={this.state.maintID}
         onClick={() => this.maintComment(item._id)}
-        />
+        /> */}
 
       </ListItem>
     ))}
