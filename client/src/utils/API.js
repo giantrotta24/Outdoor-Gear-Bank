@@ -29,6 +29,9 @@ export default {
     deleteItem: function() {
         return axios.delete('/api/items/:id');
     },
+    findMaintenanceItems: function() {
+        return axios.get('/api/maintenance');
+    },
 
     // COMMENTS
     addComment: function(itemID, comment) {

@@ -30,6 +30,13 @@ module.exports = {
             res.status(422).json(err);
         });
     },
+    findItemsInMaintenance: (req, res) => {
+        db.Item.find({status: "In Maintenance"}).populate("maintenance_comments").then((dbItems) => {
+            res.json(dbItems);
+        }).catch(err => {
+            res.status(422).json(err);
+        });
+    },
     addItem: (req, res) => {
         db.Item.create(req.body)
         .then(dbItem => res.json(dbItem))
@@ -92,7 +99,7 @@ module.exports = {
 
     // MAINTENANCE COMMENTS
     findItemWithMaintComments: (req, res) => {
-        db.Item.find({ _id: req.params.itemID }).populate('maintenance_comments').then((dbItem) => {
+        db.Item.find({ serial_number: req.params.serial_number }).populate('maintenance_comments').populate('comments').then((dbItem) => {
             res.json(dbItem);
         }).catch((err) => {
             console.log(err);

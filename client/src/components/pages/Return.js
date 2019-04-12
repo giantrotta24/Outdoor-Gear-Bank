@@ -28,7 +28,7 @@ class Return extends Component {
 
   componentDidMount() {
     API.findAllCustomers()
-      .then(res => this.setState({ customers: res.data.message }))
+      .then(res => this.setState({ customers: res.data }))
       .catch(err => console.log(err));
   }
 

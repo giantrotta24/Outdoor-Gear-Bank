@@ -14,13 +14,14 @@ module.exports = app => {
     app.post('/api/checkout', Controller.checkout);
     app.post('/api/items/:id', Controller.updateItem);
     app.delete('/api/items/:id', Controller.deleteItem);
+    app.get('/api/maintenance', Controller.findItemsInMaintenance);
     
     // COMMENT routes
     app.post('/api/comments/:itemID', Controller.addComment);
     app.get('/api/comments/:itemID', Controller.findItemWithComments);
 
     // MAINTENANCE COMMENT routes
-    app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
+    app.get('/api/:serial_number/maintcomments', Controller.findItemWithMaintComments);
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
 
     // CUSTOMER routes
