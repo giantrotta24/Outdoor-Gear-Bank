@@ -27,7 +27,7 @@ module.exports = app => {
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
     // Route to get a specific item with all it's maintenance comments
     app.get('/api/maintenance', Controller.findItemsInMaintenance);
-    app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
+    app.delete('/api/maintcomments/:maintcommentID', Controller.deleteMaintComment);
 
     // CUSTOMER routes
     app.post('/api/customers', Controller.addCustomer);

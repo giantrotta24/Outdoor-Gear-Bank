@@ -4,6 +4,7 @@ import { Container, Row, Col } from '../Grid';
 import { MaintStatusBtn, AddMaintCommentBtn, UpdateConditionBtn, TextArea, SelectCondition } from "../Form";
 import API from '../../utils/API';
 import MaintenanceForm from '../MaintenanceForm';
+import DeleteCommentBtn from '../DeleteCommentBtn';
 
 class Maintenance extends Component {
   state = {
@@ -99,6 +100,10 @@ class Maintenance extends Component {
       })
   }
 
+  deleteComment = (commentID) => {
+    console.log("deleting comment:" + commentID);
+  }
+
   componentDidMount() {
     API.findMaintenanceItems().then(res => {
       this.setState({
@@ -154,7 +159,10 @@ class Maintenance extends Component {
                     <ul>
                       {this.state.maintenance_comments.map((mcomment, index) => {
                         return (
-                          <li key={mcomment._id}>{mcomment.body}</li>
+                          <li key={mcomment._id}>
+                          {mcomment.body}
+                          <DeleteCommentBtn onClick={() => this.deleteComment(mcomment._id)} />
+                          </li>
                         )
                       })}
                     </ul>
@@ -207,7 +215,9 @@ class Maintenance extends Component {
                       <ul>
                         {item.maintenance_comments.map((cText, index) => {
                           return (
-                            <li key={cText._id}>{cText.body} </li>
+                            <li key={cText._id}>
+                            {cText.body} 
+                            <DeleteCommentBtn onClick={() => this.deleteComment(cText._id)} /></li>
                           )
                         })}
                       </ul>
