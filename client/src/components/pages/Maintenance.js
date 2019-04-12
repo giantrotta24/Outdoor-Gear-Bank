@@ -13,7 +13,7 @@ class Maintenance extends Component {
     comment_text: [],
     maintCommentIn: [],
     maintCommentItem: '',
-    state: '' 
+    state: ''
   };
 
   handleInputChange = event => {
@@ -29,12 +29,13 @@ class Maintenance extends Component {
     }
     console.log("updating status for id= ", itemID);
     API.updateItem(itemID, body)
-    .then( res => {
-      if (res.status === 200) {
-        alert("Item status changed to Available!");
-        this.setState({state: this.state})
-      }
-    })
+      .then(res => {
+        if (res.status === 200) {
+          alert("Item status changed to Available!");
+          this.setState({ state: this.state })
+        }
+      })
+      this.findAllMaintenanceItems();
   }
 
   updateMaintComment = (itemID, newComment) => {
@@ -47,14 +48,15 @@ class Maintenance extends Component {
         body: newComment
       })
       .then(res => {
-      if (res.status === 200) {
-        alert("Maintenance Comment added successful!");
-        this.setState({
-          maintCommentIn: ''
-        });
-      }
-      else console.log("error: ",res.status);
-    })
+        if (res.status === 200) {
+          alert("Maintenance Comment added successful!");
+          this.setState({
+            maintCommentIn: ''
+          });
+          this.findAllMaintenanceItems();
+        }
+        else console.log("error: ", res.status);
+      })
   }
 
   // componentDidMount() {
@@ -90,12 +92,23 @@ class Maintenance extends Component {
 
   componentDidMount() {
     API.findMaintenanceItems()
-    .then(res => {
-      console.log('res.data= ',res.data)
-        this.setState({itemsInMaint: res.data})
+      .then(res => {
+        console.log('res.data= ', res.data)
+        this.setState({ 
+          itemsInMaint: res.data,
+          maintCommentIn: '' })
         // console.log('itemsInMaint= ',this.state.itemsInMaint)
       })
-    }    
+  }
+
+  findAllMaintenanceItems() {
+    API.findMaintenanceItems()
+    .then(res => {
+      console.log('res.data= ', res.data)
+      this.setState({ itemsInMaint: res.data })
+      // console.log('itemsInMaint= ',this.state.itemsInMaint)
+    })
+  }
 
   render() {
     return (
@@ -105,77 +118,77 @@ class Maintenance extends Component {
 
           <div className="col-md-8">
 
-            <h3 className="mt-5 mb-1">Items In Maintenance</h3>  
-        {/* {this.state.itemsInMaintenance.length ? ( */}
-          {/* {console.log("itemsInMaintenance.length= ",this.state.itemsInMaintenance.length)} */}
-          {console.log('itemsInMaint= ',this.state.itemsInMaint)}
-          {this.state.itemsInMaint.length ? (
-        <List>
-          {/* {this.state.itemsInMaintenance.map((item,index) => ( */}
-            
-            {this.state.itemsInMaint.map((item,index) => (
-            
-          <ListItem key={item._id}>
-            {/* {console.log('item from array map= ', item)} */}
-            <strong>Item Name:</strong>  {item.name}
-            <br />            
-            <strong>Item Status:</strong>   {item.status}
-            <br />
-            <strong>Serial Number:</strong> {item.serial_number} 
-            <br />
-            {/* <img src={item.image} alt="" style={{width: '200px',height: '200px'}}/>
+            <h3 className="mt-5 mb-1">Items In Maintenance</h3>
+            {/* {this.state.itemsInMaintenance.length ? ( */}
+            {/* {console.log("itemsInMaintenance.length= ",this.state.itemsInMaintenance.length)} */}
+            {console.log('itemsInMaint= ', this.state.itemsInMaint)}
+            {this.state.itemsInMaint.length ? (
+              <List>
+                {/* {this.state.itemsInMaintenance.map((item,index) => ( */}
+
+                {this.state.itemsInMaint.map((item, index) => (
+
+                  <ListItem key={item._id}>
+                    {/* {console.log('item from array map= ', item)} */}
+                    <strong>Item Name:</strong>  {item.name}
+                    <br />
+                    <strong>Item Status:</strong>   {item.status}
+                    <br />
+                    <strong>Serial Number:</strong> {item.serial_number}
+                    <br />
+                    {/* <img src={item.image} alt="" style={{width: '200px',height: '200px'}}/>
             <br /> */}
-            <strong>Maintenance Comments:</strong> 
-            
-             {/* {this.state.comment_text.map((cText,index) => { 
+                    <strong>Maintenance Comments:</strong>
+
+                    {/* {this.state.comment_text.map((cText,index) => { 
               // console.log('cText.body=', cText);   
           })} */}
-          <ul>
-          {/* {this.state.comment_text.map((cText,index) => { */}
-          {item.maintenance_comments.map((cText,index) => {
-            
-            return(
-              
-              <li>{cText.body} </li>
-            )
-          })}
-            <li>
-            <MaintCommentInput
-              value={this.state.maintCommentIn[index]}
-              onChange={this.handleInputChange}
-              name={"maintCommentIn" + index}
-              placeholder="Type comment then click Add Comment..."
-          />
-            </li>
-          </ul>
-          
-        <MaintStatusBtn
-          id={item._id}
-          onClick={() => this.updateStatus(item._id)}
-        />
-        <AddMaintCommentBtn
-        id={item._id}
-        onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
-        />
-        
-        {/* <CommentBtn 
+                    <ul>
+                      {/* {this.state.comment_text.map((cText,index) => { */}
+                      {item.maintenance_comments.map((cText, index) => {
+
+                        return (
+
+                          <li>{cText.body} </li>
+                        )
+                      })}
+                      <li>
+                        <MaintCommentInput
+                          value={this.state.maintCommentIn[index]}
+                          onChange={this.handleInputChange}
+                          name={"maintCommentIn" + index}
+                          placeholder="Type comment then click Add Comment..."
+                        />
+                      </li>
+                    </ul>
+
+                    <MaintStatusBtn
+                      id={item._id}
+                      onClick={() => this.updateStatus(item._id)}
+                    />
+                    <AddMaintCommentBtn
+                      id={item._id}
+                      onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
+                    />
+
+                    {/* <CommentBtn 
         id={this.state.maintID}
         onClick={() => this.maintComment(item._id)}
         /> */}
 
-      </ListItem>
-    ))}
-  </List>
-  ) : (
-    <h3>No Results to Display</h3>
-   )}
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
 
 
 
 
-            
+
           </div>
-            <div className="col-md-2"></div>
+          <div className="col-md-2"></div>
         </div>
       </div>
     );
