@@ -30,52 +30,12 @@ export function FormBtn(props) {
   );
 }
 
-// export function SelectItemStatus(props) {
-//   return (
-//     <div className="form-group">
-//       <select className="custom-select"
-//         name={props.name}
-//         value={props.value}
-//         onChange={props.handleChange}>
-//         <option defaultValue>Choose...</option>
-//         <option value="Available">Available</option>
-//         <option value="Out for Rend">Out for Rent</option>
-//         <option value="In Maintenance">In Maintenance</option>
-//       </select>
-//     </div>
-//   )
-// }
-
-// export function SelectCondition(props) {
-//   return (
-//     <div className="form-group">
-//       <select className="custom-select"
-//         name={props.name}
-//         value={props.value}
-//         onChange={props.handleChange}>
-//         <option defaultValue>Choose...</option>
-//         <option value="New">New</option>
-//         <option value="Good">Good</option>
-//         <option value="Fair">Fair</option>
-//         <option value="Poor">Poor</option>
-//       </select>
-//     </div>
-//   )
-// }
-
 export function FormInput(props) {
   return ( 
     // <div className="container">
     <div>
           <input className="form-control"  {...props}
           />
-          {/* // value={props.itemName}
-          // name={props.name}
-          // onChange={props.handleInputChange}
-          // options={props.options}
-          // placeholder={props.placeholder} />
-          /> */}
-          
     </div>    
     
   )
@@ -90,4 +50,36 @@ export function FormSelect(props) {
             {...props}/>
     </div>
   )
+}
+
+export function AddMaintCommentBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+        {props.children}
+        Add Comment
+      </button>
+    </div>
+  );
+}
+
+export function MaintCommentInput(props) {
+  return (
+    <div>
+          <input className="form-control" {...props}
+          />
+    </div>
+
+  )
+}
+
+export function MaintStatusBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success mt-3 mr-2">
+        {props.children}
+        Change Status to Available
+      </button>
+    </div>
+  );
 }

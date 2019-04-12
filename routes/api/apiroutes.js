@@ -17,6 +17,9 @@ module.exports = app => {
     // Route to delete a specific item in the database
     app.delete('/api/items/:id', Controller.deleteItem);
 
+    // Route to add a maintenance comment
+    app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
+
     // COMMENT routes
     // Route to get a specific item with all it's comments
     app.get('/api/:itemID/comments', Controller.findItemWithComments);
@@ -25,9 +28,9 @@ module.exports = app => {
 
     // MAINTENANCE COMMENT routes
     // Route to get a specific item with all it's maintenance comments
+    app.get('/api/maintenance', Controller.findItemsInMaintenance);
     app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
-    // Route to add a maintenance comment
-    app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
+    
 
     // CUSTOMER routes
     // Route to add customer
