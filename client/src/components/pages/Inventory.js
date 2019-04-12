@@ -16,6 +16,8 @@ class Inventory extends Component {
       { label: 'Stoves', value: 'Stoves' },
       { label: 'Tents', value: 'Tents' },
       { label: 'Sleeping Bags', value: 'Sleeping Bags' },
+      { label: 'Sleeping Pads', value: 'Sleeping Pads' },
+      { label: 'Backpacks', value: 'Backpacks' },
       { label: 'Accessories', vale: 'Accessories' }
     ],
     state: ''
