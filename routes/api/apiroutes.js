@@ -37,6 +37,6 @@ module.exports = app => {
     app.get('/api/membernumber/:membernumber/items', Controller.findCustomerByMemberNumber);
     app.get('/api/email/:email/items', Controller.findCustomerByEmail);
     app.post('/api/:customerID/:itemID', Controller.addItemToCustomer);
-    app.delete('/api/:customerID/:itemID', Controller.deleteItemFromCustomer);
+    app.delete('/api/delete/:customerID/:itemID', Controller.deleteItemFromCustomer);
 }
 

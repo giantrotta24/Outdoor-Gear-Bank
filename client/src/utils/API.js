@@ -72,6 +72,6 @@ export default {
         return axios.get('/api/email/' + email + '/items');
     },
     deleteItemFromCustomer: function(customerID, itemID) {
-        return axios.delete('/api/' + customerID + '/' + itemID);
+        return axios.delete('/api/delete/' + customerID + '/' + itemID);
     }
 }
