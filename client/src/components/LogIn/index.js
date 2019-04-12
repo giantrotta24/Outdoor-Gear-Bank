@@ -22,6 +22,12 @@ class LogIn extends Component {
         });
     }
 
+    onKeyPress = (e) => {
+        if (e.which === 13) {
+            this.handleSubmit(e);
+        }
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         axios.post('/user/login', {
@@ -50,7 +56,7 @@ class LogIn extends Component {
                 <Card>
                     <div className='form-login'>
                         <i className='fas fa-lock'></i>
-                        <div className='LogInForm'>
+                        <div className='LogInForm' onKeyPress={this.onKeyPress}>
                             <h1 className='h3 mb-3 font-weight-normal'>Log In</h1>
                             <label className='sr-only' htmlFor='username'>
                                 Username
