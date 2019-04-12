@@ -138,7 +138,7 @@ class Maintenance extends Component {
             
             return(
               
-              <li>{cText.body} </li>
+              <li  key={index}>{cText.body} </li>
             )
           })}
             <li>
