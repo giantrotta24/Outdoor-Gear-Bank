@@ -138,9 +138,9 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  addComment = (itemID, comment) => {
-    API.addComment(
-      itemID,
+  addComment = (id, comment) => {
+    API.addMaintComment(
+      id,
       {
         body: comment
       }
