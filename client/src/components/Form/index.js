@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import './style.css';
+import './form.css';
 
 export function Input(props) {
   return (
@@ -91,6 +91,17 @@ export function MaintStatusBtn(props) {
       <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
         {props.children}
         Change Status to Available
+      </button>
+    </div>
+  );
+}
+
+export function UpdateConditionBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "left", marginBottom: 10 }} className="condition btn btn-primary">
+        {props.children}
+        Update Condition
       </button>
     </div>
   );

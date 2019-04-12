@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { List, ListItem } from "../List";
-import { CommentBtn } from "../CommentBtn";
 import { Container, Row, Col } from '../Grid';
-import { MaintStatusBtn, AddMaintCommentBtn, MaintCommentInput, TextArea, SelectCondition } from "../Form";
+import { MaintStatusBtn, AddMaintCommentBtn, UpdateConditionBtn, TextArea, SelectCondition } from "../Form";
 import API from '../../utils/API';
-import ReturnResultsItem from '../ReturnResultsItem';
-import ReturnBtn from '../ReturnBtn';
-import ReturnResults from '../ReturnResults';
 import MaintenanceForm from '../MaintenanceForm';
 
 class Maintenance extends Component {
@@ -16,7 +12,8 @@ class Maintenance extends Component {
     item: '',
     items: [],
     itemID: '',
-    itemCondition: '',
+    thisItemCondition: '',
+    itemCondition: [],
     inventory: [],
     itemsInMaint: [],
     maintID: null,
@@ -36,6 +33,10 @@ class Maintenance extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    this.findItemWithMaintComments(this.state.serial_number);
+  };
+
+  findItemWithMaintComments() {
     API.findItemWithMaintComments(this.state.serial_number)
       .then(res => {
         if (res.data.status === 'error') {
@@ -52,7 +53,7 @@ class Maintenance extends Component {
         console.log(this.state.maintenance_comments);
       })
       .catch(err => this.setState({ error: err.message }));
-  };
+  }
 
   updateStatus = (itemID) => {
     let body = {
@@ -67,6 +68,20 @@ class Maintenance extends Component {
     this.findAllMaintenanceItems();
   }
 
+  updateCondition = (itemID, newCondition) => {
+    API.updateItem(
+      itemID,
+      {
+        condition: newCondition
+      }
+    ).then(res => {
+      if (this.state.item) {
+        this.findItemWithMaintComments();
+      }
+      this.findAllMaintenanceItems();
+    })
+  }
+
   updateMaintComment = (itemID, newComment) => {
     API.addMaintComment(itemID,
       {
@@ -77,6 +92,7 @@ class Maintenance extends Component {
           this.setState({
             maintCommentIn: ''
           });
+          this.findItemWithMaintComments();
           this.findAllMaintenanceItems();
         }
         else console.log("error: ", res.status);
@@ -95,8 +111,8 @@ class Maintenance extends Component {
 
   findAllMaintenanceItems() {
     API.findMaintenanceItems()
-    .then(res => {
-      console.log(res.data);
+      .then(res => {
+        console.log(res.data);
         this.setState({ itemsInMaint: res.data })
       })
   }
@@ -105,7 +121,7 @@ class Maintenance extends Component {
     return (
       <div className="inventoryContainer">
         <Container>
-        <Row>
+          <Row>
             <Col size='md-12'>
               <h2>Need to Fix, Clean, or Repair Gear?</h2>
               <Container>
@@ -123,49 +139,51 @@ class Maintenance extends Component {
           <Row>
             <Col size='md-12 sm-12'>
               {this.state.item ? (
-                <ReturnResults>
-                  <ReturnResultsItem key={this.state.item._id}>
+                <List>
+                  <ListItem key={this.state.item._id}>
                     <p>
                       <strong>
                         {this.state.item.name} ({this.state.item.category})
                       </strong>
                     </p>
-                    <p><strong>Serial Number:</strong> {this.state.item.serial_number}</p>
-                    <Row>
-                      <h6><strong>Return Comments:</strong></h6>
-                      {this.state.comments.map((comment, index) => {
-                        return (
-                          <ul>
-                            <li key={comment._id}>{comment.body}</li>
-                          </ul>
-                        )
-                      })}
-                    </Row>
-                    <Row>
-                      <h6><strong>Maintenance Comments:</strong></h6>
+                    <strong>Serial Number:</strong> {this.state.item.serial_number}
+                    <br />
+                    <strong>Item Condition:</strong> {this.state.item.condition}
+                    <br />
+                    <strong>Comments:</strong>
+                    <ul>
                       {this.state.maintenance_comments.map((mcomment, index) => {
                         return (
-                          <ul>
-                            <li key={mcomment._id}>{mcomment.body}</li>
-                          </ul>
+                          <li key={mcomment._id}>{mcomment.body}</li>
                         )
                       })}
-                    </Row>
-                    <label htmlFor='item-condition'>Update Item Condition:</label>
+                    </ul>
+                    <label className="update" htmlFor='item-condition'>Update Item Condition:</label>
                     <SelectCondition
-                      name={'itemCondition'}
-                      value={this.state.itemCondition}
+                      name={'thisItemCondition'}
+                      value={this.state.thisItemCondition}
                       handleChange={this.handleInputChange}
                     />
-                    <label htmlFor='maintenance-comment'>Add Maintenance Comment:</label>
                     <TextArea
                       value={this.state.maintenanceComment}
                       onChange={this.handleInputChange}
                       name={'maintenanceComment'}
+                      placeholder="Enter New Maintenance Comment Here..."
                     />
-                    <ReturnBtn onClick={() => { this.makeAvailable(this.state.item._id, this.state.itemCondition); this.addMaintComment(this.state.item._id, this.state.maintenanceComment); }} />
-                  </ReturnResultsItem>
-                </ReturnResults>
+                    <UpdateConditionBtn
+                      id={this.state.item._id}
+                      onClick={() => this.updateCondition(this.state.item._id, this.state.thisItemCondition)}
+                    />
+                    <AddMaintCommentBtn
+                      id={this.state.item._id}
+                      onClick={() => this.updateMaintComment(this.state.item._id, this.state.maintenanceComment)}
+                    />
+                    <MaintStatusBtn
+                      id={this.state.item._id}
+                      onClick={() => this.updateStatus(this.state.item._id)}
+                    />
+                  </ListItem>
+                </List>
               ) : (
                   <h5>Enter Serial Number Above to Display Specific Item Information Here</h5>
                 )}
@@ -180,12 +198,12 @@ class Maintenance extends Component {
                 <List>
                   {this.state.itemsInMaint.map((item, index) => (
                     <ListItem key={item._id}>
-                      <p><strong>{item.name}</strong></p>
+                      <p><strong>{item.name} ({item.category})</strong></p>
                       <strong>Serial Number:</strong> {item.serial_number}
                       <br />
                       <strong>Item Condition:</strong> {item.condition}
                       <br />
-                      <strong>Maintenance Comments:</strong>
+                      <strong>Comments:</strong>
                       <ul>
                         {item.maintenance_comments.map((cText, index) => {
                           return (
@@ -194,6 +212,12 @@ class Maintenance extends Component {
                         })}
                       </ul>
                       <br />
+                      <label htmlFor='item-condition'>Update Item Condition:</label>
+                      <SelectCondition
+                        name={'itemCondition' + index}
+                        value={this.state.itemCondition[index]}
+                        handleChange={this.handleInputChange}
+                      />
                       <TextArea
                         value={this.state.maintCommentIn[index]}
                         onChange={this.handleInputChange}
@@ -203,6 +227,10 @@ class Maintenance extends Component {
                       <MaintStatusBtn
                         id={item._id}
                         onClick={() => this.updateStatus(item._id)}
+                      />
+                      <UpdateConditionBtn
+                        id={item._id}
+                        onClick={() => this.updateCondition(item._id, this.state["itemCondition" + index])}
                       />
                       <AddMaintCommentBtn
                         id={item._id}
