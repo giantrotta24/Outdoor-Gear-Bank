@@ -19,7 +19,7 @@ const ItemSchema = new Schema({
         default: 'Available',
         enum: ['Available', 'Out for Rent', 'In Maintenance'],
         required: true,
-        description: "One of three potential statuses."
+        description: 'One of three potential statuses.'
     },
     serial_number: {
         type: String,
