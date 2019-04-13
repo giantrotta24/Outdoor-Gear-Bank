@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Card from '../Card';
 import axios from 'axios';
-import './sign-up-style.css';
 
 class SignUp extends Component {
     constructor() {
@@ -56,36 +55,36 @@ class SignUp extends Component {
     render() {
         return (
             <Card>
-                <div className="form-signup">
-                    <i className="fas fa-lock"></i>
-                    <div className="SignupForm" onKeyPress={this.onKeyPress}>
-                        <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
-                        <label className="sr-only" htmlFor="username">Username</label>
+                <div className='form-signup'>
+                    <i className='fas fa-lock'></i>
+                    <div className='SignupForm' onKeyPress={this.onKeyPress}>
+                        <h1 className='h3 mb-3 font-weight-normal'>Sign Up</h1>
+                        <label className='sr-only' htmlFor='username'>Username</label>
                         <input
-                            className="form-control mb-1"
-                            placeholder="Username"
-                            type="text"
-                            name="username"
+                            className='form-control mb-1'
+                            placeholder='Username'
+                            type='text'
+                            name='username'
                             value={this.state.username}
                             onChange={this.handleChange}
                             required
                             autoFocus
                         />
-                        <label className="sr-only" htmlFor="password">Password</label>
+                        <label className='sr-only' htmlFor='password'>Password</label>
                         <input
-                            className="form-control"
-                            placeholder="Password"
-                            type="password"
-                            name="password"
+                            className='form-control'
+                            placeholder='Password'
+                            type='password'
+                            name='password'
                             value={this.state.password}
                             onChange={this.handleChange}
                             required
                         />
 
                         <button
-                            className="btn btn-lg btn-primary btn-block mt-3"
+                            className='btn btn-lg btn-primary btn-block mt-3'
                             onClick={this.handleSubmit}
-                            type="submit"
+                            type='submit'
                         >Sign up</button>
 
                     </div>

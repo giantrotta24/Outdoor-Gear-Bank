@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Card from '../Card';
 import axios from 'axios';
-import './login-style.css';
 
 class LogIn extends Component {
     constructor() {

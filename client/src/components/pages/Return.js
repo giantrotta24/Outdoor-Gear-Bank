@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { Component } from 'react';
 import ReturnForm from '../ReturnForm';
 import ReturnResults from '../ReturnResults';
