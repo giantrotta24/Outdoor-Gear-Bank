@@ -115,7 +115,6 @@ class SelectCard extends Component {
                                         <div className='col'>
                                             <p className='item-title'><strong>Name: </strong>{item.name}</p>
                                             <p className='item-title'><strong>Serial: </strong>{item.serial_number}</p>
-                                            <p className='item-title'><strong>Comments: </strong>{item.comments}</p>
                                         </div>
                                         <div className='col' >
                                             {item.status === 'Available' ? (
