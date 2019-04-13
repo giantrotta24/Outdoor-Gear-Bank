@@ -157,7 +157,7 @@ class Maintenance extends Component {
                     <br />
                     <strong>Comments:</strong>
                     <ul>
-                      {this.state.maintenance_comments.map((mcomment, index) => {
+                      {this.state.maintenance_comments.forEach((mcomment, index) => {
                         return (
                           <li key={mcomment._id}>
                           {mcomment.body}
@@ -204,7 +204,7 @@ class Maintenance extends Component {
               <h2 className="mb-5">All Items In Maintenance</h2>
               {this.state.itemsInMaint.length ? (
                 <List>
-                  {this.state.itemsInMaint.map((item, index) => (
+                  {this.state.itemsInMaint.forEach((item, index) => (
                     <ListItem key={item._id}>
                       <p><strong>{item.name} ({item.category})</strong></p>
                       <strong>Serial Number:</strong> {item.serial_number}
@@ -213,7 +213,7 @@ class Maintenance extends Component {
                       <br />
                       <strong>Comments:</strong>
                       <ul>
-                        {item.maintenance_comments.map((cText, index) => {
+                        {item.maintenance_comments.forEach((cText, index) => {
                           return (
                             <li key={cText._id}>
                             {cText.body} 
