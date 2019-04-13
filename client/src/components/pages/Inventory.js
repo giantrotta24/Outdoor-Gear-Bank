@@ -28,6 +28,7 @@ class Inventory extends Component {
     if (this.state.itemName && this.state.category &&
       this.state.serialNumber && this.state.imageURL) {
       this.updateInv();
+      alert('Item Successfully added to Inventory!');
     }
     else {
       alert('All Input Fields Required');
