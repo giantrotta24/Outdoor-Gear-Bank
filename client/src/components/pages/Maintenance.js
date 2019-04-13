@@ -212,10 +212,10 @@ class Maintenance extends Component {
                       <strong>Item Condition:</strong> {item.condition}
                       <br />
                       <strong>Comments:</strong>
-                      <ul>
+                      <ul className='maintUL'>
                         {item.maintenance_comments.map((cText, index) => {
                           return (
-                            <li key={cText._id}>
+                            <li className='maintLI' key={cText._id}>
                             {cText.body} 
                             <DeleteCommentBtn onClick={() => this.deleteComment(cText._id)} /></li>
                           )
