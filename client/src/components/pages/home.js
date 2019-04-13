@@ -4,66 +4,70 @@ import './style.css';
 
 const Home = () => {
     return (
-        <div className="jumbotron ">
-            <div className="overlay"></div>
-            <div className="caption">
-                <h1 className="font-weight-bold">Outdoor Gear Bank</h1>
-            </div>
+        <div className='jumbotron '>
             <Particles
-                height="500px"
+                height='600px'
                 params={{
-                    "particles": {
-                        "number": {
-                            "value": 200,
-                            "density": {
-                                "enable": false
+                    'particles': {
+                        'number': {
+                            'value': 200,
+                            'density': {
+                                'enable': false
                             }
                         },
-                        "size": {
-                            "value": 4,
-                            "random": true,
-                            "anim": {
-                                "speed": 4,
-                                "size_min": 0.3
+                        'size': {
+                            'value': 4,
+                            'random': true,
+                            'anim': {
+                                'speed': 4,
+                                'size_min': 0.3
                             }
                         },
-                        "line_linked": {
-                            "enable": false
+                        'line_linked': {
+                            'enable': false
                         },
-                        "move": {
-                            "random": true,
-                            "speed": 1,
-                            "direction": "top",
-                            "out_mode": "out"
+                        'move': {
+                            'random': true,
+                            'speed': 1,
+                            'direction': 'top',
+                            'out_mode': 'out'
                         }
                     },
-                    "interactivity": {
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "bubble"
+                    'interactivity': {
+                        'events': {
+                            'onhover': {
+                                'enable': true,
+                                'mode': 'bubble'
                             },
-                            "onclick": {
-                                "enable": true,
-                                "mode": "repulse"
+                            'onclick': {
+                                'enable': true,
+                                'mode': 'repulse'
                             }
                         },
-                        "modes": {
-                            "bubble": {
-                                "distance": 250,
-                                "duration": 2,
-                                "size": 0,
-                                "opacity": 5
+                        'modes': {
+                            'bubble': {
+                                'distance': 250,
+                                'duration': 2,
+                                'size': 0,
+                                'opacity': 5
                             },
-                            "repulse": {
-                                "distance": 400,
-                                "duration": 4
+                            'repulse': {
+                                'distance': 400,
+                                'duration': 4
                             }
                         }
                     }
                 }} />
+            <div className='caption'>
+
+                <h1 className='page-title' id='caption'><i id='header-mount' className='fas fa-mountain'></i>Outdoor Gear Bank</h1>
+
+                <h5 className='sub-header' id='caption'>A simple way to manage your rental gear.</h5>
+
+            </div>
+            <div className='overlay'></div>
         </div>
-    )
+    );
 }
 
 export default Home
