@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// import ReturnForm from '../ReturnForm';
-import './checkout-form-style.css';
 
 const SearchButton = ({ renderUserSearch }) => {
     return (

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import SelectCard from '../SelectCard';
 import API from '../../utils/API';
 
@@ -25,7 +25,7 @@ class Rent extends Component {
   render() {
 
     return (
-      <div className="rentContainer">
+      <div className='rentContainer'>
         <SelectCard
           options={this.state.categories.map(item => ({
             label: item,

@@ -14,7 +14,7 @@ class RemoveBtn extends Component {
 
         const itemId = itemData.id;
 
-        API.updateItem(itemId, { "status" : "Available" }).then(this.props.updateInventory(itemId));
+        API.updateItem(itemId, { 'status' : 'Available' }).then(this.props.updateInventory(itemId));
     }
 
     render() {

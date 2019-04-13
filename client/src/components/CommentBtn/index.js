@@ -1,8 +1,6 @@
 import React from 'react';
-import './style.css';
 
 // Add Comment button for Comment and Maintenance Comments
-
 export const CommentBtn = props => {
   return (
     <div>

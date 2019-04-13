@@ -94,10 +94,10 @@ class SelectCard extends Component {
         const { selectedOption } = this.state;
         const props = this.props
         return (
-            <div className="rent-container">
+            <div className='rent-container'>
                 <h3>Search Department</h3>
                 <Select
-                    className="form-control"
+                    className='form-control'
                     onChange={this.handleChange}
                     value={selectedOption}
                     options={props.options}
@@ -145,10 +145,10 @@ class SelectCard extends Component {
                     <div>
                         <Modal>
                             {this.state.cart.length ? (
-                                <div className="cart-body">
+                                <div className='cart-body'>
                                     {this.state.cart.map((x, key) => (
-                                        <div className="small-cart-body" key={key}>
-                                            <div className="row">
+                                        <div className='small-cart-body' key={key}>
+                                            <div className='row'>
                                                 <div className='col'>
                                                     <p className='font-italic cart-title'>{x.name}</p>
                                                     <img src={x.image} alt={`${x.name} thumbnail`} className='cart-image' />
@@ -160,7 +160,7 @@ class SelectCard extends Component {
                                             </div>
                                         </div>
                                     ))}
-                                    <Link to="/checkout" className="btn btn-success checkout-button">
+                                    <Link to='/checkout' className='btn btn-success checkout-button'>
                                         Checkout
                                 </Link>
                                 </div>
