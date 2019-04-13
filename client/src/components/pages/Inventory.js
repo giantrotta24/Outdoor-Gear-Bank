@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
+import { Container, Row, Col } from '../Grid';
 import API from '../../utils/API';
 
 class Inventory extends Component {
@@ -82,10 +83,8 @@ class Inventory extends Component {
 
   render() {
     return (
-      <div className='container bg-light border mt-5'>
-        <div className='row'>
-          <div className='col-md-2'></div>
-          <div className='col-md-8'>
+      <div className='invContainer'>
+        <Container>
             <h3 className='mt-5 mb-1'>Add Inventory</h3>
             <form>
               <div className='form-group'>
@@ -130,9 +129,7 @@ class Inventory extends Component {
                 Submit
                 </FormBtn>
             </form>
-          </div>
-        </div>
-        <div className='col-md-2'></div>
+        </Container>
       </div>
     )
   }
