@@ -63,7 +63,10 @@ class Maintenance extends Component {
     API.updateItem(itemID, body)
       .then(res => {
         if (res.status === 200) {
-          this.setState({ state: this.state })
+          this.setState({ 
+            state: this.state,
+            item: '' 
+          })
         }
       })
     this.findAllMaintenanceItems();
@@ -196,9 +199,9 @@ class Maintenance extends Component {
                 
                 <Row>
                   <Col size='md-12'>
-                    <h2 className='mb-5'>All Items In Maintenance</h2>
                     {this.state.itemsInMaint.length ? (
                       <List>
+                      <h2 className='mb-5'>All Items In Maintenance</h2>
                         {this.state.itemsInMaint.map((item, index) => (
                           <ListItem key={item._id}>
                             <p><strong>{item.name} ({item.category})</strong></p>
@@ -254,63 +257,6 @@ class Maintenance extends Component {
             </Col>
           </Row>
         </Container>
-        {/* <Container>
-          <Row>
-            <Col size='md-12'>
-              <h2 className='mb-5'>All Items In Maintenance</h2>
-              {this.state.itemsInMaint.length ? (
-                <List>
-                  {this.state.itemsInMaint.map((item, index) => (
-                    <ListItem key={item._id}>
-                      <p><strong>{item.name} ({item.category})</strong></p>
-                      <strong>Serial Number:</strong> {item.serial_number}
-                      <br />
-                      <strong>Item Condition:</strong> {item.condition}
-                      <br />
-                      <strong>Comments:</strong>
-                      <ul className='maintUL'>
-                        {item.maintenance_comments.map((cText, index) => {
-                          return (
-                            <li className='maintLI' key={cText._id}>
-                            {cText.body} 
-                            <DeleteCommentBtn onClick={() => this.deleteComment(cText._id)} /></li>
-                          )
-                        })}
-                      </ul>
-                      <br />
-                      <label htmlFor='item-condition'>Update Item Condition:</label>
-                      <SelectCondition
-                        name={'itemCondition' + index}
-                        value={this.state.itemCondition[index]}
-                        handleChange={this.handleInputChange}
-                      />
-                      <TextArea
-                        value={this.state.maintCommentIn[index]}
-                        onChange={this.handleInputChange}
-                        name={'maintCommentIn' + index}
-                        placeholder='Enter New Maintenance Comment Here...'
-                      />
-                      <MaintStatusBtn
-                        id={item._id}
-                        onClick={() => this.updateStatus(item._id)}
-                      />
-                      <UpdateConditionBtn
-                        id={item._id}
-                        onClick={() => this.updateCondition(item._id, this.state['itemCondition' + index])}
-                      />
-                      <AddMaintCommentBtn
-                        id={item._id}
-                        onClick={() => this.updateMaintComment(item._id, this.state['maintCommentIn' + index])}
-                      />
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                  <h3>No Items Currently in Maintenance</h3>
-                )}
-            </Col>
-          </Row>
-        </Container> */}
       </div>
     );
   }
