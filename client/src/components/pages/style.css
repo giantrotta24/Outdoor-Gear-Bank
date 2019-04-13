@@ -170,7 +170,7 @@
 
 .invContainer {
     width: 980px;
-    margin-top: 125px;
+    margin-top: 75px;
     margin-bottom: 50px;
     text-align: center;
     height: auto;
@@ -181,13 +181,13 @@
     display: flex;
 }
 
-ul {
+.maintUL {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+.maintLI {
     border: 1px solid black;
     padding: 5px 35px 5px 35px;
 }
