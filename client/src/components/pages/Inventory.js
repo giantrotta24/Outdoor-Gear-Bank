@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
 import { Container, Row, Col } from '../Grid';
 import API from '../../utils/API';
+import Alert from 'react-bootstrap/Alert'
 
 class Inventory extends Component {
 
@@ -116,7 +117,7 @@ class Inventory extends Component {
                 />
               </div>
               <div className='form-group'>
-                <label htmlFor='item-imageURL'>Item Imagae URL (required):</label>
+                <label htmlFor='item-imageURL'>Item Image URL (required):</label>
                 <FormInput
                   value={this.state.imageURL}
                   onChange={this.handleInputChange}
