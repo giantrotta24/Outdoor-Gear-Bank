@@ -109,14 +109,16 @@ class Return extends Component {
   };
 
   deleteItemFromCustomer = itemID => {
+    console.log(this.state.customerID);
+    console.log(itemID);
     API.deleteItemFromCustomer(this.state.customerID, itemID)
       .then(res => this.loadItems())
       .catch(err => console.log(err))
   };
 
-  putInMaintenance = (id, condition) => {
+  putInMaintenance = (itemID, condition) => {
     API.updateItem(
-      id,
+      itemID,
       {
         status: 'In Maintenance',
         condition: condition
@@ -125,9 +127,9 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  makeAvailable = (id, condition) => {
+  makeAvailable = (itemID, condition) => {
     API.updateItem(
-      id,
+      itemID,
       {
         status: 'Available',
         condition: condition
@@ -136,9 +138,9 @@ class Return extends Component {
       .catch(err => console.log(err))
   };
 
-  addComment = (itemID, comment) => {
-    API.addComment(
-      itemID,
+  addComment = (id, comment) => {
+    API.addMaintComment(
+      id,
       {
         body: comment
       }

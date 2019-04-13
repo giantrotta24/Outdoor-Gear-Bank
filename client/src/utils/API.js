@@ -14,6 +14,9 @@ export default {
     findItemByID: function(id) {
         return axios.get('/api/items/' + id);
     },
+    findMaintenanceItems: function() {
+        return axios.get('/api/maintenance');
+    },
     addItem: function(itemData) {
         return axios.post('/api/items', itemData);
     },
@@ -23,8 +26,8 @@ export default {
     checkout: function() {
         return axios.post('/api/checkout');
     },
-    updateItem: function(id, body) {
-        return axios.post('/api/items/' + id, body);
+    updateItem: function(itemID, itemData) {
+        return axios.post('/api/items/' + itemID, itemData);
     },
     deleteItem: function() {
         return axios.delete('/api/items/:id');
@@ -40,10 +43,13 @@ export default {
 
     // MAINTENANCE COMMENTS
     addMaintComment: function(id,comment) {
-        return axios.post('/api/' + id + '/maintcomments');
+        return axios.post('/api/' + id + '/maintcomments', comment);
     },
     findItemWithMaintComments: function(id) {
         return axios.get('/api/' + id + '/maintcomments');
+    },
+    deleteMaintComment: function(id) {
+        return axios.delete('/api/maintcomments' + id);
     },
 
     // CUSTOMER
@@ -69,6 +75,6 @@ export default {
         return axios.get('/api/email/' + email + '/items');
     },
     deleteItemFromCustomer: function(customerID, itemID) {
-        return axios.delete('/api/' + customerID + '/' + itemID);
+        return axios.delete('/api/delete/' + customerID + '/' + itemID);
     }
 }

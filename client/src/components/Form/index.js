@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import './style.css';
+import './form.css';
 
 export const Input = props => {
   return (
@@ -13,7 +13,7 @@ export const Input = props => {
 export const TextArea = props => {
   return (
     <div className='form-group'>
-      <textarea className='form-control' rows='3' {...props}>
+      <textarea className='form-control' rows='2' {...props}>
       </textarea>
     </div>
   );
@@ -47,19 +47,62 @@ export const SelectCondition = props => {
 export const FormInput = props => {
   return ( 
     <div>
-          <input className='form-control'  {...props}
-          />      
-    </div>    
-    
+      <input className='form-control'  {...props}
+      />
+    </div>
+
   )
 };
 
 export const FormSelect = props => {
   return ( 
     <div>
-          <Select 
-            className='form-control'
-            {...props}/>
+      <Select
+        className='form-control'
+        {...props} />
     </div>
   )
-};
+}
+
+export function AddMaintCommentBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "left", marginBottom: 10 }} className="btn btn-info mr-2">
+        {props.children}
+        Add Comment
+      </button>
+    </div>
+  );
+}
+
+export function MaintCommentInput(props) {
+  return (
+    <div>
+      <input className="form-control" {...props}
+      />
+    </div>
+
+  )
+}
+
+export function MaintStatusBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+        {props.children}
+        Change Status to Available
+      </button>
+    </div>
+  );
+}
+
+export function UpdateConditionBtn(props) {
+  return (
+    <div>
+      <button {...props} style={{ float: "left", marginBottom: 10 }} className="condition btn btn-primary">
+        {props.children}
+        Update Condition
+      </button>
+    </div>
+  );
+}

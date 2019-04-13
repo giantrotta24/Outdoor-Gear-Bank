@@ -14,7 +14,10 @@ module.exports = app => {
     app.post('/api/checkout', Controller.checkout);
     app.post('/api/items/:id', Controller.updateItem);
     app.delete('/api/items/:id', Controller.deleteItem);
-    
+
+    // Route to add a maintenance comment
+    app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
+
     // COMMENT routes
     app.post('/api/comments/:itemID', Controller.addComment);
     app.get('/api/comments/:itemID', Controller.findItemWithComments);
@@ -22,6 +25,9 @@ module.exports = app => {
     // MAINTENANCE COMMENT routes
     app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
+    // Route to get a specific item with all it's maintenance comments
+    app.get('/api/maintenance', Controller.findItemsInMaintenance);
+    app.delete('/api/maintcomments/:maintcommentID', Controller.deleteMaintComment);
 
     // CUSTOMER routes
     app.post('/api/customers', Controller.addCustomer);
@@ -31,6 +37,6 @@ module.exports = app => {
     app.get('/api/membernumber/:membernumber/items', Controller.findCustomerByMemberNumber);
     app.get('/api/email/:email/items', Controller.findCustomerByEmail);
     app.post('/api/:customerID/:itemID', Controller.addItemToCustomer);
-    app.delete('/api/:customerID/:itemID', Controller.deleteItemFromCustomer);
+    app.delete('/api/delete/:customerID/:itemID', Controller.deleteItemFromCustomer);
 }
 
