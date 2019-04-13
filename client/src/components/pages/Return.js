@@ -189,7 +189,7 @@ class Return extends Component {
               {this.state.items.length ? (
                 <ReturnResults>
                   <h3>Items Rented Out By {this.state.customer}</h3>
-                  {this.state.items.forEach((item, index) => {
+                  {this.state.items.map((item, index) => {
                     return (
                       <ReturnResultsItem key={item._id}>
                         <p>
