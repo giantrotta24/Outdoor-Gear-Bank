@@ -168,11 +168,11 @@
     margin-left: 5px; 
 }
 
-#invContainer {
+/* #invContainer {
     margin-top: 225px;
-}
+} */
 
-/* .invContainer {
+.invContainer {
     width: 980px;
     margin-top: 125px;
     margin-bottom: 50px;
@@ -183,8 +183,7 @@
     justify-content: space-around;
     overflow: auto;
     display: flex;
-} */
-
+}
 
 ul {
     list-style-type: none;
