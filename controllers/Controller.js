@@ -125,9 +125,14 @@ module.exports = {
         });
     },
     deleteMaintComment: (req, res) => {
+        console.log('hitting route');
         db.MaintenanceComment.findById({ _id: req.params.maintcommentID})
-            .then(dbMaintenanceComment => dbMaintenanceComment.remove())
-            .then(dbMaintenanceComment => res.json(dbMaintenanceComment))
+            .then(dbMaintenanceComment => dbMaintenanceComment.remove().then((dbMaintenanceComment) => {
+                return db.Item.findOneAndUpdate(
+                    { _id: req.params.itemID },
+                    { $pull: { maintenance_comments: req.params.maintcommentID }}
+                );
+            }))
             .catch(err => res.status(422).json(err));
     },
 
