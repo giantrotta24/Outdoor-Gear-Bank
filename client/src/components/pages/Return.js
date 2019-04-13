@@ -219,7 +219,9 @@ class Return extends Component {
                   })}
                 </ReturnResults>
               ) : (
-                  <h3>No Results to Display</h3>
+                <h2>
+                  {/* No Results to Display */}
+                </h2>
                 )}
             </Col>
           </Row>

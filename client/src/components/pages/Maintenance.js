@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { List, ListItem } from "../List";
+import React, { Component } from 'react';
+import { List, ListItem } from '../List';
 import { Container, Row, Col } from '../Grid';
-import { MaintStatusBtn, AddMaintCommentBtn, UpdateConditionBtn, TextArea, SelectCondition } from "../Form";
+import { MaintStatusBtn, AddMaintCommentBtn, UpdateConditionBtn, TextArea, SelectCondition } from '../Form';
 import API from '../../utils/API';
 import MaintenanceForm from '../MaintenanceForm';
 import DeleteCommentBtn from '../DeleteCommentBtn';
@@ -58,7 +58,7 @@ class Maintenance extends Component {
 
   updateStatus = (itemID) => {
     let body = {
-      status: "Available"
+      status: 'Available'
     }
     API.updateItem(itemID, body)
       .then(res => {
@@ -96,12 +96,12 @@ class Maintenance extends Component {
           this.findItemWithMaintComments();
           this.findAllMaintenanceItems();
         }
-        else console.log("error: ", res.status);
+        else console.log('error: ', res.status);
       })
   }
 
   deleteComment = (commentID) => {
-    console.log("deleting comment:" + commentID);
+    console.log('deleting comment:' + commentID);
   }
 
   componentDidMount() {
@@ -124,7 +124,7 @@ class Maintenance extends Component {
 
   render() {
     return (
-      <div className="inventoryContainer">
+      <div className='inventoryContainer'>
         <Container>
           <Row>
             <Col size='md-12'>
@@ -156,17 +156,17 @@ class Maintenance extends Component {
                     <strong>Item Condition:</strong> {this.state.item.condition}
                     <br />
                     <strong>Comments:</strong>
-                    <ul>
+                    <ul className='maintUL'>
                       {this.state.maintenance_comments.map((mcomment, index) => {
                         return (
-                          <li key={mcomment._id}>
+                          <li className='maintLI' key={mcomment._id}>
                           {mcomment.body}
                           <DeleteCommentBtn onClick={() => this.deleteComment(mcomment._id)} />
                           </li>
                         )
                       })}
                     </ul>
-                    <label className="update" htmlFor='item-condition'>Update Item Condition:</label>
+                    <label className='update' htmlFor='item-condition'>Update Item Condition:</label>
                     <SelectCondition
                       name={'thisItemCondition'}
                       value={this.state.thisItemCondition}
@@ -176,7 +176,7 @@ class Maintenance extends Component {
                       value={this.state.maintenanceComment}
                       onChange={this.handleInputChange}
                       name={'maintenanceComment'}
-                      placeholder="Enter New Maintenance Comment Here..."
+                      placeholder='Enter New Maintenance Comment Here...'
                     />
                     <UpdateConditionBtn
                       id={this.state.item._id}
@@ -193,15 +193,71 @@ class Maintenance extends Component {
                   </ListItem>
                 </List>
               ) : (
-                  <h5>Enter Serial Number Above to Display Specific Item Information Here</h5>
+                
+                <Row>
+                  <Col size='md-12'>
+                    <h2 className='mb-5'>All Items In Maintenance</h2>
+                    {this.state.itemsInMaint.length ? (
+                      <List>
+                        {this.state.itemsInMaint.map((item, index) => (
+                          <ListItem key={item._id}>
+                            <p><strong>{item.name} ({item.category})</strong></p>
+                            <strong>Serial Number:</strong> {item.serial_number}
+                            <br />
+                            <strong>Item Condition:</strong> {item.condition}
+                            <br />
+                            <strong>Comments:</strong>
+                            <ul className='maintUL'>
+                              {item.maintenance_comments.map((cText, index) => {
+                                return (
+                                  <li className='maintLI' key={cText._id}>
+                                  {cText.body} 
+                                  <DeleteCommentBtn onClick={() => this.deleteComment(cText._id)} /></li>
+                                )
+                              })}
+                            </ul>
+                            <br />
+                            <label htmlFor='item-condition'>Update Item Condition:</label>
+                            <SelectCondition
+                              name={'itemCondition' + index}
+                              value={this.state.itemCondition[index]}
+                              handleChange={this.handleInputChange}
+                            />
+                            <TextArea
+                              value={this.state.maintCommentIn[index]}
+                              onChange={this.handleInputChange}
+                              name={'maintCommentIn' + index}
+                              placeholder='Enter New Maintenance Comment Here...'
+                            />
+                            <MaintStatusBtn
+                              id={item._id}
+                              onClick={() => this.updateStatus(item._id)}
+                            />
+                            <UpdateConditionBtn
+                              id={item._id}
+                              onClick={() => this.updateCondition(item._id, this.state['itemCondition' + index])}
+                            />
+                            <AddMaintCommentBtn
+                              id={item._id}
+                              onClick={() => this.updateMaintComment(item._id, this.state['maintCommentIn' + index])}
+                            />
+                          </ListItem>
+                        ))}
+                      </List>
+                    ) : (
+                        <h3>No Items Currently in Maintenance</h3>
+                      )}
+                  </Col>
+                </Row>
+              
                 )}
             </Col>
           </Row>
         </Container>
-        <Container>
+        {/* <Container>
           <Row>
             <Col size='md-12'>
-              <h2 className="mb-5">All Items In Maintenance</h2>
+              <h2 className='mb-5'>All Items In Maintenance</h2>
               {this.state.itemsInMaint.length ? (
                 <List>
                   {this.state.itemsInMaint.map((item, index) => (
@@ -231,8 +287,8 @@ class Maintenance extends Component {
                       <TextArea
                         value={this.state.maintCommentIn[index]}
                         onChange={this.handleInputChange}
-                        name={"maintCommentIn" + index}
-                        placeholder="Enter New Maintenance Comment Here..."
+                        name={'maintCommentIn' + index}
+                        placeholder='Enter New Maintenance Comment Here...'
                       />
                       <MaintStatusBtn
                         id={item._id}
@@ -240,11 +296,11 @@ class Maintenance extends Component {
                       />
                       <UpdateConditionBtn
                         id={item._id}
-                        onClick={() => this.updateCondition(item._id, this.state["itemCondition" + index])}
+                        onClick={() => this.updateCondition(item._id, this.state['itemCondition' + index])}
                       />
                       <AddMaintCommentBtn
                         id={item._id}
-                        onClick={() => this.updateMaintComment(item._id, this.state["maintCommentIn" + index])}
+                        onClick={() => this.updateMaintComment(item._id, this.state['maintCommentIn' + index])}
                       />
                     </ListItem>
                   ))}
@@ -254,7 +310,7 @@ class Maintenance extends Component {
                 )}
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </div>
     );
   }
