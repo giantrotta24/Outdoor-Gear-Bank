@@ -104,7 +104,7 @@ class Return extends Component {
           });
         })
         .catch(err => this.setState({ error: err.message }));
-    }
+    } 
   };
 
   deleteItemFromCustomer = itemID => {
@@ -189,7 +189,7 @@ class Return extends Component {
               {this.state.items.length ? (
                 <ReturnResults>
                   <h3>Items Rented Out By {this.state.customer}</h3>
-                  {this.state.items.map((item, index) => {
+                  {this.state.items.forEach((item, index) => {
                     return (
                       <ReturnResultsItem key={item._id}>
                         <p>
