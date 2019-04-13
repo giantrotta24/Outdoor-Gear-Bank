@@ -127,15 +127,14 @@ module.exports = {
     deleteMaintComment: (req, res) => {
         console.log('hitting route');
         db.MaintenanceComment.findById({ _id: req.params.maintcommentID})
-            .then(dbMaintenanceComment => dbMaintenanceComment.remove().then((dbMaintenanceComment) => {
+            .then(dbMaintenanceComment => dbMaintenanceComment.remove().then(() => {
                 return db.Item.findOneAndUpdate(
                     { _id: req.params.itemID },
                     { $pull: { maintenance_comments: req.params.maintcommentID }}
-                );
+                ).then(_ => res.json(dbMaintenanceComment))
             }))
             .catch(err => res.status(422).json(err));
     },
-
     // CUSTOMERS
     addCustomer: (req, res) => {
         db.Customer.create(req.body)
