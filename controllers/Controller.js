@@ -120,9 +120,7 @@ module.exports = {
             );
         }).then(() => {
             res.json(maintComment);
-        }).catch((err) => {
-            console.log(err);
-        });
+        }).catch((err) => res.status(422).json(err));
     },
     deleteMaintComment: (req, res) => {
         console.log('hitting route');

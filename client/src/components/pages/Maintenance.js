@@ -93,25 +93,24 @@ class Maintenance extends Component {
       {
         body: newComment
       })
-      .then(res => 
-        {
-          if (this.state.item) {
-            this.findItemWithMaintComments();
-          }
-          this.findAllMaintenanceItems();
-        })
+      .then(res => {
+        if (this.state.item) {
+          this.findItemWithMaintComments();
+        }
+        this.findAllMaintenanceItems();
+      })
   }
 
   deleteComment = (commentID, itemID) => {
+    console.log(commentID)
     API.deleteMaintComment(commentID, itemID)
-      .then(res => 
-        {
-          if (this.state.item) {
-            this.findItemWithMaintComments();
-          } else {
+      .then(res => {
+        if (this.state.item) {
+          this.findItemWithMaintComments();
+        } else {
           this.findAllMaintenanceItems();
-          }
-        })
+        }
+      })
       .catch(err => console.log(err))
   }
 
@@ -172,7 +171,7 @@ class Maintenance extends Component {
                         return (
                           <li className='maintLI' key={mcomment._id}>
                             {mcomment.body}
-                            <DeleteCommentBtn onClick={() => this.deleteComment(mcomment._id, this.state.item._id)} />
+                            <DeleteCommentBtn onClick={() => this.oneItemDeleteComment(mcomment._id, this.state.item._id)} />
                           </li>
                         )
                       })}

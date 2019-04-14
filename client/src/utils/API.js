@@ -33,13 +33,13 @@ export default {
         return axios.delete('/api/items/:id');
     },
 
-    // COMMENTS
-    addComment: function(itemID, comment) {
-        return axios.post('/api/comments/' + itemID, comment);
-    },
-    findItemWithComments: function(itemID) {
-        return axios.get('/api/comments/' + itemID);
-    },
+    // // COMMENTS
+    // addComment: function(itemID, comment) {
+    //     return axios.post('/api/comments/' + itemID, comment);
+    // },
+    // findItemWithComments: function(itemID) {
+    //     return axios.get('/api/comments/' + itemID);
+    // },
 
     // MAINTENANCE COMMENTS
     addMaintComment: function(id,comment) {

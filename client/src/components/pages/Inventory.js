@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
-import { Container, Row, Col } from '../Grid';
+import { Container } from '../Grid';
 import API from '../../utils/API';
-import Alert from 'react-bootstrap/Alert'
 
 class Inventory extends Component {
 
