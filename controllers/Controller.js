@@ -124,10 +124,22 @@ module.exports = {
             console.log(err);
         });
     },
+    // deleteMaintComment: (req, res) => {
+    //     console.log('request in delMaintComment= ', req.params)
+    //     db.MaintenanceComment.findById({ _id: req.params.maintcommentID})
+    //         .then(dbMaintenanceComment => dbMaintenanceComment.remove())
+    //         .then(dbMaintenanceComment => res.json(dbMaintenanceComment))
+    //         .catch(err => res.status(422).json(err));
+    // },
+
     deleteMaintComment: (req, res) => {
         db.MaintenanceComment.findById({ _id: req.params.maintcommentID})
-            .then(dbMaintenanceComment => dbMaintenanceComment.remove())
-            .then(dbMaintenanceComment => res.json(dbMaintenanceComment))
+            .then(dbMaintenanceComment => dbMaintenanceComment.remove().then((dbMaintenanceComment) => {
+                return db.Item.findOneAndUpdate(
+                    { _id: req.params.itemID },
+                    { $pull: { maintenance_comments: req.params.maintcommentID }}
+                ).then(_ => res.json(dbMaintenanceComment));
+            }))
             .catch(err => res.status(422).json(err));
     },
 

@@ -102,6 +102,12 @@ class Maintenance extends Component {
 
   deleteComment = (commentID) => {
     console.log("deleting comment:" + commentID);
+    API.deleteMaintComment(commentID).then(res => {
+      if (res.status === 2000) {
+      alert('Maintenance Commnet Deleted!');
+      }
+      else console.log('error: ', res.status);
+    })
   }
 
   componentDidMount() {

@@ -49,6 +49,7 @@ export default {
         return axios.get('/api/' + id + '/maintcomments');
     },
     deleteMaintComment: function(id) {
+        console.log('Hitting del maint comments route');
         return axios.delete('/api/maintcomments' + id);
     },
 
