@@ -113,7 +113,8 @@ class Return extends Component {
       items: customer.items,
       customerID: customer._id,
       customer: customer.first_name + ' ' + customer.last_name,
-      customers: []
+      customers: [],
+      last_name: customer.last_name
     })
   }
 
@@ -265,7 +266,6 @@ class Return extends Component {
                 )}
             </Col>
           </Row>
-
         </Container>
       </div>
     )
