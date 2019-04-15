@@ -4,6 +4,7 @@ import { Container, Row, Col } from '../Grid';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
 import ReturnForm from '../ReturnForm';
+import Notification from '../Notification';
 import API from '../../utils/API';
 
 class Checkout extends Component {
@@ -18,7 +19,10 @@ class Checkout extends Component {
         newCustomer: null,
         error: '',
         itemIds: [],
-        customerId: ''
+        customerId: '',
+        showNotification: false,
+        alert: '',
+        redirectTo: null,
     }
 
     componentDidMount() {
@@ -41,9 +45,22 @@ class Checkout extends Component {
             });
         });
         this.checkout();
-        alert('Thank you for using Outdoor Gear Bank');
-        this.reroute();
+        this.setState({
+            showNotification: true,
+            alert: 'Thank you for using Outdoor Gear Bank'
+        });
+        this.delayState();
     }
+
+    delayState = () => {
+        setTimeout(() => {
+            this.setState({
+                redirectTo: '/main'
+            });
+            this.reroute();
+        }, 2000);
+    }
+
 
     reroute = () => {
         let path = '/main';
@@ -224,6 +241,11 @@ class Checkout extends Component {
                                         </li>
                                     )
                                 })}
+                                {this.state.showNotification &&
+                                    <Notification>
+                                        {this.state.alert}
+                                    </Notification>
+                                }
                             </ul>
                         </Col>
                     ) : (
