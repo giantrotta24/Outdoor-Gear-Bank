@@ -170,7 +170,6 @@ class Checkout extends Component {
             this.setState({
                 customers: res.data,
                 customer: res.data,
-                customers: res.data,
                 customerId: res.data[0]._id
             });
             this.processFunction();
