@@ -15,13 +15,6 @@ module.exports = app => {
     app.post('/api/items/:id', Controller.updateItem);
     app.delete('/api/items/:id', Controller.deleteItem);
 
-    // Route to add a maintenance comment
-    app.post('/api/:itemID/maintcomments', Controller.addMaintComment);
-
-    // COMMENT routes
-    app.post('/api/comments/:itemID', Controller.addComment);
-    app.get('/api/comments/:itemID', Controller.findItemWithComments);
-
     // MAINTENANCE COMMENT routes
     app.get('/api/:itemID/maintcomments', Controller.findItemWithMaintComments);
     app.post('/api/:itemID/maintcomments', Controller.addMaintComment);

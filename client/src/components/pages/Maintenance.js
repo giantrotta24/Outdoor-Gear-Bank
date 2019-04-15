@@ -52,8 +52,6 @@ class Maintenance extends Component {
           maintenance_comments: res.data[0].maintenance_comments,
           error: '',
         });
-        console.log(this.state.item);
-        console.log(this.state.maintenance_comments);
       })
       .catch(err => this.setState({ error: err.message }));
   }
@@ -102,7 +100,6 @@ class Maintenance extends Component {
   }
 
   deleteComment = (commentID, itemID) => {
-    console.log(commentID)
     API.deleteMaintComment(commentID, itemID)
       .then(res => {
         this.findAllMaintenanceItems();
@@ -117,7 +114,6 @@ class Maintenance extends Component {
     this.setState({
       items: res.data,
     });
-    console.log(this.state.items);
   });
   this.findAllMaintenanceItems();
 }
@@ -125,7 +121,6 @@ class Maintenance extends Component {
 findAllMaintenanceItems() {
   API.findMaintenanceItems()
     .then(res => {
-      console.log(res.data);
       this.setState({ itemsInMaint: res.data })
     })
 }

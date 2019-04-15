@@ -118,8 +118,6 @@ class Return extends Component {
   }
 
   deleteItemFromCustomer = itemID => {
-    console.log(this.state.customerID);
-    console.log(itemID);
     API.deleteItemFromCustomer(this.state.customerID, itemID)
       .then(res => this.loadItems())
       .catch(err => console.log(err))
