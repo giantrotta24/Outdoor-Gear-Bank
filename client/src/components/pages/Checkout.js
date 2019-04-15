@@ -22,7 +22,6 @@ class Checkout extends Component {
         customerId: '',
         showNotification: false,
         alert: '',
-        redirectTo: null,
     }
 
     componentDidMount() {
@@ -54,10 +53,13 @@ class Checkout extends Component {
 
     delayState = () => {
         setTimeout(() => {
-            this.setState({
-                redirectTo: '/main'
-            });
+            this.reroute();
         }, 2000);
+    }
+
+    reroute = () => {
+        let path = '/main';
+        this.props.history.push(path);
     }
 
     checkout = () => {
@@ -167,7 +169,6 @@ class Checkout extends Component {
 
     render() {
         return (
-
             <div className='checkout-container'>
                 <Container>
                     <Row>
