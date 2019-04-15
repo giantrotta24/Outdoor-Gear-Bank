@@ -14,6 +14,7 @@ export const TextArea = props => {
   return (
     <div className='form-group'>
       <textarea className='form-control' rows='2' {...props}>
+      {props.children}
       </textarea>
     </div>
   );

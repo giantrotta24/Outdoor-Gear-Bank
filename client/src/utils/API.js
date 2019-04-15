@@ -48,9 +48,8 @@ export default {
     findItemWithMaintComments: function(id) {
         return axios.get('/api/' + id + '/maintcomments');
     },
-    deleteMaintComment: function(id) {
-        console.log('Hitting del maint comments route');
-        return axios.delete('/api/maintcomments' + id);
+    deleteMaintComment: function(commentId,itemId) {
+        return axios.delete('/api/maintcomments/' + commentId + '/' +  itemId);
     },
 
     // CUSTOMER

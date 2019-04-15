@@ -22,7 +22,9 @@ class Maintenance extends Component {
     comment_text: [],
     maintCommentIn: [],
     maintCommentItem: '',
-    state: ''
+    maintenanceComment: '',
+    textin: 'textin',
+    index: 0
   };
 
   handleInputChange = event => {
@@ -30,6 +32,7 @@ class Maintenance extends Component {
     this.setState({
       [name]: value
     })
+    console.log('maintCommentIn= ', this.state.maintCommentIn);
   };
 
   handleFormSubmit = event => {
@@ -38,7 +41,12 @@ class Maintenance extends Component {
   };
 
   findItemWithMaintComments() {
+    // API.findItemWithMaintComments(this.state.serial_number)
+    console.log('itemID= ', this.state.item._id);
+    console.log('serial_number= ', this.state.serial_number);
+
     API.findItemWithMaintComments(this.state.serial_number)
+
       .then(res => {
         if (res.data.status === 'error') {
           throw new Error(res.data.message);
@@ -84,27 +92,35 @@ class Maintenance extends Component {
   }
 
   updateMaintComment = (itemID, newComment) => {
+    console.log('itemID= ', itemID, 'comment= ',newComment);
+    console.log('maintenanceComment top update=', this.state.maintenanceComment);
     API.addMaintComment(itemID,
       {
         body: newComment
       })
       .then(res => {
         if (res.status === 200) {
+          console.log('maintenanceComment before state change= ', this.state.maintenanceComment)
           this.setState({
-            maintCommentIn: ''
+            maintenanceComment: ''
+            // maintCommentIn: ''
           });
-          this.findItemWithMaintComments();
+          console.log('maintenanceComment after state change= ', this.state.maintenanceComment)
+          this.setState({ state: this.state });
+          
+          this.findItemWithMaintComments(itemID);
           this.findAllMaintenanceItems();
         }
         else console.log("error: ", res.status);
       })
   }
 
-  deleteComment = (commentID) => {
-    console.log("deleting comment:" + commentID);
-    API.deleteMaintComment(commentID).then(res => {
-      if (res.status === 2000) {
+  deleteComment = (commentID,itemID) => {
+    console.log("deleting comment:" + commentID, 'item id= ',itemID);
+    API.deleteMaintComment(commentID,itemID).then(res => {
+      if (res.status === 200) {
       alert('Maintenance Commnet Deleted!');
+      this.setState({ state: this.state });
       }
       else console.log('error: ', res.status);
     })
@@ -164,10 +180,12 @@ class Maintenance extends Component {
                     <strong>Comments:</strong>
                     <ul>
                       {this.state.maintenance_comments.map((mcomment, index) => {
+                      
+
                         return (
                           <li key={mcomment._id}>
                           {mcomment.body}
-                          <DeleteCommentBtn onClick={() => this.deleteComment(mcomment._id)} />
+                          <DeleteCommentBtn onClick={() => this.deleteComment(mcomment._id,)} />
                           </li>
                         )
                       })}
@@ -183,6 +201,7 @@ class Maintenance extends Component {
                       onChange={this.handleInputChange}
                       name={'maintenanceComment'}
                       placeholder="Enter New Maintenance Comment Here..."
+                      
                     />
                     <UpdateConditionBtn
                       id={this.state.item._id}
@@ -211,6 +230,8 @@ class Maintenance extends Component {
               {this.state.itemsInMaint.length ? (
                 <List>
                   {this.state.itemsInMaint.map((item, index) => (
+
+                    
                     <ListItem key={item._id}>
                       <p><strong>{item.name} ({item.category})</strong></p>
                       <strong>Serial Number:</strong> {item.serial_number}
@@ -223,7 +244,7 @@ class Maintenance extends Component {
                           return (
                             <li className='maintLI' key={cText._id}>
                             {cText.body} 
-                            <DeleteCommentBtn onClick={() => this.deleteComment(cText._id)} /></li>
+                            <DeleteCommentBtn onClick={() => this.deleteComment(cText._id,item._id)} /></li>
                           )
                         })}
                       </ul>
