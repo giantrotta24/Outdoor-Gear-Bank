@@ -4,6 +4,7 @@ import { Container, Row, Col } from '../Grid';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
 import ReturnForm from '../ReturnForm';
+import Notification from '../Notification';
 import API from '../../utils/API';
 
 class Checkout extends Component {
@@ -18,7 +19,10 @@ class Checkout extends Component {
         newCustomer: null,
         error: '',
         itemIds: [],
-        customerId: ''
+        customerId: '',
+        showNotification: false,
+        alert: '',
+        redirectTo: null,
     }
 
     componentDidMount() {
@@ -41,9 +45,22 @@ class Checkout extends Component {
             });
         });
         this.checkout();
-        alert('Thank you for using Outdoor Gear Bank');
-        this.reroute();
+        this.setState({
+            showNotification: true,
+            alert: 'Thank you for using Outdoor Gear Bank'
+        });
+        this.delayState();
     }
+
+    delayState = () => {
+        setTimeout(() => {
+            this.setState({
+                redirectTo: '/main'
+            });
+            this.reroute();
+        }, 2000);
+    }
+
 
     reroute = () => {
         let path = '/main';
@@ -68,8 +85,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.phone_number) {
@@ -84,8 +99,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.member_number) {
@@ -100,8 +113,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.email) {
@@ -116,25 +127,19 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         }
     };
 
     processFunction = () => {
-        console.log(this.state.customer);
         let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
-            console.log(this.state.checkoutCart);
             this.state.checkoutCart.forEach(item => {
                 itemIds.push(item._id);
             });
-            console.log(itemIds);
             this.setState({ itemIds: itemIds });
-            console.log(this.state.itemIds);
         });
     }
 
@@ -199,6 +204,11 @@ class Checkout extends Component {
                             </Container>
                         </Col>
                     </Row>
+                    {this.state.showNotification &&
+                        <Notification>
+                            {this.state.alert}
+                        </Notification>
+                    }
                     {this.state.customer.length ? (
                         <Col size='md-12 sm-12'>
                             <ul className='customerUL'>
