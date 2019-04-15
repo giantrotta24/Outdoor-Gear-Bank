@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     User.findOne({
         username: username
     }, (err, user) => {
-        if (err) { 
+        if (err) {
         } else if (user) {
             res.json({
                 error: `Sorry, already a user with the username: ${username}`

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Alert from '../Alert';
 import Card from '../Card';
 import axios from 'axios';
 
@@ -11,8 +10,6 @@ class LogIn extends Component {
             username: '',
             password: '',
             redirectTo: null,
-            showNotification: false,
-            alert: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -46,24 +43,9 @@ class LogIn extends Component {
                 });
             }
         }).catch(error => {
-
-            this.setState({
-                showNotification: true,
-                alert: 'Incorrect username or password'
-            });
-            this.delayState();
+            console.log(`login error: ${error}`);
         });
     }
-
-    delayState = () => {
-        setTimeout(() => {
-            this.setState({
-                showNotification: false,
-                alert: ''
-            })
-        }, 2000);
-    }
-
 
     render() {
         if (this.state.redirectTo) {
@@ -110,11 +92,6 @@ class LogIn extends Component {
                             </button>
                         </div>
                     </div>
-                    {this.state.showNotification &&
-                        <Alert>
-                            {this.state.alert}
-                        </Alert>
-                    }
                 </Card>
             );
         }

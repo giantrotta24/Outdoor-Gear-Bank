@@ -65,7 +65,14 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    // MAINTENANCE COMMENTS
+    // COMMENTS
+    findItemWithComments: (req, res) => {
+        db.Item.find({ _id: req.params.itemID }).populate('comments').then((dbItem) => {
+            res.json(dbItem);
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
     findItemsInMaintenance: (req, res) => {
         db.Item.find({ status: "In Maintenance" }).populate("maintenance_comments").then((dbItems) => {
             res.json(dbItems);
@@ -73,8 +80,27 @@ module.exports = {
             res.status(422).json(err);
         });
     },
+    // Add a comment to a specific item
+    addComment: (req, res) => {
+        db.Comment.create(req.body)
+            .then(function (dbComment) {
+                return db.Item.findOneAndUpdate(
+                    { _id: req.params.itemID },
+                    { $push: { comments: dbComment._id } },
+                    { new: true }
+                );
+            })
+            .then(function (dbItem) {
+                res.json(dbItem);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    },
+
+    // MAINTENANCE COMMENTS
     findItemWithMaintComments: (req, res) => {
-        db.Item.find({ serial_number: req.params.itemID, status: "In Maintenance" }).populate('maintenance_comments').then((dbItem) => {
+        db.Item.find({ serial_number: req.params.itemID, status: "In Maintenance" }).populate('maintenance_comments').populate('comments').then((dbItem) => {
             res.json(dbItem);
         }).catch((err) => {
             console.log(err);
@@ -83,6 +109,8 @@ module.exports = {
     addMaintComment: (req, res) => {
         let maintComment;
         req.body.item = req.params.itemID;
+        console.log('req.parms= ', req.params)
+        console.log('addMaintComment req.body= ', req.body);
         db.MaintenanceComment.create(req.body).then((dbMaintenanceComment) => {
             maintComment = dbMaintenanceComment;
             return db.Item.findOneAndUpdate(
@@ -92,18 +120,17 @@ module.exports = {
             );
         }).then(() => {
             res.json(maintComment);
-        }).catch((err) => res.status(422).json(err));
+        }).catch((err) => {
+            console.log(err);
+        });
     },
     deleteMaintComment: (req, res) => {
         db.MaintenanceComment.findById({ _id: req.params.maintcommentID})
-            .then(dbMaintenanceComment => dbMaintenanceComment.remove().then(() => {
-                return db.Item.findOneAndUpdate(
-                    { _id: req.params.itemID },
-                    { $pull: { maintenance_comments: req.params.maintcommentID }}
-                ).then(_ => res.json(dbMaintenanceComment))
-            }))
+            .then(dbMaintenanceComment => dbMaintenanceComment.remove())
+            .then(dbMaintenanceComment => res.json(dbMaintenanceComment))
             .catch(err => res.status(422).json(err));
     },
+
     // CUSTOMERS
     addCustomer: (req, res) => {
         db.Customer.create(req.body)
@@ -155,6 +182,9 @@ module.exports = {
         });
     },
     deleteItemFromCustomer: (req, res) => {
+        console.log('HIT ROUTE');
+        console.log(req.params.customerID);
+        console.log(req.params.itemID);
         db.Customer.findByIdAndUpdate({ _id: req.params.customerID },
             { $pull: { items: req.params.itemID } }
         )
