@@ -181,19 +181,43 @@
     display: flex;
 }
 
-.maintUL {
+.maintUL, .customerUL {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.maintLI {
+.customerUL {
+    text-align: left;
+}
+
+.customerUL h3 {
+    text-align: center;
+}
+
+.maintLI, .customerLI {
     border: 1px solid black;
     padding: 5px 35px 5px 35px;
 }
 
+.customerLI {
+    padding-top: 15px;
+    background: white;
+}
+
+.customer-btn {
+    margin-top: 40px;
+    float: right;
+}
+
 .update {
     margin-top: 30px;
+}
+
+.all-maint-btn {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 10px;
 }
 
 .footer {
