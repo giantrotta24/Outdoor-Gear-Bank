@@ -160,6 +160,7 @@ class Checkout extends Component {
         API.findCustomerByMemberNumber(this.state.member_number).then(res => {
             this.setState({
                 customer: res.data,
+                customers: res.data,
                 customerId: res.data[0]._id
             });
             this.processFunction();
