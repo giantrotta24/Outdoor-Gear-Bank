@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
-import Notification from '../Notification';
 import ReturnForm from '../ReturnForm';
+import Notification from '../Notification';
 import API from '../../utils/API';
 
 class Checkout extends Component {
@@ -56,8 +56,8 @@ class Checkout extends Component {
         setTimeout(() => {
             this.setState({
                 redirectTo: '/main'
-            })
-        }, 3000);
+            });
+        }, 2000);
     }
 
     checkout = () => {
@@ -78,8 +78,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.phone_number) {
@@ -94,8 +92,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.member_number) {
@@ -110,8 +106,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.email) {
@@ -126,25 +120,19 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         }
     };
 
     processFunction = () => {
-        console.log(this.state.customer);
         let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
-            console.log(this.state.checkoutCart);
             this.state.checkoutCart.forEach(item => {
                 itemIds.push(item._id);
             });
-            console.log(itemIds);
             this.setState({ itemIds: itemIds });
-            console.log(this.state.itemIds);
         });
     }
 
@@ -178,86 +166,80 @@ class Checkout extends Component {
 
 
     render() {
-        if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
-            return (
+        return (
 
-                <div className='checkout-container'>
-                    <Container>
-                        <Row>
-                            <Col size='md-12'>
-                                <h3>Find or Enter Customer Info</h3>
-                                <Container>
-                                    <Row>
-                                        <Col size='md-12'>
-                                            <CheckoutForm
-                                                renderUserSubmit={this.renderUserSubmit}
-                                                renderUserSearch={this.renderUserSearch}
-                                            />
-                                            {!this.state.newCustomer &&
-                                                <ReturnForm
-                                                    handleFormSubmit={this.handleFormSubmit}
-                                                    handleInputChange={this.handleInputChange}
-                                                />
-                                            }
-                                            {this.state.newCustomer &&
-                                                <CustomerForm
-                                                    handleFormSubmit={this.handleCustomerFormSubmit}
-                                                    handleInputChange={this.handleInputChange}
-                                                />
-                                            }
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </Col>
-                        </Row>
-                        {this.state.customer.length ? (
-                            <Col size='md-12 sm-12'>
-                                <ul className='customerUL'>
-                                    <h3>Select Customer Below</h3>
-                                    {this.state.customers.map((customer, key) => {
-                                        return (
-                                            <li className='customerLI' key={key}>
-                                                <Row>
-                                                    <Col size='md-6'>
-                                                        <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
-                                                            Phone Number: {customer.phone_number} <br />
-                                                            Email: {customer.email} <br />
-                                                            Member Number: {customer.member_number} <br />
-                                                        </p>
-                                                    </Col>
-                                                    <Col size='md-6'>
-                                                        <button
-                                                            className='customer-btn btn btn-danger'
-                                                            onClick={() => this.checkoutCustomer(customer._id)}>
-                                                            Checkout
-                                                        </button>
-                                                    </Col>
-                                                </Row>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                                {this.state.showNotification &&
-                                    <Notification>
-                                        {this.state.alert}
-                                    </Notification>
-                                }
-                            </Col>
-                        ) : (
+            <div className='checkout-container'>
+                <Container>
+                    <Row>
+                        <Col size='md-12'>
+                            <h3>Find or Enter Customer Info</h3>
+                            <Container>
                                 <Row>
-
+                                    <Col size='md-12'>
+                                        <CheckoutForm
+                                            renderUserSubmit={this.renderUserSubmit}
+                                            renderUserSearch={this.renderUserSearch}
+                                        />
+                                        {!this.state.newCustomer &&
+                                            <ReturnForm
+                                                handleFormSubmit={this.handleFormSubmit}
+                                                handleInputChange={this.handleInputChange}
+                                            />
+                                        }
+                                        {this.state.newCustomer &&
+                                            <CustomerForm
+                                                handleFormSubmit={this.handleCustomerFormSubmit}
+                                                handleInputChange={this.handleInputChange}
+                                            />
+                                        }
+                                    </Col>
                                 </Row>
-                            )
-                        }
-                    </Container>
-                </div>
+                            </Container>
+                        </Col>
+                    </Row>
+                    {this.state.showNotification &&
+                        <Notification>
+                            {this.state.alert}
+                        </Notification>
+                    }
+                    {this.state.customer.length ? (
+                        <Col size='md-12 sm-12'>
+                            <ul className='customerUL'>
+                                <h3>Select Customer Below</h3>
+                                {this.state.customers.map((customer, key) => {
+                                    return (
+                                        <li className='customerLI' key={key}>
+                                            <Row>
+                                                <Col size='md-6'>
+                                                    <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
+                                                        Phone Number: {customer.phone_number} <br />
+                                                        Email: {customer.email} <br />
+                                                        Member Number: {customer.member_number} <br />
+                                                    </p>
+                                                </Col>
+                                                <Col size='md-6'>
+                                                    <button
+                                                        className='customer-btn btn btn-danger'
+                                                        onClick={() => this.checkoutCustomer(customer._id)}>
+                                                        Checkout</button>
+                                                </Col>
+                                            </Row>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </Col>
+                    ) : (
+                            <Row>
 
-            );
-        }
+                            </Row>
+                        )
+                    }
+                </Container>
+            </div>
+
+        );
     }
-
 }
 
-export default Checkout;
+export default withRouter(Checkout);

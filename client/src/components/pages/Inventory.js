@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
 import { Container } from '../Grid';
 import Notification from '../Notification';
-import Alert from '../Alert';
 import API from '../../utils/API';
 
 class Inventory extends Component {
@@ -15,8 +14,6 @@ class Inventory extends Component {
     imageURL: '',
     seletedOption: '',
     showNotification: false,
-    showAlert: false,
-    alert: '',
     options: [
       { label: 'Snowshoes', value: 'Snowshoes' },
       { label: 'Stoves', value: 'Stoves' },
@@ -26,7 +23,9 @@ class Inventory extends Component {
       { label: 'Backpacks', value: 'Backpacks' },
       { label: 'Accessories', vale: 'Accessories' }
     ],
-    state: ''
+    state: '',
+    showNotification: false,
+    notification: '',
   };
 
   handleFormSubmit = event => {
@@ -37,21 +36,12 @@ class Inventory extends Component {
     }
     else {
       this.setState({
-        showAlert: true,
-        alert: 'All Input Fields Required'
-      });
-      this.delayAlert();
+        showNotification: true,
+        notification: 'All Input Fields Required'
+      })
+      this.delayState();
     }
   };
-
-  delayAlert = () => {
-    setTimeout(() => {
-      this.setState({
-        showAlert: false,
-        alert: ''
-      })
-    }, 2000);
-  }
 
   delayNotification = () => {
     setTimeout(() => {
@@ -82,13 +72,24 @@ class Inventory extends Component {
             category: '',
             serialNumber: '',
             imageURL: '',
-            seletedOption: ''
+            seletedOption: '',
+            showNotification: true,
+            notification: 'Inventory Update Successful!'
           });
-          this.delayNotification();
+          this.delayState();
         }
       })
       .catch(err => console.log(err))
   };
+
+  delayState = () => {
+    setTimeout(() => {
+      this.setState({
+        showNotification: false,
+        notification: ''
+      });
+    }, 2000);
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -114,14 +115,9 @@ class Inventory extends Component {
     return (
       <div className='invContainer'>
         <Container>
-          {this.state.showAlert &&
-            <Alert>
-              {this.state.alert}
-            </Alert>
-          }
           {this.state.showNotification &&
             <Notification>
-              {this.state.alert}
+              {this.state.notification}
             </Notification>
           }
           <h3 className='mt-5 mb-1'>Add Inventory</h3>
