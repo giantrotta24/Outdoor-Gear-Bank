@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
 import { Container } from '../Grid';
 import Notification from '../Notification';
-import Alert from '../Alert';
 import API from '../../utils/API';
 
 class Inventory extends Component {
@@ -25,9 +24,7 @@ class Inventory extends Component {
     ],
     state: '',
     showNotification: false,
-    showAlert: false,
     notification: '',
-    alert: ''
   };
 
   handleFormSubmit = event => {
@@ -38,8 +35,8 @@ class Inventory extends Component {
     }
     else {
       this.setState({
-        showAlert: true,
-        alert: 'All Input Fields Required'
+        showNotification: true,
+        notification: 'All Input Fields Required'
       })
       this.delayState();
     }
@@ -77,8 +74,6 @@ class Inventory extends Component {
     setTimeout(() => {
       this.setState({
         showNotification: false,
-        alert: '',
-        showAlert: false,
         notification: ''
       });
     }, 2000);
@@ -112,11 +107,6 @@ class Inventory extends Component {
             <Notification>
               {this.state.notification}
             </Notification>
-          }
-          {this.state.showAlert &&
-            <Alert>
-              {this.state.alert}
-            </Alert>
           }
           <h3 className='mt-5 mb-1'>Add Inventory</h3>
           <form>
