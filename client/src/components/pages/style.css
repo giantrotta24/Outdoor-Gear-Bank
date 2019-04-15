@@ -209,8 +209,15 @@
     margin-top: 40px;
     float: right;
 }
+
 .update {
     margin-top: 30px;
+}
+
+.all-maint-btn {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 10px;
 }
 
 .footer {
