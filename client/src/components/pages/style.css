@@ -207,7 +207,6 @@
     z-index: 99;
 }
 
-<<<<<<< HEAD
 .footer p {
     font-size: 10px;
     padding: 0;
@@ -231,16 +230,12 @@
 
 
 @media only screen and (min-height: 795px) {
-=======
-@media only screen and (min-width: 1300px) {
->>>>>>> d031b2f628a46db3f0cdaa84b86cc96bd0b632a9
     /* For large laptop: */
     .footer {
         padding: 30px;
     }
 }
 
-<<<<<<< HEAD
 @media only screen and (min-height: 823px) {
     /* For large laptop: */
     .wrapper {
@@ -259,11 +254,5 @@
     /* For large laptop: */
     .wrapper {
         height: 1000px;
-=======
-@media only screen and (min-width: 1500px) {
-    /* For desktop: */
-    .footer {
-        padding: 40px;
->>>>>>> d031b2f628a46db3f0cdaa84b86cc96bd0b632a9
     }
 }
