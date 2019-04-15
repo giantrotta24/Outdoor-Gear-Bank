@@ -1,22 +1,23 @@
 # Outdoor Gear Bank
-A little info about your project and/ or overview that explains **what** the project is about.
+*A Simple Way to Manage Your Rental Gear*
+
+This application provides a way for a business to keep track of where their rental gear is in the process, whether that be Available, Out for Rent, or In Maintenance. 
 
 ## Motivation
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+The motivation behind this project was to move the rental process of a local outdoor company away from an entirely pen and paper process. 
 
-## Build status
-Build status of continus integration i.e. travis, appveyor etc. Ex. - 
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
+Before this application, each department had a 1.25" binder keeping track of the gear currently out for rent. The store also had no process for keeping tabs on gear that needed maintenance and what maintenance it may need. This application solves both of these problems by moving inventory between three stages: "Available, Out for Rent, and In Maintenance." 
 
 ## Code style
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
-
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
  
 ## Screenshots
-Include logo/demo screenshot etc.
+![Landing Page](/readme_images/landingpage.png)
+![Main Page](/readme_images/mainpage.png)
+![Rent Page](/readme_images/rent.png)
+![Return Page](/readme_images/return.png)
+![Maintenance Page](/readme_images/maintenance.png)
+![Inventory Page](/readme_images/inventory.png)
 
 ## Tech/framework used
 Ex. -
@@ -33,26 +34,16 @@ Show what the library does as concisely as possible, developers should be able t
 ## Installation
 Provide step by step series of examples and explanations about how to get a development env running.
 
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-Describe and show how to run the tests with code examples.
-
 ## How to use?
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 
 ## Project Developers
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
+* **Gianfrano Trotta** - *Frontend, Design, Authentication* - [Github Profile](https://github.com/giantrotta24)
+* **Sydney Dunlap** - *Backend, Routing* - [Github Profile](https://github.com/syddunlap)
+* **Jeffrey Miller** - *Frontend Developer* - [Jeffrey Miller](https://github.com/jamiller445)
 
 ## Credits
 Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
 
-#### Anything else that seems useful
-
 ## License
-A short snippet describing the license (MIT, Apache etc)
-
-MIT © [Yourname]()
+MIT © [Gianfranco Trotta](https://github.com/giantrotta24), [Sydney Dunlap](https://github.com/syddunlap), [Jeffrey Miller](https://github.com/jamiller445)
