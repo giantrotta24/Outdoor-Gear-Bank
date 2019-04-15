@@ -49,7 +49,8 @@ class Return extends Component {
             customers: res.data,
             items: res.data[0].items,
             customerID: res.data[0]._id,
-            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name,
+            last_name: ''
           });
         })
         .catch(err => this.setState({ error: err.message }));
@@ -65,7 +66,8 @@ class Return extends Component {
             customers: res.data,
             items: res.data[0].items,
             customerID: res.data[0]._id,
-            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name,
+            phone_number: ''
           });
         })
         .catch(err => this.setState({ error: err.message }));
@@ -81,7 +83,8 @@ class Return extends Component {
             customers: res.data,
             items: res.data[0].items,
             customerID: res.data[0]._id,
-            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name,
+            member_number: ''
           });
         })
         .catch(err => this.setState({ error: err.message }));
@@ -97,7 +100,8 @@ class Return extends Component {
             customers: res.data,
             items: res.data[0].items,
             customerID: res.data[0]._id,
-            customer: res.data[0].first_name + ' ' + res.data[0].last_name
+            customer: res.data[0].first_name + ' ' + res.data[0].last_name,
+            email: ''
           });
         })
         .catch(err => this.setState({ error: err.message }));

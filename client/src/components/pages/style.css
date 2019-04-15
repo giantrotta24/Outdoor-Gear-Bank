@@ -202,10 +202,11 @@
 
 .customerLI {
     padding-top: 15px;
+    background: white;
 }
 
 .customer-btn {
-    margin-top: 35px;
+    margin-top: 40px;
     float: right;
 }
 .update {
