@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
+import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
 import ReturnForm from '../ReturnForm';
-import Notification from '../Notification';
 import API from '../../utils/API';
 
 class Checkout extends Component {
@@ -19,10 +19,7 @@ class Checkout extends Component {
         newCustomer: null,
         error: '',
         itemIds: [],
-        customerId: '',
-        showNotification: false,
-        alert: '',
-        redirectTo: null,
+        customerId: ''
     }
 
     componentDidMount() {
@@ -36,31 +33,19 @@ class Checkout extends Component {
         })
     };
 
-    checkoutCustomer = (customerId) => {
+    checkoutCustomer = event => {
+        event.preventDefault();
         this.state.itemIds.forEach(id => {
-            API.addItemToCustomer(customerId, id).then(res => {
+            API.addItemToCustomer(this.state.customerId, id).then(res => {
                 if (res.data.status === 'error') {
                     throw new Error(res.data.message);
                 }
             });
         });
         this.checkout();
-        this.setState({
-            showNotification: true,
-            alert: 'Thank you for using Outdoor Gear Bank'
-        });
-        this.delayState();
+        alert('Thank you for using Outdoor Gear Bank');
+        this.reroute();
     }
-
-    delayState = () => {
-        setTimeout(() => {
-            this.setState({
-                redirectTo: '/main'
-            });
-            this.reroute();
-        }, 2000);
-    }
-
 
     reroute = () => {
         let path = '/main';
@@ -81,10 +66,11 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
-                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
+                    console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.phone_number) {
@@ -95,10 +81,11 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
-                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
+                    console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.member_number) {
@@ -109,10 +96,11 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
-                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
+                    console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.email) {
@@ -123,23 +111,28 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
-                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
+                    console.log(this.state.customer);
+                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         }
     };
 
     processFunction = () => {
+        console.log(this.state.customer);
         let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
+            console.log(this.state.checkoutCart);
             this.state.checkoutCart.forEach(item => {
                 itemIds.push(item._id);
             });
+            console.log(itemIds);
             this.setState({ itemIds: itemIds });
+            console.log(this.state.itemIds);
         });
     }
 
@@ -204,38 +197,33 @@ class Checkout extends Component {
                             </Container>
                         </Col>
                     </Row>
-                    {this.state.showNotification &&
-                        <Notification>
-                            {this.state.alert}
-                        </Notification>
-                    }
                     {this.state.customer.length ? (
-                        <Col size='md-12 sm-12'>
-                            <ul className='customerUL'>
-                                <h3>Select Customer Below</h3>
-                                {this.state.customers.map((customer, key) => {
-                                    return (
-                                        <li className='customerLI' key={key}>
-                                            <Row>
-                                                <Col size='md-6'>
-                                                    <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
-                                                        Phone Number: {customer.phone_number} <br />
-                                                        Email: {customer.email} <br />
-                                                        Member Number: {customer.member_number} <br />
-                                                    </p>
-                                                </Col>
-                                                <Col size='md-6'>
-                                                    <button
-                                                        className='customer-btn btn btn-danger'
-                                                        onClick={() => this.checkoutCustomer(customer._id)}>
-                                                        Checkout</button>
-                                                </Col>
-                                            </Row>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </Col>
+                        <Row>
+                            <Col size='md-12'>
+                                <Container>
+                                    <Row>
+                                        <Col className='text-center' size='md-12'>
+                                            <h3>Cutsomer Info</h3>
+                                            <CustomerCard>
+                                                <button className='btn-danger btn rent-button' onClick={this.checkoutCustomer}>Checkout</button>
+                                                {this.state.customer.map((info, key) => {
+                                                    return (
+                                                        <div className='row' key={key}>
+                                                            <div className='col text-left'>
+                                                                <p> Name: {info.first_name + ' ' + info.last_name}</p>
+                                                                <p> Member #: {info.member_number}</p>
+                                                                <p> Email: {info.email}</p>
+                                                                <p> Phone #: {info.phone_number}</p>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </CustomerCard>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </Col>
+                        </Row>
                     ) : (
                             <Row>
 

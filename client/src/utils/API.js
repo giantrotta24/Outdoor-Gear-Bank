@@ -33,13 +33,13 @@ export default {
         return axios.delete('/api/items/:id');
     },
 
-    // // COMMENTS
-    // addComment: function(itemID, comment) {
-    //     return axios.post('/api/comments/' + itemID, comment);
-    // },
-    // findItemWithComments: function(itemID) {
-    //     return axios.get('/api/comments/' + itemID);
-    // },
+    // COMMENTS
+    addComment: function(itemID, comment) {
+        return axios.post('/api/comments/' + itemID, comment);
+    },
+    findItemWithComments: function(itemID) {
+        return axios.get('/api/comments/' + itemID);
+    },
 
     // MAINTENANCE COMMENTS
     addMaintComment: function(id,comment) {
@@ -48,8 +48,8 @@ export default {
     findItemWithMaintComments: function(id) {
         return axios.get('/api/' + id + '/maintcomments');
     },
-    deleteMaintComment: function(maintcommentID, itemID) {
-        return axios.delete('/api/maintcomments/' + maintcommentID + '/' + itemID);
+    deleteMaintComment: function(id) {
+        return axios.delete('/api/maintcomments' + id);
     },
 
     // CUSTOMER
