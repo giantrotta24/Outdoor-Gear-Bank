@@ -36,17 +36,13 @@ Any company that provides a rental service would benefit from the usage of this 
 - [Robo 3T](https://robomongo.org/)
 - [mLab](https://mlab.com/)
 
-## Features
-What makes your project stand out?
+## Deployed Site
+[Outdoor Gear Bank](https://outdoor-gear-bank.herokuapp.com/)
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+## Further Development
+- A feature for inputing a date range when an item is rented out by a customer, thus allowing the user to pull up information on items that are due "today" or items that are "overdue."
+- Utilizing Modals on Return, Maintenance, and Inventory page for further UI/UX development.
+- Breaking the code down to more components with less code within pages & components.
 
 ## Project Developers
 * **Gianfrano Trotta** - *Frontend, Design, Authentication* - [Github Profile](https://github.com/giantrotta24)
