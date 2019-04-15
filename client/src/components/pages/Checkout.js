@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
-import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
 import Notification from '../Notification';
@@ -37,10 +36,9 @@ class Checkout extends Component {
         })
     };
 
-    checkoutCustomer = event => {
-        event.preventDefault();
+    checkoutCustomer = (customerId) => {
         this.state.itemIds.forEach(id => {
-            API.addItemToCustomer(this.state.customerId, id).then(res => {
+            API.addItemToCustomer(customerId, id).then(res => {
                 if (res.data.status === 'error') {
                     throw new Error(res.data.message);
                 }
@@ -76,6 +74,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -91,6 +90,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -106,6 +106,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -121,6 +122,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
