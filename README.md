@@ -1,14 +1,12 @@
 # Outdoor Gear Bank
 *A Simple Way to Manage Your Rental Gear*
 
-This application provides a way for a business to keep track of where their rental gear is in the process, whether that be Available, Out for Rent, or In Maintenance. 
+This application provides a way for businesses to keep track of where their rental gear is at any state in the process. Any company that provides a rental service would benefit from the usage of this application.
 
 ## Motivation
-The motivation behind this project was to move the rental process of a local outdoor company away from an entirely pen and paper process. 
+The motivation behind this project was to move the rental process of a local outdoor company away from being entirely pen and paper.
 
-Before this application, each department had a 1.25" binder keeping track of the gear currently out for rent. The store also had no process for keeping tabs on gear that needed maintenance and what maintenance it may need. This application solves both of these problems by moving inventory between three stages: "Available, Out for Rent, and In Maintenance." 
-
-Any company that provides a rental service would benefit from the usage of this application.
+Before this application, each department had a binder keeping track of the gear currently out for rent. The store also had no process for keeping tabs on gear that needed maintenance and what maintenance it may need. This application solves both of these problems by moving inventory between three stages: "Available, Out for Rent, and In Maintenance." 
 
 ## Code style
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
