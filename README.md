@@ -8,6 +8,8 @@ The motivation behind this project was to move the rental process of a local out
 
 Before this application, each department had a 1.25" binder keeping track of the gear currently out for rent. The store also had no process for keeping tabs on gear that needed maintenance and what maintenance it may need. This application solves both of these problems by moving inventory between three stages: "Available, Out for Rent, and In Maintenance." 
 
+Any company that provides a rental service would benefit from the usage of this application.
+
 ## Code style
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
  
@@ -20,10 +22,19 @@ Before this application, each department had a 1.25" binder keeping track of the
 ![Inventory Page](/readme_images/inventory.png)
 
 ## Tech/framework used
-Ex. -
-
 <b>Built with</b>
-- [Electron](https://electron.atom.io)
+- HTML5
+- CSS3
+- [Bootstrap](https://getbootstrap.com/)
+- JavaScript ES6
+- [Node.js](https://nodejs.org/en/)
+- [npm.js](https://www.npmjs.com/)
+- [React.js](https://reactjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/docs/api.html)
+- [Postman](https://www.getpostman.com/)
+- [Robo 3T](https://robomongo.org/)
+- [mLab](https://mlab.com/)
 
 ## Features
 What makes your project stand out?
@@ -40,7 +51,7 @@ If people like your project they’ll want to learn how they can use it. To do s
 ## Project Developers
 * **Gianfrano Trotta** - *Frontend, Design, Authentication* - [Github Profile](https://github.com/giantrotta24)
 * **Sydney Dunlap** - *Backend, Routing* - [Github Profile](https://github.com/syddunlap)
-* **Jeffrey Miller** - *Frontend Developer* - [Jeffrey Miller](https://github.com/jamiller445)
+* **Jeffrey Miller** - *Frontend Developer* - [Github Profile](https://github.com/jamiller445)
 
 ## Credits
 Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
