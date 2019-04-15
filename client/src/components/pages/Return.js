@@ -196,15 +196,15 @@ class Return extends Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-12 sm-12">
+            <Col size='md-12 sm-12'>
               {this.state.customers.length ? (
-                <ul className="customerUL">
+                <ul className='customerUL'>
                   <h3>Select Customer Below</h3>
                   {this.state.customers.map((customer, index) => {
                     return (
-                      <li className="customerLI" key={customer._id}>
+                      <li className='customerLI' key={customer._id}>
                         <Row>
-                          <Col size="md-6">
+                          <Col size='md-6'>
                             <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
                               Phone Number: {customer.phone_number} <br />
                               Email: {customer.email} <br />
@@ -212,9 +212,9 @@ class Return extends Component {
                               # of Rented Items: {customer.items.length} 
                             </p>
                           </Col>
-                          <Col size="md-6">
+                          <Col size='md-6'>
                             <button 
-                            className="customer-btn btn btn-primary"
+                            className='customer-btn btn btn-primary'
                             onClick={() => this.selectCustomer(customer)}>
                             Select</button>
                           </Col>
