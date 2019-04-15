@@ -201,22 +201,22 @@ class Checkout extends Component {
                     </Row>
                     {this.state.customer.length ? (
                         <Col size='md-12 sm-12'>
-                            <ul className="customerUL">
+                            <ul className='customerUL'>
                                 <h3>Select Customer Below</h3>
                                 {this.state.customers.map((customer, key) => {
                                     return (
-                                        <li className="customerLI" key={key}>
+                                        <li className='customerLI' key={key}>
                                             <Row>
-                                                <Col size="md-6">
+                                                <Col size='md-6'>
                                                     <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
                                                         Phone Number: {customer.phone_number} <br />
                                                         Email: {customer.email} <br />
                                                         Member Number: {customer.member_number} <br />
                                                     </p>
                                                 </Col>
-                                                <Col size="md-6">
+                                                <Col size='md-6'>
                                                     <button
-                                                        className="customer-btn btn btn-danger"
+                                                        className='customer-btn btn btn-danger'
                                                         onClick={() => this.checkoutCustomer(customer._id)}>
                                                         Checkout</button>
                                                 </Col>

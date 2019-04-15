@@ -166,7 +166,7 @@ class Maintenance extends Component {
             <Col size='md-12 sm-12'>
               {this.state.item ? (
                 <List>
-                  <button className="all-maint-btn btn btn-danger" onClick={() => this.findAllMaintenanceItems()}>Return to All Results</button>
+                  <button className='all-maint-btn btn btn-danger' onClick={() => this.findAllMaintenanceItems()}>Return to All Results</button>
                   <ListItem key={this.state.item._id}>
                     <p>
                       <strong>
