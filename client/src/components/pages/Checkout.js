@@ -216,6 +216,11 @@ class Checkout extends Component {
                             </Container>
                         </Col>
                     </Row>
+                    {this.state.showNotification &&
+                        <Notification>
+                            {this.state.alert}
+                        </Notification>
+                    }
                     {this.state.customer.length ? (
                         <Col size='md-12 sm-12'>
                             <ul className='customerUL'>
@@ -241,11 +246,6 @@ class Checkout extends Component {
                                         </li>
                                     )
                                 })}
-                                {this.state.showNotification &&
-                                    <Notification>
-                                        {this.state.alert}
-                                    </Notification>
-                                }
                             </ul>
                         </Col>
                     ) : (
