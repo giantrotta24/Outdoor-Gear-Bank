@@ -12,6 +12,7 @@ class Inventory extends Component {
     serialNumber: '',
     imageURL: '',
     seletedOption: '',
+    showNotification: false,
     options: [
       { label: 'Snowshoes', value: 'Snowshoes' },
       { label: 'Stoves', value: 'Stoves' },
@@ -35,6 +36,15 @@ class Inventory extends Component {
     }
   };
 
+  delayNotification = () => {
+    setTimeout(() => {
+      this.setState({
+        showNotification: false,
+        alert: ''
+      })
+    }, 2000);
+  }
+
   updateInv = () => {
     let newItem = {
       name: this.state.itemName,
@@ -49,6 +59,8 @@ class Inventory extends Component {
         if (res.status === 200) {
           alert('Inventory Update Successful!');
           this.setState({
+            showNotification: true,
+            alert: 'Inventory Update Successful!',
             state: this.state.state,
             itemName: '',
             category: '',
