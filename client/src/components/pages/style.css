@@ -240,32 +240,46 @@
 }
 
 
-@media only screen and (min-height: 725px) {
-    /* For large laptop: */
-    .wrapper {
-        height: 675px;
-    }
-}
-
-@media only screen and (min-height: 735px) {
+@media only screen and (min-height: 700px) {
     /* For large laptop: */
     .wrapper {
         height: 700px;
     }
 }
 
+@media only screen and (min-height: 740px) {
+    /* For large laptop: */
+    .wrapper {
+        height: 750px;
+    }
+}
 
-@media only screen and (min-height: 785px) {
+
+@media only screen and (min-height: 795px) {
     /* For large laptop: */
     .wrapper {
         height: 775px;
     }
 }
 
-@media only screen and (min-height: 845px) {
+@media only screen and (min-height: 823px) {
     /* For large laptop: */
     .wrapper {
-        height: 925px;
+        height: 875px;
+    }
+}
+
+@media only screen and (min-height: 855px) {
+    /* For large laptop: */
+    .wrapper {
+        height: 930px;
+    }
+}
+
+@media only screen and (min-height: 1050px) {
+    /* For large laptop: */
+    .wrapper {
+        height: 1000px;
     }
 }
 
