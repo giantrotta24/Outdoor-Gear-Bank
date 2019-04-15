@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
-import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
 import ReturnForm from '../ReturnForm';
@@ -33,10 +32,9 @@ class Checkout extends Component {
         })
     };
 
-    checkoutCustomer = event => {
-        event.preventDefault();
+    checkoutCustomer = (customerId) => {
         this.state.itemIds.forEach(id => {
-            API.addItemToCustomer(this.state.customerId, id).then(res => {
+            API.addItemToCustomer(customerId, id).then(res => {
                 if (res.data.status === 'error') {
                     throw new Error(res.data.message);
                 }
@@ -66,6 +64,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -81,6 +80,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -96,6 +96,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -111,6 +112,7 @@ class Checkout extends Component {
                     }
                     this.setState({
                         customer: res.data,
+                        customers: res.data,
                         error: '',
                         customerId: res.data[0]._id
                     });
@@ -198,32 +200,32 @@ class Checkout extends Component {
                         </Col>
                     </Row>
                     {this.state.customer.length ? (
-                        <Row>
-                            <Col size='md-12'>
-                                <Container>
-                                    <Row>
-                                        <Col className='text-center' size='md-12'>
-                                            <h3>Cutsomer Info</h3>
-                                            <CustomerCard>
-                                                <button className='btn-danger btn rent-button' onClick={this.checkoutCustomer}>Checkout</button>
-                                                {this.state.customer.map((info, key) => {
-                                                    return (
-                                                        <div className='row' key={key}>
-                                                            <div className='col text-left'>
-                                                                <p> Name: {info.first_name + ' ' + info.last_name}</p>
-                                                                <p> Member #: {info.member_number}</p>
-                                                                <p> Email: {info.email}</p>
-                                                                <p> Phone #: {info.phone_number}</p>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </CustomerCard>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </Col>
-                        </Row>
+                        <Col size='md-12 sm-12'>
+                            <ul className="customerUL">
+                                <h3>Select Customer Below</h3>
+                                {this.state.customers.map((customer, key) => {
+                                    return (
+                                        <li className="customerLI" key={key}>
+                                            <Row>
+                                                <Col size="md-6">
+                                                    <p><strong>{customer.first_name} {customer.last_name}</strong> <br />
+                                                        Phone Number: {customer.phone_number} <br />
+                                                        Email: {customer.email} <br />
+                                                        Member Number: {customer.member_number} <br />
+                                                    </p>
+                                                </Col>
+                                                <Col size="md-6">
+                                                    <button
+                                                        className="customer-btn btn btn-danger"
+                                                        onClick={() => this.checkoutCustomer(customer._id)}>
+                                                        Checkout</button>
+                                                </Col>
+                                            </Row>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </Col>
                     ) : (
                             <Row>
 
