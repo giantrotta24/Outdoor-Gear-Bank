@@ -9,7 +9,7 @@ import DeleteCommentBtn from '../DeleteCommentBtn';
 class Maintenance extends Component {
   state = {
     serial_number: '',
-    results: [],
+    item_serial_number: '',
     item: '',
     items: [],
     itemID: '',
@@ -47,9 +47,9 @@ class Maintenance extends Component {
           throw new Error(res.data.message);
         }
         this.setState({
-          results: res.data,
           item: res.data[0],
           maintenance_comments: res.data[0].maintenance_comments,
+          item_serial_number: res.data[0].serial_number,
           error: '',
         });
       })
@@ -65,7 +65,6 @@ class Maintenance extends Component {
         if (res.status === 200) {
           this.setState({
             state: this.state,
-            item: ''
           })
         }
       })
@@ -79,10 +78,14 @@ class Maintenance extends Component {
         condition: newCondition
       }
     ).then(res => {
-      this.findAllMaintenanceItems();
-      this.setState({
-        item: ''
-      })
+      if (this.state.item) {
+        this.setState({
+          serial_number: this.state.item_serial_number
+        })
+        this.findItemWithMaintComments(this.state.item_serial_number);
+      } else {
+        this.findAllMaintenanceItems();
+      }
     })
   }
 
@@ -92,20 +95,28 @@ class Maintenance extends Component {
         body: newComment
       })
       .then(res => {
-        this.findAllMaintenanceItems();
-        this.setState({
-          item: ''
-        })
+        if (this.state.item) {
+          this.setState({
+            serial_number: this.state.item_serial_number
+          })
+          this.findItemWithMaintComments(this.state.item_serial_number);
+        } else {
+          this.findAllMaintenanceItems();
+        }
       })
   }
 
   deleteComment = (commentID, itemID) => {
     API.deleteMaintComment(commentID, itemID)
       .then(res => {
-        this.findAllMaintenanceItems();
-        this.setState({
-          item: ''
-        })
+        if (this.state.item) {
+          this.setState({
+            serial_number: this.state.item_serial_number
+          })
+          this.findItemWithMaintComments(this.state.item_serial_number);
+        } else {
+          this.findAllMaintenanceItems();
+        }
       })
   }
 
