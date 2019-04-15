@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Alert from '../Alert';
 import Card from '../Card';
 import axios from 'axios';
 
@@ -10,8 +9,6 @@ class SignUp extends Component {
         this.state = {
             username: '',
             password: '',
-            showNotification: false,
-            alert: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,27 +28,17 @@ class SignUp extends Component {
             username: this.state.username,
             password: this.state.password,
         }).then(response => {
+            console.log(response);
             if (response.data.error) {
-                this.setState({
-                    showNotification: true,
-                    alert: 'Sign up failed'
-                });
-                this.delayState();
+                console.log('username already taken');
             } else {
+                console.log('successful signup');
                 this.reroute();
             }
         }).catch(error => {
+            console.log('sign up error: ');
             console.log(error);
         });
-    }
-
-    delayState = () => {
-        setTimeout(() => {
-            this.setState({
-                showNotification: false,
-                alert: ''
-            })
-        }, 2000);
     }
 
     reroute = () => {
@@ -102,11 +89,6 @@ class SignUp extends Component {
 
                     </div>
                 </div>
-                {this.state.showNotification &&
-                    <Alert>
-                        {this.state.alert}
-                    </Alert>
-                }
             </Card>
         );
     }

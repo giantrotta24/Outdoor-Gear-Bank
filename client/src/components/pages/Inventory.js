@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FormInput, FormSelect, FormBtn } from '../Form';
-import { Container } from '../Grid';
-import Notification from '../Notification';
+import { Container, Row, Col } from '../Grid';
 import API from '../../utils/API';
 
 class Inventory extends Component {
@@ -23,9 +22,7 @@ class Inventory extends Component {
       { label: 'Backpacks', value: 'Backpacks' },
       { label: 'Accessories', vale: 'Accessories' }
     ],
-    state: '',
-    showNotification: false,
-    notification: '',
+    state: ''
   };
 
   handleFormSubmit = event => {
@@ -35,11 +32,7 @@ class Inventory extends Component {
       this.updateInv();
     }
     else {
-      this.setState({
-        showNotification: true,
-        notification: 'All Input Fields Required'
-      })
-      this.delayState();
+      alert('All Input Fields Required');
     }
   };
 
@@ -64,6 +57,7 @@ class Inventory extends Component {
     API.addItem(newItem)
       .then(res => {
         if (res.status === 200) {
+          alert('Inventory Update Successful!');
           this.setState({
             showNotification: true,
             alert: 'Inventory Update Successful!',
@@ -72,24 +66,12 @@ class Inventory extends Component {
             category: '',
             serialNumber: '',
             imageURL: '',
-            seletedOption: '',
-            showNotification: true,
-            notification: 'Inventory Update Successful!'
+            seletedOption: ''
           });
-          this.delayState();
         }
       })
       .catch(err => console.log(err))
   };
-
-  delayState = () => {
-    setTimeout(() => {
-      this.setState({
-        showNotification: false,
-        notification: ''
-      });
-    }, 2000);
-  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -115,55 +97,50 @@ class Inventory extends Component {
     return (
       <div className='invContainer'>
         <Container>
-          {this.state.showNotification &&
-            <Notification>
-              {this.state.notification}
-            </Notification>
-          }
-          <h3 className='mt-5 mb-1'>Add Inventory</h3>
-          <form>
-            <div className='form-group'>
-              <label htmlFor='item-name'>Name (required):</label>
-              <FormInput
-                value={this.state.itemName}
-                onChange={this.handleInputChange}
-                name='itemName'
-                placeholder='Name of Item'
-                required='required'
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='item-category'>Category (required):</label>
-              <FormSelect
-                onChange={this.handleChange}
-                value={this.state.selectedOption}
-                options={this.state.options}
-              />
-            </div>
+            <h3 className='mt-5 mb-1'>Add Inventory</h3>
+            <form>
+              <div className='form-group'>
+                <label htmlFor='item-name'>Name (required):</label>
+                <FormInput
+                  value={this.state.itemName}
+                  onChange={this.handleInputChange}
+                  name='itemName'
+                  placeholder='Name of Item'
+                  required='required'
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='item-category'>Category (required):</label>
+                <FormSelect
+                  onChange={this.handleChange}
+                  value={this.state.selectedOption}
+                  options={this.state.options}
+                />
+              </div>
 
-            <div className='form-group'>
-              <label htmlFor='item-serialNumber'>Item Serial Number (required):</label>
-              <FormInput
-                value={this.state.serialNumber}
-                onChange={this.handleInputChange}
-                name='serialNumber'
-                placeholder='Item Serial Number'
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='item-imageURL'>Item Image URL (required):</label>
-              <FormInput
-                value={this.state.imageURL}
-                onChange={this.handleInputChange}
-                name='imageURL'
-                placeholder='Item Image URL'
-              />
-            </div>
-            <FormBtn
-              onClick={this.handleFormSubmit}>
-              Submit
+              <div className='form-group'>
+                <label htmlFor='item-serialNumber'>Item Serial Number (required):</label>
+                <FormInput
+                  value={this.state.serialNumber}
+                  onChange={this.handleInputChange}
+                  name='serialNumber'
+                  placeholder='Item Serial Number'
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='item-imageURL'>Item Imagae URL (required):</label>
+                <FormInput
+                  value={this.state.imageURL}
+                  onChange={this.handleInputChange}
+                  name='imageURL'
+                  placeholder='Item Image URL'
+                />
+              </div>
+              <FormBtn
+                onClick={this.handleFormSubmit}>
+                Submit
                 </FormBtn>
-          </form>
+            </form>
         </Container>
       </div>
     )
