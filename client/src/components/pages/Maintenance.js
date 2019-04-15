@@ -50,6 +50,7 @@ class Maintenance extends Component {
           item: res.data[0],
           maintenance_comments: res.data[0].maintenance_comments,
           item_serial_number: res.data[0].serial_number,
+          serial_number: '',
           error: '',
         });
       })
