@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
 import CustomerCard from '../CustomerCard';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
+import Notification from '../Notification';
 import ReturnForm from '../ReturnForm';
 import API from '../../utils/API';
 
@@ -19,7 +20,10 @@ class Checkout extends Component {
         newCustomer: null,
         error: '',
         itemIds: [],
-        customerId: ''
+        customerId: '',
+        showNotification: false,
+        alert: '',
+        redirectTo: null,
     }
 
     componentDidMount() {
@@ -43,13 +47,19 @@ class Checkout extends Component {
             });
         });
         this.checkout();
-        alert('Thank you for using Outdoor Gear Bank');
-        this.reroute();
+        this.setState({
+            showNotification: true,
+            alert: 'Thank you for using Outdoor Gear Bank'
+        });
+        this.delayState();
     }
 
-    reroute = () => {
-        let path = '/main';
-        this.props.history.push(path)
+    delayState = () => {
+        setTimeout(() => {
+            this.setState({
+                redirectTo: '/main'
+            })
+        }, 2000);
     }
 
     checkout = () => {
@@ -166,75 +176,85 @@ class Checkout extends Component {
 
 
     render() {
-        return (
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
+            return (
 
-            <div className='checkout-container'>
-                <Container>
-                    <Row>
-                        <Col size='md-12'>
-                            <h3>Find or Enter Customer Info</h3>
-                            <Container>
-                                <Row>
-                                    <Col size='md-12'>
-                                        <CheckoutForm
-                                            renderUserSubmit={this.renderUserSubmit}
-                                            renderUserSearch={this.renderUserSearch}
-                                        />
-                                        {!this.state.newCustomer &&
-                                            <ReturnForm
-                                                handleFormSubmit={this.handleFormSubmit}
-                                                handleInputChange={this.handleInputChange}
-                                            />
-                                        }
-                                        {this.state.newCustomer &&
-                                            <CustomerForm
-                                                handleFormSubmit={this.handleCustomerFormSubmit}
-                                                handleInputChange={this.handleInputChange}
-                                            />
-                                        }
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Col>
-                    </Row>
-                    {this.state.customer.length ? (
+                <div className='checkout-container'>
+                    <Container>
                         <Row>
                             <Col size='md-12'>
+                                <h3>Find or Enter Customer Info</h3>
                                 <Container>
                                     <Row>
-                                        <Col className='text-center' size='md-12'>
-                                            <h3>Cutsomer Info</h3>
-                                            <CustomerCard>
-                                                <button className='btn-danger btn rent-button' onClick={this.checkoutCustomer}>Checkout</button>
-                                                {this.state.customer.map((info, key) => {
-                                                    return (
-                                                        <div className='row' key={key}>
-                                                            <div className='col text-left'>
-                                                                <p> Name: {info.first_name + ' ' + info.last_name}</p>
-                                                                <p> Member #: {info.member_number}</p>
-                                                                <p> Email: {info.email}</p>
-                                                                <p> Phone #: {info.phone_number}</p>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </CustomerCard>
+                                        <Col size='md-12'>
+                                            <CheckoutForm
+                                                renderUserSubmit={this.renderUserSubmit}
+                                                renderUserSearch={this.renderUserSearch}
+                                            />
+                                            {!this.state.newCustomer &&
+                                                <ReturnForm
+                                                    handleFormSubmit={this.handleFormSubmit}
+                                                    handleInputChange={this.handleInputChange}
+                                                />
+                                            }
+                                            {this.state.newCustomer &&
+                                                <CustomerForm
+                                                    handleFormSubmit={this.handleCustomerFormSubmit}
+                                                    handleInputChange={this.handleInputChange}
+                                                />
+                                            }
                                         </Col>
                                     </Row>
                                 </Container>
                             </Col>
                         </Row>
-                    ) : (
+                        {this.state.customer.length ? (
                             <Row>
-
+                                <Col size='md-12'>
+                                    <Container>
+                                        <Row>
+                                            <Col className='text-center' size='md-12'>
+                                                <h3>Cutsomer Info</h3>
+                                                <CustomerCard>
+                                                    <button className='btn-danger btn rent-button' onClick={this.checkoutCustomer}>Checkout</button>
+                                                    {this.state.customer.map((info, key) => {
+                                                        return (
+                                                            <div className='row' key={key}>
+                                                                <div className='col text-left'>
+                                                                    <p> Name: {info.first_name + ' ' + info.last_name}</p>
+                                                                    <p> Member #: {info.member_number}</p>
+                                                                    <p> Email: {info.email}</p>
+                                                                    <p> Phone #: {info.phone_number}</p>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </CustomerCard>
+                                                {this.state.showNotification &&
+                                                    <Notification>
+                                                        {this.state.alert}
+                                                    </Notification>
+                                                }
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </Col>
                             </Row>
-                        )
-                    }
-                </Container>
-            </div>
+                        ) : (
+                                <Row>
 
-        );
+                                </Row>
+                            )
+                        }
+                    </Container>
+                </div>
+
+            );
+        }
     }
+
 }
 
-export default withRouter(Checkout);
+export default Checkout;

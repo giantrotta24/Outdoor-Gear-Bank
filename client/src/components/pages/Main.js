@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Notification from '../NotificationContainer';
 import API from '../../utils/API';
 
 class Main extends Component {
   state = {
     rentedInventory: [],
     maintInventory: [],
-    showNotification: false
   }
 
   componentDidMount() {
@@ -20,20 +18,13 @@ class Main extends Component {
         }
       })
     });
-    window.setTimeout(() => {
-      this.setState({
-        showNotification: true,
-      });
-    }, 3000);
+
   }
 
   render() {
     return (
 
       <div>
-        {this.state.showNotification &&
-          <Notification />  
-        }
         <div className='rent-page-cont'>
           <div className='rent-cont-header'>
             <div className='rent-cont-title'>
