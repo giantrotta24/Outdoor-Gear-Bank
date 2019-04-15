@@ -5,9 +5,8 @@
     bottom: 0;
     left: 0;
     z-index: 80;
-    height: auto;
     background: linear-gradient(rgb(95, 94, 94), rgb(49, 49, 49));
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .jumbotron {
@@ -182,57 +181,33 @@
     display: flex;
 }
 
-.maintUL, .customerUL {
+.maintUL {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.customerUL {
-    text-align: left;
-}
-
-.customerUL h3 {
-    text-align: center;
-}
-
-.maintLI, .customerLI {
+.maintLI {
     border: 1px solid black;
     padding: 5px 35px 5px 35px;
-}
-
-.customerLI {
-    padding-top: 15px;
-    background: white;
-}
-
-.customer-btn {
-    margin-top: 40px;
-    float: right;
 }
 
 .update {
     margin-top: 30px;
 }
 
-.all-maint-btn {
-    padding-left: 2px;
-    padding-right: 2px;
-    margin-bottom: 10px;
-}
-
 .footer {
-    background-image: linear-gradient(to bottom right, rgb(17, 55, 112), rgb(20, 89, 146));
+    background-image: linear-gradient(to bottom right, rgb(3, 43, 104), rgb(14, 133, 231));
     padding: 23px;
     width: 100%;
-    height: 10px;
     color: white;
     font-style: italic;
     position: sticky;
-    box-shadow: 6px 3px 10px 2px rgb(19, 13, 8);
+    box-shadow: 10px 5px 20px 2px rgb(2, 1, 0);
     z-index: 99;
 }
 
+<<<<<<< HEAD
 .footer p {
     font-size: 10px;
     padding: 0;
@@ -256,12 +231,16 @@
 
 
 @media only screen and (min-height: 795px) {
+=======
+@media only screen and (min-width: 1300px) {
+>>>>>>> d031b2f628a46db3f0cdaa84b86cc96bd0b632a9
     /* For large laptop: */
-    .wrapper {
-        height: 775px;
+    .footer {
+        padding: 30px;
     }
 }
 
+<<<<<<< HEAD
 @media only screen and (min-height: 823px) {
     /* For large laptop: */
     .wrapper {
@@ -280,8 +259,11 @@
     /* For large laptop: */
     .wrapper {
         height: 1000px;
+=======
+@media only screen and (min-width: 1500px) {
+    /* For desktop: */
+    .footer {
+        padding: 40px;
+>>>>>>> d031b2f628a46db3f0cdaa84b86cc96bd0b632a9
     }
 }
-
-
-
