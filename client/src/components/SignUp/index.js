@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Alert from '../NotificationContainer';
+import Alert from '../Alert';
 import Card from '../Card';
 import axios from 'axios';
 
