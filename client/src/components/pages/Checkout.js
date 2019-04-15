@@ -85,8 +85,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.phone_number) {
@@ -101,8 +99,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.member_number) {
@@ -117,8 +113,6 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         } else if (this.state.email) {
@@ -133,25 +127,19 @@ class Checkout extends Component {
                         error: '',
                         customerId: res.data[0]._id
                     });
-                    console.log(this.state.customer);
-                    console.log(this.state.customerId);
                 })
                 .catch(err => this.setState({ error: err.message }));
         }
     };
 
     processFunction = () => {
-        console.log(this.state.customer);
         let itemIds = [];
         API.process().then(res => {
             this.setState({ checkoutCart: res.data });
-            console.log(this.state.checkoutCart);
             this.state.checkoutCart.forEach(item => {
                 itemIds.push(item._id);
             });
-            console.log(itemIds);
             this.setState({ itemIds: itemIds });
-            console.log(this.state.itemIds);
         });
     }
 
