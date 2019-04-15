@@ -49,8 +49,5 @@ Any company that provides a rental service would benefit from the usage of this 
 * **Sydney Dunlap** - *Backend, Routing* - [Github Profile](https://github.com/syddunlap)
 * **Jeffrey Miller** - *Frontend Developer* - [Github Profile](https://github.com/jamiller445)
 
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
 ## License
 MIT © [Gianfranco Trotta](https://github.com/giantrotta24), [Sydney Dunlap](https://github.com/syddunlap), [Jeffrey Miller](https://github.com/jamiller445)
