@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { Container, Row, Col } from '../Grid';
 import CheckoutForm from '../CheckoutForm';
 import CustomerForm from '../CustomerForm';
+import CustomerCard from '../CustomerCard';
 import Notification from '../Notification';
 import ReturnForm from '../ReturnForm';
 import API from '../../utils/API';
