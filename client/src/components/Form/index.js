@@ -67,7 +67,7 @@ export const FormSelect = props => {
 export function AddMaintCommentBtn(props) {
   return (
     <div>
-      <button {...props} style={{ float: "left", marginBottom: 10 }} className="btn btn-info mr-2">
+      <button {...props} style={{ float: 'left', marginBottom: 10 }} className='btn btn-info mr-2'>
         {props.children}
         Add Comment
       </button>
@@ -78,7 +78,7 @@ export function AddMaintCommentBtn(props) {
 export function MaintCommentInput(props) {
   return (
     <div>
-      <input className="form-control" {...props}
+      <input className='form-control' {...props}
       />
     </div>
 
@@ -88,7 +88,7 @@ export function MaintCommentInput(props) {
 export function MaintStatusBtn(props) {
   return (
     <div>
-      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+      <button {...props} style={{ float: 'right', marginBottom: 10 }} className='btn btn-success'>
         {props.children}
         Change Status to Available
       </button>
@@ -99,7 +99,7 @@ export function MaintStatusBtn(props) {
 export function UpdateConditionBtn(props) {
   return (
     <div>
-      <button {...props} style={{ float: "left", marginBottom: 10 }} className="condition btn btn-primary">
+      <button {...props} style={{ float: 'left', marginBottom: 10 }} className='condition btn btn-primary'>
         {props.children}
         Update Condition
       </button>

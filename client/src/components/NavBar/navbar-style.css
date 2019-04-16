@@ -2,8 +2,8 @@
     padding: 20px;
     margin-bottom: 150px;
     font-family: 'Cormorant SC';
-    box-shadow: 10px 5px 20px 2px rgb(2, 1, 0);
-    background-image: linear-gradient(to bottom right, rgb(3, 43, 104), rgb(14, 133, 231));
+    box-shadow: 3px 1px 5px 1px rgb(19, 13, 8);
+    background-image: linear-gradient(to bottom right, rgb(17, 55, 112), rgb(20, 89, 146));
     position: absolute;
     width: 100%;
     z-index: 95;

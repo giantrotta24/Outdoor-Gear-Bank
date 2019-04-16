@@ -20,13 +20,11 @@ class CheckoutForm extends Component {
 
     renderUserSearch = (event) => {
         event.preventDefault();
-        console.log('search')
         this.props.renderUserSearch();
     }
 
     renderUserSubmit = (event) => {
         event.preventDefault();
-        console.log('submit')
         this.props.renderUserSubmit();
     }
 

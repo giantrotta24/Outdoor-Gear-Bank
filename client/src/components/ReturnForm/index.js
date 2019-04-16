@@ -40,7 +40,7 @@ const ReturnForm = props => {
             name='email'
             type='text'
             className='form-control'
-            placeholder='Email Address, ex. sally@gmail.com'
+            placeholder='Email Address, ex. johndoe@gmail.com'
             id='email'
           />
           <button type='submit' onClick={props.handleFormSubmit} className='customer-btn btn btn-primary float-right mt-2'>

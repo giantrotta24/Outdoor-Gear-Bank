@@ -22,7 +22,6 @@ class Main extends Component {
 
   render() {
     return (
-
       <div>
         <div className='rent-page-cont'>
           <div className='rent-cont-header'>
