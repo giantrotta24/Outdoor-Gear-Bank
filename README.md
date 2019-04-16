@@ -43,7 +43,7 @@ Before this application, each department had a binder keeping track of the gear 
 - Breaking the code down to more components with less code within pages & components.
 
 ## Project Developers
-* **Gianfrano Trotta** - *Frontend, Design, Authentication* - [Github Profile](https://github.com/giantrotta24)
+* **Gianfranco Trotta** - *Frontend, Design, Authentication* - [Github Profile](https://github.com/giantrotta24)
 * **Sydney Dunlap** - *Backend, Routing* - [Github Profile](https://github.com/syddunlap)
 * **Jeffrey Miller** - *Frontend Developer* - [Github Profile](https://github.com/jamiller445)
 
