@@ -6,12 +6,10 @@ import API from '../../utils/API';
 class Rent extends Component {
   constructor() {
     super()
-
     this.state = {
       categories: [],
       grabbedOption: null,
     }
-
   }
 
   componentDidMount() {
@@ -23,7 +21,6 @@ class Rent extends Component {
   }
 
   render() {
-
     return (
       <div className='rentContainer'>
         <SelectCard
@@ -32,7 +29,6 @@ class Rent extends Component {
             value: item,
           }))}
         />
-        
       </div>
     );
   }

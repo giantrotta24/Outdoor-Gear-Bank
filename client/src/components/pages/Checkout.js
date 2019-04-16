@@ -167,7 +167,6 @@ class Checkout extends Component {
         });
     }
 
-
     render() {
         return (
             <div className='checkout-container'>
@@ -233,13 +232,11 @@ class Checkout extends Component {
                         </Col>
                     ) : (
                             <Row>
-
                             </Row>
                         )
                     }
                 </Container>
             </div>
-
         );
     }
 }

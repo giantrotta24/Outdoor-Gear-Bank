@@ -8,17 +8,14 @@ import RemoveBtn from '../RemoveBtn';
 import API from '../../utils/API';
 import './select-card-style.css';
 
-
 class SelectCard extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             selectedOption: null,
             inventory: [],
             cart: [],
         }
-
     }
 
     handleChange = selectedOption => {
@@ -175,4 +172,3 @@ class SelectCard extends Component {
 }
 
 export default SelectCard;
-

@@ -4,17 +4,13 @@ import API from '../../utils/API';
 
 class RemoveBtn extends Component {
 
-
     removeItem = event => {
         event.preventDefault();
-
         const itemData = {
             id: this.props.id
         }
-
         const itemId = itemData.id;
-
-        API.updateItem(itemId, { 'status' : 'Available' }).then(this.props.updateInventory(itemId));
+        API.updateItem(itemId, { 'status': 'Available' }).then(this.props.updateInventory(itemId));
     }
 
     render() {

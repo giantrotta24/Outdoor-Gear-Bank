@@ -8,7 +8,4 @@ const ReturnResults = ({ children }) => {
   );
 }
 
-
 export default ReturnResults;
-
-
