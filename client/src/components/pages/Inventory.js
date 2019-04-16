@@ -21,7 +21,7 @@ class Inventory extends Component {
       { label: 'Sleeping Bags', value: 'Sleeping Bags' },
       { label: 'Sleeping Pads', value: 'Sleeping Pads' },
       { label: 'Backpacks', value: 'Backpacks' },
-      { label: 'Accessories', vale: 'Accessories' }
+      { label: 'Accessories', value: 'Accessories' }
     ],
     state: '',
     showNotification: false,
